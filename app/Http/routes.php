@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\PetugasController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,5 +16,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('petugas/login');
 });
+
+// Route::get('/lokasi', function () {
+//     return view('admin/lokasi');
+// });
+
+Route::get('/lokasi', 'PetugasController@lokasi');
+Route::post('/lokasi-send', 'PetugasController@lokasisend');
