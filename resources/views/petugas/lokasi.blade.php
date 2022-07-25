@@ -40,7 +40,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Pilih Lokasi Anda!</h1>
                                     </div>
-                                    <form class="user" action="/lokasi-send" method="POST">
+                                    <form class="user" action="/petugas-barang" method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="form-group">
                                             <select name="lokasi" id="lokasi" class="form-control text-center">

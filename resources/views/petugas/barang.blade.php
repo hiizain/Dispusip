@@ -74,8 +74,4 @@
     </div>
 </div>
 
-<div id="cek">
-
-</div>
-
 @endsection

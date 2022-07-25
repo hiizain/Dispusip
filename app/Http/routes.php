@@ -34,5 +34,6 @@ Route::get('AdminLokasi', function () {
 
 Route::post('/login', 'PetugasController@lokasisend');
 
-Route::get('/lokasi', 'PetugasController@lokasi');
-Route::post('/lokasi-send', 'PetugasController@lokasisend');
+Route::get('/petugas-lokasi', 'PetugasController@lokasi');
+Route::post('/petugas-barang', 'PetugasController@lokasisend');
+Route::get('/petugas-barang-input', 'PetugasController@inputBarang');

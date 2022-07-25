@@ -61,45 +61,22 @@
                 Super Admin
             </div>
 
-            <!-- Nav Item - Master Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-database"></i>
-                    <span>Master</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Master:</h6>
-                        <a class="collapse-item" href="/kecamatan">Kecamatan</a>
-                        <a class="collapse-item" href="/kelurahan">Kelurahan</a>
-                        <a class="collapse-item" href="/posyandu">Posyandu</a>
-                        <a class="collapse-item" href="/role">Role</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="/petugas-barang-input">
+                    <i class="fas fa-light fa-pen"></i>
+                    <span>Input Barang</span></a>
             </li>
-
-            <!-- Nav Item - Pendukung Collapse Menu -->
+            
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePendukung"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Pendukung</span>
-                </a>
-                <div id="collapsePendukung" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data Pendukung:</h6>
-                        <a class="collapse-item" href="/balita">Balita</a>
-                        <a class="collapse-item" href="/user">Kelola User</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="/petugas-barang">
+                    <i class="fas fa-regular fa-book"></i>
+                    <span>Barang</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/hposyandu">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>History Posyandu</span></a>
+                <a class="nav-link" href="/petugas-lokasi">
+                    <i class="fas fa-light fa-map"></i>
+                    <span>Ganti Lokasi</span></a>
             </li>
 
             <!-- Divider -->

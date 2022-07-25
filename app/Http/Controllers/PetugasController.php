@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Lokasi;
 use App\Barang;
+use App\Type;
+use App\Satuan;
 
 class PetugasController extends Controller
 {
@@ -24,5 +26,11 @@ class PetugasController extends Controller
         return view('petugas/barang', ['lokasi' => $lokasi, 'barang' => $barang]);
         // return view('petugas/lokasi', ['lokasi' => $lokasi]);
         // return view('admin.lokasi');
+    }
+
+    function inputBarang(){
+        $type = Type::all();
+        $satuan = Satuan::all();
+        return view('petugas/inputBarang', ['type' => $type, 'satuan' => $satuan]);
     }
 }
