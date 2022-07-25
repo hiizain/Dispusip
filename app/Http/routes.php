@@ -19,6 +19,15 @@ Route::get('/', function () {
     return view('login');
 });
 
+//View Admin
+Route::get('Admintype', function () {
+    return view('admin/type');
+});
+
+Route::get('AdminLokasi', function () {
+    return view('admin/lokasi');
+});
+
 // Route::get('/lokasi', function () {
 //     return view('admin/lokasi');
 // });
