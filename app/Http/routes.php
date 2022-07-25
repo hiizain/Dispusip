@@ -16,12 +16,14 @@ use App\Http\Controllers\PetugasController;
 */
 
 Route::get('/', function () {
-    return view('petugas/login');
+    return view('login');
 });
 
 // Route::get('/lokasi', function () {
 //     return view('admin/lokasi');
 // });
+
+Route::post('/login', 'PetugasController@lokasisend');
 
 Route::get('/lokasi', 'PetugasController@lokasi');
 Route::post('/lokasi-send', 'PetugasController@lokasisend');

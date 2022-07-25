@@ -119,7 +119,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                @include('../admin/partials/sidenavbar')
+                @include('../petugas/partials/sidenavbar')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
