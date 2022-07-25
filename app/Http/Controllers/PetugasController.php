@@ -33,4 +33,20 @@ class PetugasController extends Controller
         $satuan = Satuan::all();
         return view('petugas/inputBarang', ['type' => $type, 'satuan' => $satuan]);
     }
+
+    function previewType(Request $request){
+        $idType = $request->id_type;
+        $type = Type::where('id_type', $idType)->first();
+        ?>
+            <div class="modal-header">
+                <h5 class="modal-title">Preview Type <?= $type->TYPE ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="assets/img/<?= $type->PATH_GAMBAR ?>" alt="">
+            </div>
+        <?php
+    }
 }
