@@ -10,20 +10,20 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="assets/img/logo.png">
+    <link rel="icon" href="../assets/img/logo.png">
     <title>ASIPS Admin Page</title>
 
     <!-- Custom fonts for this template -->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -62,15 +62,17 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="/petugas-barang-input">
+                <a href="/petugas-barang-input" class="nav-link" id="urlBarangInput">
                     <i class="fas fa-light fa-pen"></i>
-                    <span>Input Barang</span></a>
+                    <span>Input Barang</span>
+                </a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="/petugas-barang">
+                <a href="" class="nav-link" id="urlBarang">
                     <i class="fas fa-regular fa-book"></i>
-                    <span>Barang</span></a>
+                    <span>Barang</span>
+                </a>
             </li>
 
             <li class="nav-item">
@@ -96,7 +98,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                @include('../petugas/partials/sidenavbar')
+                @include('../petugas/partials/sidenavbar1')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -151,21 +153,22 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="../assets/js/demo/datatables-demo.js"></script>
+    <script src="../assets/js/aplikasi/petugas.js"></script>
     <script src="assets/js/aplikasi/petugas.js"></script>
 
 </body>

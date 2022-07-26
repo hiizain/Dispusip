@@ -40,7 +40,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Pilih Lokasi Anda!</h1>
                                     </div>
-                                    <form class="user" action="/petugas-barang" method="POST">
+                                    {{-- <form class="user" action="/petugas-barang" method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <div class="form-group">
                                             <select name="lokasi" id="lokasi" class="form-control text-center">
@@ -53,7 +53,17 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Pilih
                                         </button>
-                                    </form>
+                                    </form> --}}
+                                    {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+                                    <div class="form-group">
+                                        <select name="lokasi" id="lokasi" class="form-control text-center">
+                                            <option class="form-control" value="0" disabled selected hidden>Pilih Lokasi</option>
+                                            @foreach ($lokasi as $item) 
+                                                <option class="form-control" value="{{ $item->ID_LOKASI }}">{{ $item->LOKASI }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <a href="" class="btn btn-primary btn-user btn-block" id="lokasiDipilih">Pilih</a>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +85,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/aplikasi/petugas.js"></script>
 
 </body>
 
