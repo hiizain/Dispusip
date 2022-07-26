@@ -2,14 +2,6 @@
 
 @section('container')
 
-<div class="row justify-content-center">
-    <div class="col-sm-5 pt-3">
-        <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Data Barang di {{ $lokasi->LOKASI }}</h1>
-        </div>
-    </div>
-</div>
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">

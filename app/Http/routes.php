@@ -20,18 +20,22 @@ Route::get('/', function () {
 });
 
 //View Admin
-Route::get('Admintype', function () {
-    return view('admin/type');
-});
+Route::get('/admin-lokasi', 'AdminController@lokasi');
+Route::get('/admin-type', 'AdminController@type');
+Route::get('/admin-barang', 'AdminController@barang');
+Route::get('/admin-user', 'AdminController@user');
+Route::get('/admin-satuan', 'AdminController@satuan');
+Route::get('/admin-role', 'AdminController@role');
 
-Route::get('AdminLokasi', function () {
-    return view('admin/lokasi');
-});
+Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
+Route::post('/lokasi-form', 'AdminController@storelokasi');
+Route::get('/lokasi-form', 'AdminController@storelokasi');
 
 // Route::get('/lokasi', function () {
 //     return view('admin/lokasi');
 // });
 
+//Petugas
 Route::post('/login', 'PetugasController@lokasisend');
 
 Route::get('/petugas-lokasi', 'PetugasController@lokasi');

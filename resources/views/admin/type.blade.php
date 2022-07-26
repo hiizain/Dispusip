@@ -29,18 +29,13 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td class="text-center">ID Type</td>
-                        <td class="text-center">Type</td>
-                        <td class="text-center">Gambar</td>
-                    </tr>
-                    {{-- @foreach ($type as $item)
+                    @foreach ($type as $item)
                         <tr>
                             <th class="text-center">{{ $item->ID_TYPE }}</th>
                             <th class="text-center">{{ $item->TYPE }}</th>
                             <th class="text-center">{{ $item->PATH_GAMBAR }}</th>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -15,6 +15,9 @@
         <div class="table">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
+                    <div class="form-group form-button">
+                        <a href="/tambah-lokasi"><button class="form-btn primary-default-btn transparent-btn">Tambah Lokasi</button></a>
+                    </div>
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">ID Lokasi</th>
@@ -29,18 +32,13 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td class="text-center">No</td>
-                        <td class="text-center">ID Lokasi</td>
-                        <td class="text-center">Lokasi</td>
-                    </tr>
-                    {{-- @foreach ($type as $item)
+                    @foreach ($lokasi as $item)
                         <tr>
-                            <th class="text-center">{{ $item->ID_TYPE }}</th>
-                            <th class="text-center">{{ $item->TYPE }}</th>
-                            <th class="text-center">{{ $item->PATH_GAMBAR }}</th>
+                            <th class="text-center">{{ $item->ID }}</th>
+                            <th class="text-center">{{ $item->ID_LOKASI }}</th>
+                            <th class="text-center">{{ $item->LOKASI }}</th>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
