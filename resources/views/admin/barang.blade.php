@@ -1,4 +1,4 @@
-@extends('../petugas/layouts/master')
+@extends('../admin/layouts/master')
 
 @section('container')
 
@@ -15,6 +15,9 @@
         <div class="table">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
+                    <div class="form-group form-button">
+                        <a href="/tambah-lokasi"><button class="form-btn primary-default-btn transparent-btn">Tambah Barang</button></a>
+                    </div>
                     <tr>
                         <th class="text-center">No Register</th>
                         <th class="text-center">Kode Barang</th>

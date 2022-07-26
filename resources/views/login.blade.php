@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Login SIMBADA</title>
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,7 @@
                     <div class="card-body p-0">
                         <div class="row justify-content-center align-items-center mt-4">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Aplikasi SIMBADA DISPUSIP Kota Surabaya</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Aplikasi SIMBADA DISPUSIP <br>Kota Surabaya</h1>
                             </div>
                         </div>
                         <!-- Nested Row within Card Body -->
@@ -50,22 +50,33 @@
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-lg-12">
                                     <div class="p-5">
-                                        {{-- <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                        </div> --}}
-                                        <form class="user">
+                                        
+                                        @if(session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ session('success') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        @endif
+
+                                        @if(session()->has('loginError'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ session('loginError') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        @endif
+
+                                        <form action="{{ route('postlogin') }}" class="user" method="post">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input type="email" class="form-control form-control-user"
-                                                    id="exampleInputEmail" aria-describedby="emailHelp"
-                                                    placeholder="Enter Email Address...">
+                                                <input type="text" name="nip" class="form-control form-control-user"
+                                                    id="nip" aria-describedby="emailHelp"
+                                                    placeholder="NIP" required value="{{ old('nip') }}">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password">
+                                                <input type="password" name="password" class="form-control form-control-user"
+                                                    id="password" placeholder="Password" required>
                                             </div>
-                                            <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                                Login
-                                            </a>
+                                            <button class="btn btn-primary btn-user btn-block" type="submit">Log in</button>
                                         </form>
                                     </div>
                                 </div>

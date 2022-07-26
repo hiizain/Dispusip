@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\Login;
 
 
 
@@ -31,12 +32,30 @@ Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
 Route::post('/lokasi-form', 'AdminController@storelokasi');
 Route::get('/lokasi-form', 'AdminController@storelokasi');
 
-// Route::get('/lokasi', function () {
-//     return view('admin/lokasi');
+Route::get('/lokasi', function () {
+    return view('admin/lokasi');
+});
+
+
+// Route::post('/welcome', [Login::class,'authenticate']);
+
+Route::get('/login',                     [Login::class, 'index']);
+Route::post('/login',                    [Login::class, 'authentication']);
+
+Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
+
+// Route::group(['middleware' => ['auth', 'CekLevel:admin']], function(){
+//     Route::get('/halaman-admin','LoginController@halamanadmin')->name('halaman-admin');
+// });
+
+// Route::group(['middleware' => ['auth', 'CekLevel:petugas']], function(){
+//     Route::get('/halaman-petugas','LoginController@halamanpetugas')->name('halaman-petugas');
 // });
 
 //Petugas
 Route::post('/login', 'PetugasController@lokasisend');
+
+// Route::get('/admin-lokasi', 'LokasiController@tabellokasi');
 
 Route::get('/petugas-lokasi', 'PetugasController@lokasi');
 Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend');

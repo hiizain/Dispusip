@@ -58,7 +58,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Super Admin
+                Admin
             </div>
 
             <li class="nav-item">
