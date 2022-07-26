@@ -35,7 +35,9 @@ Route::get('AdminLokasi', function () {
 Route::post('/login', 'PetugasController@lokasisend');
 
 Route::get('/petugas-lokasi', 'PetugasController@lokasi');
-Route::post('/petugas-barang', 'PetugasController@lokasisend');
-Route::get('/petugas-barang-input', 'PetugasController@inputBarang');
-Route::post('/petugas-barang-input', 'PetugasController@inputBarang');
+Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend');
+// Route::post('/petugas-barang', 'PetugasController@lokasisend');
+Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang');
+Route::post('/petugas-barang-input', 'PetugasController@saveBarang');
 Route::post('/priveiew-type', 'PetugasController@previewType');
+Route::post('/priveiew-barang', 'PetugasController@previewBarang');
