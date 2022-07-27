@@ -29,6 +29,10 @@ Route::get('/admin-satuan', 'AdminController@satuan');
 Route::get('/admin-role', 'AdminController@role');
 
 Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
+Route::get('/tambah-role', 'AdminController@tambahrole');
+Route::get('/tambah-satuan', 'AdminController@tambahsatuan');
+Route::get('/tambah-type', 'AdminController@tambahtype');
+Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::post('/lokasi-form', 'AdminController@storelokasi');
 Route::get('/lokasi-form', 'AdminController@storelokasi');
 

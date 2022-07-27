@@ -11,37 +11,25 @@
             </div>
         @endif --}}
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Tambahkan Barang!</h1>
+            <h1 class="h4 text-gray-900 mb-4">Tambahkan Satuan!</h1>
         </div>
-        <form action="/lokasi-form" method="POST">
+        <form action="/role-form" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
-                    <h1 class="h6">ID Lokasi</h1>
+                    <h1 class="h6">Satuan</h1>
                 </div>
                 <div class="col-sm-1 mt-2">
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="ID Lokasi" name="ID_LOKASI">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4 mt-2">
-                    <h1 class="h6">Lokasi</h1>
-                </div>
-                <div class="col-sm-1 mt-2">
-                    <h1 class="h6">:</h1>
-                </div>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Lokasi" name="Lokasi">
+                        placeholder="Satuan" name="SATUAN">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <a href="/admin-lokasi" class="btn btn-danger btn-user btn-block">
+                    <a href="/admin-satuan" class="btn btn-danger btn-user btn-block">
                         Batal
                     </a>
                 </div>

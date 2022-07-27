@@ -16,7 +16,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <div class="form-group form-button">
-                        <a href="/tambah-lokasi"><button class="form-btn primary-default-btn transparent-btn">Tambah Role</button></a>
+                        <a href="/tambah-role"><button class="form-btn primary-default-btn transparent-btn">Tambah Role</button></a>
                     </div>
                     <tr>
                         <th class="text-center">ID Role</th>

@@ -27,7 +27,31 @@ class AdminController extends Controller
     public function tambahlokasi()
     {
 
-        return view('admin/tambahlokasi');
+        return view('admin/tambah/tambahlokasi');
+    }
+
+    public function tambahrole()
+    {
+
+        return view('admin/tambah/tambahrole');
+    }
+
+    public function tambahtype()
+    {
+
+        return view('admin/tambah/tambahtype');
+    }
+
+    public function tambahuser()
+    {
+
+        return view('admin/tambah/tambahuser');
+    }
+
+    public function tambahsatuan()
+    {
+
+        return view('admin/tambah/tambahsatuan');
     }
 
     function type(){
@@ -73,13 +97,9 @@ class AdminController extends Controller
      */
     public function storelokasi(Request $request)
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $validatedata->validate($request,[
-            'lokasi'=>'required'
-        ]);
         Lokasi::create($validatedata);
         $request->session()->flash('success','berhasil menambahkan lokasi');
-        return redirect('/lokasi')->with('hapus','Data berhasil ditambah');
+        return redirect('/admin-lokasi')->with('hapus','Data berhasil ditambah');
     }
 
     /**
