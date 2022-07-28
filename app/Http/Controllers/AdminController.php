@@ -97,9 +97,78 @@ class AdminController extends Controller
      */
     public function storelokasi(Request $request)
     {
-        Lokasi::create($validatedata);
-        $request->session()->flash('success','berhasil menambahkan lokasi');
-        return redirect('/admin-lokasi')->with('hapus','Data berhasil ditambah');
+            $lokasi = new Lokasi;
+            $lokasi->KODE_LOKASI = $request->KODE_LOKASI;
+            $lokasi->LOKASI = $request->LOKASI;
+        
+                if($lokasi->save()){
+                    // die(var_dump($barang));
+                    return redirect("/admin-lokasi");
+                } else 
+                    return back();
+    }
+
+    public function storerole(Request $request)
+    {
+            $role = new Role;
+            $role->ROLE = $request->ROLE;
+        
+                if($role->save()){
+                    // die(var_dump($barang));
+                    return redirect("/admin-role");
+                } else 
+                    return back();
+    }
+    
+    public function storesatuan(Request $request)
+    {
+            $satuan = new Satuan;
+            $satuan->SATUAN = $request->SATUAN;
+        
+                if($satuan->save()){
+                    // die(var_dump($barang));
+                    return redirect("/admin-satuan");
+                } else 
+                    return back();
+    }
+
+    public function storetype(Request $request)
+    {
+            $type = new Type;
+            $type->TYPE = $request->TYPE;
+            $filenameWithExt = $request->file('PATH_GAMBAR')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('PATH_GAMBAR')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            
+
+            if($request->file('PATH_GAMBAR')){
+                $type->PATH_GAMBAR = $filenameSimpan;
+                $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
+                if($type->save()){
+                    return redirect("admin-type");
+                } else 
+                    return back();
+            } else 
+                return back();
+    }
+
+    public function storeuser(Request $request)
+    {
+            $user = new user;
+            $user->ID_ROLE = $request->role;
+            // $user->ID_JABATAN = $request->jabatan;
+            $user->NAMA = $request->NAMA;
+            $user->NIP = $request->NIP;
+            $user->USERNAME = $request->USERNAME;
+            $user->PASSWORD = $request->PASSWORD;
+            
+        
+                if($user->save()){
+                    // die(var_dump($barang));
+                    return redirect("/admin-user");
+                } else 
+                    return back();
     }
 
     /**

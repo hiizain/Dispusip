@@ -34,8 +34,8 @@
                 <tbody>
                     @foreach ($lokasi as $item)
                         <tr>
-                            <th class="text-center">{{ $item->ID }}</th>
                             <th class="text-center">{{ $item->ID_LOKASI }}</th>
+                            <th class="text-center">{{ $item->KODE_LOKASI }}</th>
                             <th class="text-center">{{ $item->LOKASI }}</th>
                         </tr>
                     @endforeach

@@ -17,14 +17,14 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
-                    <h1 class="h6">ID Lokasi</h1>
+                    <h1 class="h6">KODE Lokasi</h1>
                 </div>
                 <div class="col-sm-1 mt-2">
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="ID Lokasi" name="ID_LOKASI">
+                        placeholder="Kode Lokasi" name="KODE_LOKASI">
                 </div>
             </div>
             <div class="form-group row">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Lokasi" name="Lokasi">
+                        placeholder="Lokasi" name="LOKASI">
                 </div>
             </div>
             <div class="form-group row">

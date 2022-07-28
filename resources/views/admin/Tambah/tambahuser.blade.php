@@ -13,7 +13,7 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Tambahkan User!</h1>
         </div>
-        <form action="/role-form" method="POST">
+        <form action="/user-form" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
@@ -48,15 +48,14 @@
                 <div class="col-sm-7">
                     <select name="role" id="role" class="form-control text-center">
                         <option class="form-control" value="0" disabled selected hidden>Pilih Role</option>
-                        {{-- @foreach ($role as $item)
-                            <option value="{{ $item->ID_ROLE }}">{{ $item->ROLE }}</option>
-                        @endforeach --}}
+                        @foreach ($role as $item)
+                            <option value="{{ $item->ID_ROLE }}">{{ $item->role }}</option>
+                        @endforeach
                     </select>
                     {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
                     <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content" id="modalType">
-
                             </div>
                         </div>
                     </div>
