@@ -16,7 +16,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <div class="form-group form-button">
-                        <a href="/tambah-type"><button class="form-btn primary-default-btn transparent-btn">Tambah Tipe Barang</button></a>
+                        <a href="/tambah-type"><button class="btn btn-info">Tambah Tipe Barang</button></a>
                     </div>
                     <tr>
                         <th class="text-center">ID Type</th>

@@ -35,8 +35,8 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <input type="file" class="form-control form-control-user text-center" id=""
-                        placeholder="Gambar Barang" name="PATH_GAMBAR">
+                   <center><input type="file" class="" id=""
+                        placeholder="Gambar Barang" name="PATH_GAMBAR"></center>
                 </div>
             </div>
             <div class="form-group row">

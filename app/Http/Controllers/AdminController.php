@@ -11,6 +11,7 @@ use App\Type;
 use App\User;
 use App\Satuan;
 use App\Role;
+use App\Jabatan;
 
 class AdminController extends Controller
 {
@@ -54,6 +55,12 @@ class AdminController extends Controller
         return view('admin/tambah/tambahsatuan');
     }
 
+    public function tambahjabatan()
+    {
+
+        return view('admin/tambah/tambahjabatan');
+    }
+
     function type(){
         $type = Type::all();
         return view('admin/type', ['type' => $type]);
@@ -79,6 +86,11 @@ class AdminController extends Controller
         return view('admin/role', ['role' => $role]);
     }
 
+    function jabatan(){
+        $jabatan = Jabatan::all();
+        return view('admin/jabatan', ['jabatan' => $jabatan]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -101,6 +113,8 @@ class AdminController extends Controller
         $request->session()->flash('success','berhasil menambahkan lokasi');
         return redirect('/admin-lokasi')->with('hapus','Data berhasil ditambah');
     }
+
+    
 
     /**
      * Display the specified resource.

@@ -7,7 +7,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-sm-6 py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Lokasi</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Jabatan</h6>
             </div>
         </div>
     </div>
@@ -16,27 +16,24 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <div class="form-group form-button">
-                        <a href="/tambah-lokasi"><button class="btn btn-info">Tambah Lokasi</button></a>
+                        <a href="/tambah-satuan"><button class="btn btn-info">Tambah Jabatan</button></a>
                     </div>
                     <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">ID Lokasi</th>
-                        <th class="text-center">Lokasi</th>
+                        <th class="text-center">ID Jabatan</th>
+                        <th class="text-center">Nama Jabatan</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">ID Lokasi</th>
-                        <th class="text-center">Lokasi</th>
+                        <th class="text-center">ID Jabatan </th>
+                        <th class="text-center">Nama Jabatan</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($lokasi as $item)
-                        <tr>
-                            <th class="text-center">{{ $item->ID }}</th>
-                            <th class="text-center">{{ $item->ID_LOKASI }}</th>
-                            <th class="text-center">{{ $item->LOKASI }}</th>
+                    @foreach ($jabatan as $item)
+                    <tr>
+                            <th class="text-center">{{ $item->ID_JABATAN }}</th>
+                            <th class="text-center">{{ $item->JABATAN}}</th>
                         </tr>
                     @endforeach
                 </tbody>

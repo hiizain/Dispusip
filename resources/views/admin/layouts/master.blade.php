@@ -88,6 +88,11 @@
                     <span>Role</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/admin-jabatan">
+                    <i class="fas fa-solid fa-briefcase"></i>
+                    <span>Jabatan</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/admin-user">
                     <i class="fas fa-light fa-address-card"></i>
                     <span>User</span></a>

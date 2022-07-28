@@ -27,6 +27,7 @@ Route::get('/admin-barang', 'AdminController@barang');
 Route::get('/admin-user', 'AdminController@user');
 Route::get('/admin-satuan', 'AdminController@satuan');
 Route::get('/admin-role', 'AdminController@role');
+Route::get('/admin-jabatan', 'AdminController@jabatan');
 
 Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
 Route::get('/tambah-role', 'AdminController@tambahrole');
@@ -35,6 +36,7 @@ Route::get('/tambah-type', 'AdminController@tambahtype');
 Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::post('/lokasi-form', 'AdminController@storelokasi');
 Route::get('/lokasi-form', 'AdminController@storelokasi');
+Route::get('/jabatan-form', 'AdminController@tambahjabatan');
 
 Route::get('/lokasi', function () {
     return view('admin/lokasi');
