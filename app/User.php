@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     protected $table = 'user';
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role', 'ID_ROLE', 'ID_ROLE');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo('App\Jabatan', 'ID_JABATAN', 'ID_JABATAN');
+    }
     /**
      * The attributes that are mass assignable.
      *
