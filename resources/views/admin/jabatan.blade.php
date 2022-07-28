@@ -16,7 +16,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <div class="form-group form-button">
-                        <a href="/tambah-satuan"><button class="btn btn-info">Tambah Jabatan</button></a>
+                        <a href="/tambah-jabatan"><button class="btn btn-info">Tambah Jabatan</button></a>
                     </div>
                     <tr>
                         <th class="text-center">ID Jabatan</th>

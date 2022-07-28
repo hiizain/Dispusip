@@ -34,15 +34,17 @@ Route::get('/tambah-role', 'AdminController@tambahrole');
 Route::get('/tambah-satuan', 'AdminController@tambahsatuan');
 Route::get('/tambah-type', 'AdminController@tambahtype');
 Route::get('/tambah-user', 'AdminController@tambahuser');
+Route::get('/tambah-jabatan', 'AdminController@tambahjabatan');
 
 Route::post('/lokasi-form', 'AdminController@storelokasi');
-
 Route::get('/lokasi-form', 'AdminController@storelokasi');
-Route::get('/jabatan-form', 'AdminController@tambahjabatan');
 
+
+Route::post('/jabatan-form', 'AdminController@storejabatan');
 Route::post('/role-form', 'AdminController@storerole');
 Route::post('/satuan-form', 'AdminController@storesatuan');
 Route::post('/type-form', 'AdminController@storetype');
+Route::post('/user-form', 'AdminController@storeuser');
 
 
 

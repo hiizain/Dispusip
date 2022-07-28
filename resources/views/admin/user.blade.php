@@ -20,32 +20,35 @@
                     </div>
                     <tr>
                         <th class="text-center">ID User</th>
+                        <th class="text-center">ID Jabatan</th>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
                         <th class="text-center">Username</th>
-                        <th class="text-center">Password</th>
+                        {{-- <th class="text-center">Password</th> --}}
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th class="text-center">ID User</th>
+                        <th class="text-center">ID Jabatan</th>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
                         <th class="text-center">Username</th>
-                        <th class="text-center">Password</th>
+                        {{-- <th class="text-center">Password</th> --}}
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($user as $item)
                         <tr>
                             <th class="text-center">{{ $item->ID_USER }}</th>
+                            <th class="text-center">{{ $item->ID_JABATAN }}</th>
                             <th class="text-center">{{ $item->ID_ROLE }}</th>
                             <th class="text-center">{{ $item->NAMA }}</th>
                             <th class="text-center">{{ $item->NIP }}</th>
                             <th class="text-center">{{ $item->USERNAME }}</th>
-                            <th class="text-center">{{ $item->PASSWORD }}</th>
+                            {{-- <th class="text-center">{{ $item->PASSWORD }}</th> --}}
                         </tr>
                     @endforeach
                 </tbody>

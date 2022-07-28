@@ -12,6 +12,7 @@ use App\User;
 use App\Satuan;
 use App\Role;
 use App\Jabatan;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -45,8 +46,10 @@ class AdminController extends Controller
 
     public function tambahuser()
     {
-
-        return view('admin/tambah/tambahuser');
+        $jabatan = Jabatan::all();
+        $role = Role::all();
+        return view('admin/tambah/tambahuser', ['jabatan' => $jabatan,'role' => $role]);
+        
     }
 
     public function tambahsatuan()
@@ -169,11 +172,11 @@ class AdminController extends Controller
     {
             $user = new user;
             $user->ID_ROLE = $request->role;
-            // $user->ID_JABATAN = $request->jabatan;
+            $user->ID_JABATAN = $request->jabatan;
             $user->NAMA = $request->NAMA;
             $user->NIP = $request->NIP;
             $user->USERNAME = $request->USERNAME;
-            $user->PASSWORD = $request->PASSWORD;
+            $user->PASSWORD = Hash::make($request->PASSWORD);
             
         
                 if($user->save()){
@@ -183,6 +186,17 @@ class AdminController extends Controller
                     return back();
     }
 
+    public function storejabatan(Request $request)
+    {
+            $jabatan = new Jabatan;
+            $jabatan->JABATAN = $request->JABATAN;
+        
+                if($jabatan->save()){
+                    // die(var_dump($barang));
+                    return redirect("/admin-jabatan");
+                } else 
+                    return back();
+    }
     
 
     /**

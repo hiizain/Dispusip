@@ -40,6 +40,22 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
+                    <h1 class="h6">Jabatan</h1>
+                </div>
+                <div class="col-sm-1 mt-2">
+                    <h1 class="h6">:</h1>
+                </div>
+                <div class="col-sm-7">
+                    <select name="jabatan" id="jabatan" class="form-control text-center">
+                        <option class="form-control" value="0" disabled selected hidden>Pilih Jabatan</option>
+                        @foreach ($jabatan as $item)
+                            <option value="{{ $item->ID_JABATAN }}">{{ $item->JABATAN }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4 mt-2">
                     <h1 class="h6">Role</h1>
                 </div>
                 <div class="col-sm-1 mt-2">
@@ -49,17 +65,9 @@
                     <select name="role" id="role" class="form-control text-center">
                         <option class="form-control" value="0" disabled selected hidden>Pilih Role</option>
                         @foreach ($role as $item)
-                            <option value="{{ $item->ID_ROLE }}">{{ $item->role }}</option>
+                            <option value="{{ $item->ID_ROLE }}">{{ $item->ROLE }}</option>
                         @endforeach
                     </select>
-                    {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
-                    <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content" id="modalType">
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="form-group row">
@@ -82,7 +90,7 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
+                    <input type="password" class="form-control form-control-user text-center" id="exampleFirstName"
                         placeholder="Password" name="PASSWORD">
                 </div>
             </div>
