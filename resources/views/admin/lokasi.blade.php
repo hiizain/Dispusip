@@ -22,21 +22,19 @@
                         <th class="text-center">No</th>
                         <th class="text-center">ID Lokasi</th>
                         <th class="text-center">Lokasi</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">ID Lokasi</th>
-                        <th class="text-center">Lokasi</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach ($lokasi as $item)
                         <tr>
                             <th class="text-center">{{ $item->ID_LOKASI }}</th>
                             <th class="text-center">{{ $item->KODE_LOKASI }}</th>
                             <th class="text-center">{{ $item->LOKASI }}</th>
+                            <th class="text-center">
+                                <a href="/edit-lokasi{{$item->ID_LOKASI}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-lokasi{{$item->ID_LOKASI}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>

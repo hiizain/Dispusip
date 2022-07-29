@@ -21,19 +21,25 @@
                     <tr>
                         <th class="text-center">ID Jabatan</th>
                         <th class="text-center">Nama Jabatan</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th class="text-center">ID Jabatan </th>
                         <th class="text-center">Nama Jabatan</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($jabatan as $item)
-                    <tr>
+                        <tr>
                             <th class="text-center">{{ $item->ID_JABATAN }}</th>
                             <th class="text-center">{{ $item->JABATAN}}</th>
+                            <th class="text-center">
+                                <a href="/edit-jabatan{{$item->ID_JABATAN}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-jabatan{{$item->ID_JABATAN}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>

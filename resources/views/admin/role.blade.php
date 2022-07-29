@@ -21,19 +21,25 @@
                     <tr>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Role</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Role</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($role as $item)
-                    <tr>
+                        <tr>
                             <th class="text-center">{{ $item->ID_ROLE }}</th>
                             <th class="text-center">{{ $item->ROLE }}</th>
+                            <th class="text-center">
+                                <a href="/edit-role{{$item->ID_ROLE}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-role{{$item->ID_ROLE}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>

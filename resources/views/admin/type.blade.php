@@ -22,6 +22,7 @@
                         <th class="text-center">ID Type</th>
                         <th class="text-center">Type</th>
                         <th class="text-center">Gambar</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -29,6 +30,7 @@
                         <th class="text-center">ID Type</th>
                         <th class="text-center">Type</th>
                         <th class="text-center">Gambar</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -37,6 +39,10 @@
                             <th class="text-center">{{ $item->ID_TYPE }}</th>
                             <th class="text-center">{{ $item->TYPE }}</th>
                             <th class="text-center">{{ $item->PATH_GAMBAR }}</th>
+                            <th class="text-center">
+                                <a href="/edit-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>

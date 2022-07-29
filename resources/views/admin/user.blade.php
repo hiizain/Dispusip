@@ -26,6 +26,7 @@
                         <th class="text-center">NIP</th>
                         <th class="text-center">Username</th>
                         {{-- <th class="text-center">Password</th> --}}
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -37,6 +38,7 @@
                         <th class="text-center">NIP</th>
                         <th class="text-center">Username</th>
                         {{-- <th class="text-center">Password</th> --}}
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -49,6 +51,10 @@
                             <th class="text-center">{{ $item->NIP }}</th>
                             <th class="text-center">{{ $item->USERNAME }}</th>
                             {{-- <th class="text-center">{{ $item->PASSWORD }}</th> --}}
+                            <th class="text-center">
+                                <a href="/edit-user{{$item->ID_USER}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-user{{$item->ID_USER}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>

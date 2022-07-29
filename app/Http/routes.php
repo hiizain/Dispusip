@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\Login;
-
-
+use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,30 +20,59 @@ Route::get('/', function () {
 });
 
 //View Admin
-Route::get('/admin-lokasi', 'AdminController@lokasi');
-Route::get('/admin-type', 'AdminController@type');
+
+//Admin-Barang
 Route::get('/admin-barang', 'AdminController@barang');
-Route::get('/admin-user', 'AdminController@user');
-Route::get('/admin-satuan', 'AdminController@satuan');
-Route::get('/admin-role', 'AdminController@role');
+
+//Admin-Jabatan
 Route::get('/admin-jabatan', 'AdminController@jabatan');
-
-Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
-Route::get('/tambah-role', 'AdminController@tambahrole');
-Route::get('/tambah-satuan', 'AdminController@tambahsatuan');
-Route::get('/tambah-type', 'AdminController@tambahtype');
-Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::get('/tambah-jabatan', 'AdminController@tambahjabatan');
+Route::post('/jabatan-form', 'AdminController@storejabatan');
+Route::get('/edit-jabatan{id}', 'AdminController@editjabatan');
+Route::post('/update-jabatan-form{id}', 'AdminController@updatejabatan');
+Route::get('/hapus-jabatan{id}', 'AdminController@destroyjabatan');
 
+//Admin-Lokasi
+Route::get('/admin-lokasi', 'AdminController@lokasi');
+Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
 Route::post('/lokasi-form', 'AdminController@storelokasi');
 Route::get('/lokasi-form', 'AdminController@storelokasi');
+Route::get('/edit-lokasi{id}', 'AdminController@editlokasi');
+Route::post('/update-lokasi-form{id}', 'AdminController@updatelokasi');
+Route::get('/hapus-lokasi{id}', 'AdminController@destroylokasi');
 
-
-Route::post('/jabatan-form', 'AdminController@storejabatan');
+//Admin-Role
+Route::get('/admin-role', 'AdminController@role');
+Route::get('/tambah-role', 'AdminController@tambahrole');
 Route::post('/role-form', 'AdminController@storerole');
+Route::get('/edit-role{id}', 'AdminController@editrole');
+Route::post('/update-role-form{id}', 'AdminController@updaterole');
+Route::get('/hapus-role{id}', 'AdminController@destroyrole');
+
+//Admin-Satuan
+Route::get('/admin-satuan', 'AdminController@satuan');
+Route::get('/tambah-satuan', 'AdminController@tambahsatuan');
 Route::post('/satuan-form', 'AdminController@storesatuan');
+Route::get('/edit-satuan{id}', 'AdminController@editsatuan');
+Route::post('/update-satuan-form{id}', 'AdminController@updatesatuan');
+Route::get('/hapus-satuan{id}', 'AdminController@destroysatuan');
+
+//Admin-Type
+Route::get('/admin-type', 'AdminController@type');
+Route::get('/tambah-type', 'AdminController@tambahtype');
 Route::post('/type-form', 'AdminController@storetype');
+Route::get('/edit-type{id}', 'AdminController@edittype');
+Route::post('/update-type-form{id}', 'AdminController@updatetype');
+Route::get('/hapus-type{id}', 'AdminController@destroytype');
+
+//Admin-User
+Route::get('/admin-user', 'AdminController@user');
+Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::post('/user-form', 'AdminController@storeuser');
+Route::get('/edit-user{id}', 'AdminController@edituser');
+Route::post('/update-user-form{id}', 'AdminController@updateuser');
+Route::get('/hapus-user{id}', 'AdminController@destroyuser');
+
 
 
 

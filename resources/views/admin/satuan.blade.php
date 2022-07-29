@@ -21,19 +21,25 @@
                     <tr>
                         <th class="text-center">ID Satuan</th>
                         <th class="text-center">Satuan</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th class="text-center">ID Satuan</th>
                         <th class="text-center">Satuan</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($satuan as $item)
-                    <tr>
+                        <tr>
                             <th class="text-center">{{ $item->ID_SATUAN }}</th>
                             <th class="text-center">{{ $item->SATUAN }}</th>
+                            <th class="text-center">
+                                <a href="/edit-satuan{{$item->ID_SATUAN}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
+                                <a href="/hapus-satuan{{$item->ID_SATUAN}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
+                            </th>
                         </tr>
                     @endforeach
                 </tbody>
