@@ -108,13 +108,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php
-                                    // use Illuminate\Support\Facades\Auth;
-                                    // $nama = Auth::user()->nama;
-                                    // echo "Halo, ".$nama."!";
-                                    ?>
-                                </span>
+                                <?php
+                                    use Illuminate\Support\Facades\Auth;
+                                    use App\User;
+                                    $nip = Auth::user()->nip;
+                                    $user = User::where('nip', $nip)->first();
+                                ?>
+                                <div>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
+                                </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
                             </a>

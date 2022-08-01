@@ -9,6 +9,7 @@ use App\Lokasi;
 use App\Barang;
 use App\Type;
 use App\User;
+use App\Users;
 use App\Satuan;
 use App\Role;
 use App\Jabatan;
@@ -195,16 +196,20 @@ class AdminController extends Controller
 
     public function storeuser(Request $request)
     {
-            $user = new user;
+            $user = new User;
             $user->ID_ROLE = $request->role;
             $user->ID_JABATAN = $request->jabatan;
             $user->NAMA = $request->NAMA;
             $user->NIP = $request->NIP;
             $user->USERNAME = $request->USERNAME;
             $user->PASSWORD = Hash::make($request->PASSWORD);
+
+            $users = new Users;
+            $users->NIP = $request->NIP;
+            $users->PASSWORD = Hash::make($request->PASSWORD);
             
         
-                if($user->save()){
+                if($user->save() && $users->save()){
                     // die(var_dump($barang));
                     return redirect("/admin-user");
                 } else 
