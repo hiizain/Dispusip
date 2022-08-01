@@ -58,7 +58,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Admin
+                Petugas
             </div>
 
             <li class="nav-item">

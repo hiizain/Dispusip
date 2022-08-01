@@ -72,7 +72,7 @@ Route::post('/update-type-form{id}', 'AdminController@updatetype');
 Route::get('/hapus-type{id}', 'AdminController@destroytype');
 
 //Admin-User
-Route::get('/admin-user', 'AdminController@user')->middleware('auth', 'admin');;
+Route::get('/admin-user', 'AdminController@user');
 Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::post('/user-form', 'AdminController@storeuser');
 Route::get('/edit-user{id}', 'AdminController@edituser');
