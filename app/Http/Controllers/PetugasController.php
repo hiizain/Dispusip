@@ -57,7 +57,7 @@ class PetugasController extends Controller
                 </button>
             </div>
             <div class="modal-body text-center">
-                <img src="../assets/img/<?= $type->PATH_GAMBAR ?>" alt="">
+                <img style="width: 400px;" src="../assets/img/<?= $type->PATH_GAMBAR ?>" alt="">
             </div>
         <?php
         } else {
