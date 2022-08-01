@@ -9,7 +9,7 @@
         </div>
         <form action="/update-user-form{{ $data->ID_USER }}" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <<div class="form-group row">
+            <div class="form-group row">
                 <div class="col-sm-4 mt-2">
                     <h1 class="h6">Nama</h1>
                 </div>
@@ -18,9 +18,10 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Nama" name="NAMA">
+                    name="NAMA" value="{{ $data->NAMA}}">
                 </div>
-            </div><div class="form-group row">
+            </div>
+            <div class="form-group row">
                 <div class="col-sm-4 mt-2">
                     <h1 class="h6">NIP</h1>
                 </div>
@@ -29,7 +30,7 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="NIP" name="NIP">
+                    name="NIP" value="{{ $data->NIP}}">
                 </div>
             </div>
             <div class="form-group row">
@@ -73,7 +74,7 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Username" name="USERNAME">
+                    name="USERNAME" value="{{ $data->USERNAME}}">
                 </div>
             </div>
             <div class="form-group row">
@@ -85,7 +86,7 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="password" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Password" name="PASSWORD">
+                    name="PASSWORD" value="{{ $data->PASSWORD}}">
                 </div>
             </div>
             <div class="form-group row">

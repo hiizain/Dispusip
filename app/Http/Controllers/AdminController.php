@@ -42,7 +42,7 @@ class AdminController extends Controller
         
                 if($lokasi->save()){
                     // die(var_dump($barang));
-                    return redirect("/admin-lokasi");
+                    return redirect("/admin-lokasi")->with('tambah', 'Data berhasil ditambah');
                 } else 
                     return back();
     }
@@ -61,14 +61,14 @@ class AdminController extends Controller
             'LOKASI'        => $request['LOKASI']
         ]);
 
-        return redirect("/admin-lokasi");
+        return redirect("/admin-lokasi")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroylokasi($id)
     {
         $lokasi = Lokasi::where('ID_LOKASI',$id);
         $lokasi->delete();
-        return redirect("/admin-lokasi");
+        return redirect("/admin-lokasi")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END LOKASI==================================================
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
         
                 if($role->save()){
                     // die(var_dump($barang));
-                    return redirect("/admin-role");
+                    return redirect("/admin-role")->with('tambah', 'Data berhasil Ditambah');
                 } else 
                     return back();
     }
@@ -110,14 +110,14 @@ class AdminController extends Controller
             'ROLE'        => $request['ROLE']
         ]);
 
-        return redirect("/admin-role");
+        return redirect("/admin-role")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroyrole($id)
     {
         $role = Role::where('ID_ROLE',$id);
         $role->delete();
-        return redirect("/admin-role");
+        return redirect("/admin-role")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END ROLE==================================================
 
@@ -148,7 +148,7 @@ class AdminController extends Controller
                 $type->PATH_GAMBAR = $filenameSimpan;
                 $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
                 if($type->save()){
-                    return redirect("admin-type");
+                    return redirect("admin-type")->with('tambah', 'Data berhasil ditambah');
                 } else 
                     return back();
             } else 
@@ -168,14 +168,14 @@ class AdminController extends Controller
             'TYPE'        => $request['TYPE']
         ]);
 
-        return redirect("/admin-type");
+        return redirect("/admin-type")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroytype($id)
     {
         $type = Type::where('ID_TYPE',$id);
         $type->delete();
-        return redirect("/admin-type");
+        return redirect("/admin-type")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END TYPE==================================================
 
@@ -206,7 +206,7 @@ class AdminController extends Controller
         
                 if($user->save()){
                     // die(var_dump($barang));
-                    return redirect("/admin-user");
+                    return redirect("/admin-user")->with('tambah', 'Data berhasil ditambah');
                 } else 
                     return back();
     }
@@ -231,14 +231,14 @@ class AdminController extends Controller
             'PASSWORD'              => $request['PASSWORD']
         ]);
 
-        return redirect("/admin-user");
+        return redirect("/admin-user")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroyuser($id)
     {
         $user = User::where('ID_USER',$id);
         $user->delete();
-        return redirect("/admin-user");
+        return redirect("/admin-user")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END USER==================================================
 
@@ -261,7 +261,7 @@ class AdminController extends Controller
         
                 if($satuan->save()){
                     // die(var_dump($barang));
-                    return redirect("/admin-satuan");
+                    return redirect("/admin-satuan")->with('tambah', 'Data berhasil ditambah');
                 } else 
                     return back();
     }
@@ -279,14 +279,14 @@ class AdminController extends Controller
             'SATUAN'        => $request['SATUAN']
         ]);
 
-        return redirect("/admin-satuan");
+        return redirect("/admin-satuan")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroysatuan($id)
     {
         $satuan = Satuan::where('ID_SATUAN',$id);
         $satuan->delete();
-        return redirect("/admin-satuan");
+        return redirect("/admin-satuan")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END SATUAN==================================================
 
@@ -309,7 +309,7 @@ class AdminController extends Controller
         
                 if($jabatan->save()){
                     // die(var_dump($barang));
-                    return redirect("/admin-jabatan");
+                    return redirect("/admin-jabatan")->with('tambah', 'Data berhasil ditambah');
                 } else 
                     return back();
     }
@@ -327,14 +327,14 @@ class AdminController extends Controller
             'JABATAN'        => $request['JABATAN']
         ]);
 
-        return redirect("/admin-jabatan");
+        return redirect("/admin-jabatan")->with('edit', 'Data berhasil diedit');
     }
 
     public function destroyjabatan($id)
     {
         $jabatan = Jabatan::where('ID_JABATAN',$id);
         $jabatan->delete();
-        return redirect("/admin-jabatan");
+        return redirect("/admin-jabatan")->with('hapus', 'Data berhasil dihapus');
     }
 // ==================================================END SATUAN==================================================
 

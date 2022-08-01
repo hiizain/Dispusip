@@ -1,6 +1,32 @@
 @extends('../admin/layouts/master')
 
 @section('container')
+@if (session()->has('tambah'))
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('tambah') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session()->has('edit'))
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('edit') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session()->has('hapus'))
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('hapus') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
