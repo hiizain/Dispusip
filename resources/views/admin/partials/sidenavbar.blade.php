@@ -25,7 +25,7 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                {{-- <a class="dropdown-item" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
@@ -37,7 +37,7 @@
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
                 </a>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div> --}}
                 <form action="/logout" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button class="dropdown-item">

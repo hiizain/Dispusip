@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="../assets/img/logo.png">
-    <title>ASIPS Admin Page</title>
+    <title>SIMBADA DISPUSIP Kota Surabaya</title>
 
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-hand-holding-medical"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">ASIPS</div>
+                <div class="sidebar-brand-text mx-3">SIMBADA</div>
             </a>
 
             <!-- Divider -->
