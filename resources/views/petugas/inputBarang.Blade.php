@@ -10,8 +10,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="../assets/img/logo.png">
-    <title>ASIPS Admin Page</title>
+    <link rel="icon" href="../assets/img/surabaya.png">
+    <title>SIMBADA DISPUSIP Kota Surabaya</title>
 
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/home-master">
+                <a class="nav-link" href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,14 +62,14 @@
             </div>
 
             <li class="nav-item">
-                <a href="/petugas-barang-input/{{ $lokasi->ID_LOKASI }}" class="nav-link" id="urlBarangInput">
+                <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
                     <i class="fas fa-light fa-pen"></i>
                     <span>Input Barang</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="/petugas-barang/{{ $lokasi->ID_LOKASI }}" class="nav-link" id="urlBarang">
+                <a href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarang">
                     <i class="fas fa-regular fa-book"></i>
                     <span>Barang</span>
                 </a>
@@ -108,13 +108,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php
-                                    // use Illuminate\Support\Facades\Auth;
-                                    // $nama = Auth::user()->nama;
-                                    // echo "Halo, ".$nama."!";
-                                    ?>
-                                </span>
+                                <?php
+                                    use Illuminate\Support\Facades\Auth;
+                                    use App\User;
+                                    $nip = Auth::user()->nip;
+                                    $user = User::where('nip', $nip)->first();
+                                ?>
+                                <div>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
+                                </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
                             </a>
@@ -135,7 +138,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <form action="/logout" method="post">
-                                    @csrf
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item" href="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -163,9 +166,30 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Tambahkan Barang!</h1>
                             </div>
+                            @if (session()->has('tambahError'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('tambahError') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+                            @if (session()->has('tambahSuccess'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('tambahSuccess') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form action="/petugas-barang-input" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="idLokasi" value="{{ $lokasi->ID }}">
+                                <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">No. Register</h1>
@@ -175,7 +199,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="No Register" name="noRegister">
+                                            placeholder="No Register" name="no_register">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -198,10 +222,13 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
+                                        @php
+                                            $satuan = json_encode($satuan);
+                                        @endphp
                                         <select name="type" id="type" class="form-control text-center">
-                                            <option class="form-control" value="0" disabled selected hidden>Pilih Type</option>
+                                            <option class="form-control" value="0/{{ $satuan }}" disabled selected hidden>Pilih Type</option>
                                             @foreach ($type as $item)
-                                                <option value="{{ $item->ID_TYPE }}">{{ $item->TYPE }}</option>
+                                                <option value="{{ $item->ID_TYPE }}/{{ $satuan }}">{{ $item->TYPE }}</option>
                                             @endforeach
                                         </select>
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
@@ -217,7 +244,12 @@
                     
                                     </div>
                                 </div>
-                                <div class="form-group row">
+
+                                <div id="form">
+
+                                </div>
+
+                                {{-- <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Satuan Barang</h1>
                                     </div>
@@ -233,7 +265,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nama Barang</h1>
                                     </div>
@@ -245,7 +277,7 @@
                                             placeholder="Nama Barang" name="namaBarang">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Merk Barang</h1>
                                     </div>
@@ -257,7 +289,7 @@
                                             placeholder="Merk Barang" name="merkBarang">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nilai Barang</h1>
                                     </div>
@@ -269,7 +301,7 @@
                                             placeholder="Nilai Barang" name="nilaiBarang">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Tahun Pengadaan</h1>
                                     </div>
@@ -279,20 +311,20 @@
                                     <div class="col-sm-7">
                                         <select name="tahunPengadaan" class="form-control text-center">
                                             <option class="form-control" value="" disabled selected hidden>Pilih Tahun</option>
-                                            <?php  
+                                            @php  
                                                 $year = date('Y');
                                                 $year = (int) $year;
-                                            ?>
+                                            @endphp
                                             @for ($i=0; $i<10; $i++)
                                                 <option value="{{ $year }}">{{ $year }}</option>
-                                            <?php 
+                                            @php  
                                                 $year--;
-                                            ?>
+                                            @endphp
                                             @endfor
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Kondisi Barang</h1>
                                     </div>
@@ -316,7 +348,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Koberadaan Barang</h1>
                                     </div>
@@ -336,7 +368,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Gambar</h1>
                                     </div>
@@ -348,7 +380,7 @@
                                             placeholder="Gambar Barang" name="gambarBarang">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Keterangan</h1>
                                     </div>
@@ -359,14 +391,13 @@
                                         <textarea class="form-control form-control-user" name="keterangan" placeholder="Tambah Keterangan" ></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group row add-form justify-content-center mt-5">
                                     <div class="col-sm-6">
                                         <button type="submit" id="saveBarang" name="submit" class="btn btn-success btn-user btn-block">
                                             Tambah
                                         </button>
                                     </div>
-                                </div>
-                                <hr>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

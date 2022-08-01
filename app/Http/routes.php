@@ -17,7 +17,13 @@ use App\Providers\RouteServiceProvider;
 
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
+Route::post('/login-proses', 'LoginController@authenticate');
+Route::post('/logout', 'LoginController@logout');
+// Route::get('/regis', function () {
+//     return view('regis');
+// });
+// Route::post('/regis-proses', 'PetugasController@reg');
 
 //View Admin
 
@@ -66,7 +72,7 @@ Route::post('/update-type-form{id}', 'AdminController@updatetype');
 Route::get('/hapus-type{id}', 'AdminController@destroytype');
 
 //Admin-User
-Route::get('/admin-user', 'AdminController@user');
+Route::get('/admin-user', 'AdminController@user')->middleware('auth', 'admin');;
 Route::get('/tambah-user', 'AdminController@tambahuser');
 Route::post('/user-form', 'AdminController@storeuser');
 Route::get('/edit-user{id}', 'AdminController@edituser');
@@ -86,6 +92,7 @@ Route::get('/lokasi', function () {
 Route::get('/login',                     [Login::class, 'index']);
 Route::post('/login',                    [Login::class, 'authentication']);
 
+// Route::post('/postlogin', 'LoginController@postlogin');
 Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
 
 // Route::group(['middleware' => ['auth', 'CekLevel:admin']], function(){
@@ -101,10 +108,12 @@ Route::post('/login', 'PetugasController@lokasisend');
 
 // Route::get('/admin-lokasi', 'LokasiController@tabellokasi');
 
-Route::get('/petugas-lokasi', 'PetugasController@lokasi');
+Route::get('/petugas-lokasi', 'PetugasController@lokasi')->middleware('auth', 'petugas');
 Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend');
 // Route::post('/petugas-barang', 'PetugasController@lokasisend');
 Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang');
 Route::post('/petugas-barang-input', 'PetugasController@saveBarang');
 Route::post('/priveiew-type', 'PetugasController@previewType');
 Route::post('/priveiew-barang', 'PetugasController@previewBarang');
+Route::post('/add-form-input', 'PetugasController@addFormInput');
+Route::get('/alert-lokasi', 'PetugasController@alertLokasi');

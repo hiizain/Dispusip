@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <link rel="icon" href="../assets/img/surabaya.png">
+    <title>SIMBADA DISPUSIP Kota Surabaya</title>
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -59,11 +60,19 @@
                                         <select name="lokasi" id="lokasi" class="form-control text-center">
                                             <option class="form-control" value="0" disabled selected hidden>Pilih Lokasi</option>
                                             @foreach ($lokasi as $item) 
-                                                <option class="form-control" value="{{ $item->ID_LOKASI }}">{{ $item->LOKASI }}</option>
+                                                <option class="form-control" value="{{ $item->KODE_LOKASI }}">{{ $item->LOKASI }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <a href="" class="btn btn-primary btn-user btn-block" id="lokasiDipilih">Pilih</a>
+                                    {{-- <a class="btn btn-primary btn-user btn-block" id="lokasiDipilih">Pilih</a> --}}
+                                    <a class="btn btn-primary btn-user btn-block" id="lokasiDipilih" data-toggle="modal" data-target="#modalPreview">Pilih</a>
+                                    <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" id="modalAlertLokasi">
+                
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -10,8 +10,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="../assets/img/logo.png">
-    <title>ASIPS Admin Page</title>
+    <link rel="icon" href="../assets/img/surabaya.png">
+    <title>SIMBADA DISPUSIP Kota Surabaya</title>
 
     <!-- Custom fonts for this template -->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/home-master">
+                <a class="nav-link" href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,14 +62,14 @@
             </div>
 
             <li class="nav-item">
-                <a href="/petugas-barang-input/{{ $lokasi->ID_LOKASI }}" class="nav-link" id="urlBarangInput">
+                <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
                     <i class="fas fa-light fa-pen"></i>
                     <span>Input Barang</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="/petugas-barang/{{ $lokasi->ID_LOKASI }}" class="nav-link" id="urlBarang">
+                <a href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarang">
                     <i class="fas fa-regular fa-book"></i>
                     <span>Barang</span>
                 </a>
@@ -108,13 +108,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php
-                                    // use Illuminate\Support\Facades\Auth;
-                                    // $nama = Auth::user()->nama;
-                                    // echo "Halo, ".$nama."!";
-                                    ?>
-                                </span>
+                                <?php
+                                    use Illuminate\Support\Facades\Auth;
+                                    use App\User;
+                                    $nip = Auth::user()->nip;
+                                    $user = User::where('nip', $nip)->first();
+                                ?>
+                                <div>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
+                                </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
                             </a>
@@ -135,7 +138,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <form action="/logout" method="post">
-                                    @csrf
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item" href="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -155,22 +158,22 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-5 pt-3">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Data Barang di {{ $lokasi->LOKASI }}</h1>
+                                <h1 class="h4 text-gray-900 mb-4">{{ $lokasi->LOKASI }}</h1>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-sm-6 py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Data Baramg</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Tabel Data Barang</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="table">
+                            <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -179,6 +182,7 @@
                                             <th class="text-center">Kode Barang</th>
                                             <th class="text-center">Lokasi</th>
                                             <th class="text-center">Nama Barang</th>
+                                            <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
                                             <th class="text-center">Merk</th>
                                             <th class="text-center">Type</th>
@@ -196,6 +200,7 @@
                                             <th class="text-center">Kode Barang</th>
                                             <th class="text-center">Lokasi</th>
                                             <th class="text-center">Nama Barang</th>
+                                            <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
                                             <th class="text-center">Merk</th>
                                             <th class="text-center">Type</th>
@@ -207,16 +212,17 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php 
-                                        $no = 1;
-                                        ?>
+                                        @php
+                                            $no = 1;
+                                        @endphp
                                         @foreach ($barang as $item)
                                             <tr>
                                                 <th class="text-center">{{ $no }}</th>
                                                 <th class="text-center">{{ $item->NO_REGISTER }}</th>
                                                 <th class="text-center">{{ $item->KODE_BARANG }}</th>
-                                                <th class="text-center">{{ $item->ID }}</th>
+                                                <th class="text-center">{{ $item->lokasi->LOKASI }}</th>
                                                 <th class="text-center">{{ $item->NAMA_BARANG }}</th>
+                                                <th class="text-center">{{ $item->satuan->SATUAN }}</th>
                                                 <th class="text-center">
                                                     <button type="button" value="{{ $item->NO_REGISTER }}" id="btn-preview-barang{{ $no }}" onclick="previewBarang(this.value);" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreviewBarang">Preview Gambar</button>
                     
@@ -229,14 +235,29 @@
                                                     </div>
                                                 </th>
                                                 <th class="text-center">{{ $item->MERK }}</th>
-                                                <th class="text-center">{{ $item->ID_TYPE }}</th>
-                                                <th class="text-center">{{ $item->HARGA }}</th>
+                                                <th class="text-center">{{ $item->type->TYPE }}</th>
+                                                <th class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</th>
                                                 <th class="text-center">{{ $item->TAHUN_PENGADAAN }}</th>
-                                                <th class="text-center">{{ $item->KONDISI_BARANG }}</th>
-                                                <th class="text-center">{{ $item->KEBERADAAN_BARANG }}</th>
+                                                @if ($item->KONDISI_BARANG === "1")
+                                                    <th class="text-center">Baik</th>
+                                                @endif 
+                                                @if ($item->KONDISI_BARANG === "2")
+                                                    <th class="text-center">Kurang Baik</th>
+                                                @endif 
+                                                @if ($item->KONDISI_BARANG === "3")
+                                                    <th class="text-center">Rusak Berat</th>
+                                                @endif
+                                                @if ($item->KEBERADAAN_BARANG === "1")
+                                                    <th class="text-center">Ada</th>
+                                                @endif 
+                                                @if ($item->KONDISI_BARANG === "2")
+                                                    <th class="text-center">Tidak Ada</th>
+                                                @endif
                                                 <th class="text-center">{{ $item->KETERANGAN }}</th>
                                             </tr>
-                                        <?php $no++; ?>
+                                        @php
+                                            $no++;
+                                        @endphp
                                         @endforeach
                                     </tbody>
                                 </table>
