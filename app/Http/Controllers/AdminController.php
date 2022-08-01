@@ -362,6 +362,16 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function storelokasi(Request $request)
+    // {
+    //     date_default_timezone_set('Asia/Jakarta');
+    //     $validatedata->validate($request,[
+    //         'lokasi'=>'required'
+    //     ]);
+    //     Lokasi::create($validatedata);
+    //     $request->session()->flash('success','berhasil menambahkan lokasi');
+    //     return redirect('/lokasi')->with('hapus','Data berhasil ditambah');
+    // }
 
     /**
      * Display the specified resource.

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login SIMBADA</title>
+    <title>Regis SIMBADA</title>
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5 pt-4">
 
             <div class="col-xl-5 col-lg-6 col-md-5 mt-5">
 
@@ -66,18 +66,19 @@
                                         @endif
 
                                         {{-- <form action="{{ route('postlogin') }}" class="user" method="post"> --}}
-                                        <form action="/login-proses" class="user" method="post">
+                                        <form action="/regis-proses" class="user" method="post">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <div class="form-group">
+                                                <input type="text" name="nama" class="form-control form-control-user"
+                                                    id="nama" aria-describedby="emailHelp"
+                                                    placeholder="Nama" required value="{{ old('nama') }}">
+                                            </div>
                                             <div class="form-group">
                                                 <input type="text" name="nip" class="form-control form-control-user"
                                                     id="nip" aria-describedby="emailHelp"
                                                     placeholder="NIP" required value="{{ old('nip') }}">
                                             </div>
-                                            <div class="form-group">
-                                                <input type="password" name="password" class="form-control form-control-user"
-                                                    id="password" placeholder="Password" required>
-                                            </div>
-                                            <button class="btn btn-primary btn-user btn-block" type="submit">Log in</button>
+                                            <button class="btn btn-primary btn-user btn-block" type="submit">Regis</button>
                                         </form>
                                     </div>
                                 </div>

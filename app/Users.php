@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Users extends Authenticatable
 {
-    protected $table = 'user';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'nip', 'password',
     ];
 
     /**
@@ -25,14 +25,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function jabatan()
-    {
-        return $this->belongsTo('App\Jabatan', 'ID_JABATAN', 'ID_JABATAN');
-    }
-
-    public function role()
-    {
-        return $this->belongsTo('App\Role', 'ID_ROLE', 'ID_ROLE');
-    }
 }

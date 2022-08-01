@@ -47,6 +47,18 @@
   box-sizing: border-box;
 }
 
+/* Bukan Template */
+.add-form {
+  display: none;
+}
+
+.add-form .active{
+  display: block;
+}
+
+/* Bukan Template */
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
