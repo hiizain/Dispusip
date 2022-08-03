@@ -81,15 +81,40 @@ Route::get('/lokasi', function () {
     return view('admin/lokasi');
 });
 
+// ----------------------------------------------------------------------------------------------------
+// Petugas --------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
-//Petugas
+// Menampilkan halaman lokasi
 Route::get('/petugas-lokasi', 'PetugasController@lokasi')->middleware('petugas');
-Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend')->middleware('petugas');
-Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang')->middleware('petugas');
-Route::post('/petugas-barang-input', 'PetugasController@saveBarang')->middleware('petugas');
-Route::post('/priveiew-type', 'PetugasController@previewType')->middleware('petugas');
-Route::post('/priveiew-barang', 'PetugasController@previewBarang')->middleware('petugas');
-Route::post('/add-form-input', 'PetugasController@addFormInput')->middleware('petugas');
+
+// Modal alert halaman lokasi
 Route::get('/alert-lokasi', 'PetugasController@alertLokasi')->middleware('petugas');
+
+// Menampilkan halaman barang
+Route::get('/petugas-barang/{idlokasi}', 'PetugasController@barang')->middleware('petugas');
+
+// Modal preview gambar barang
+Route::post('/priveiew-barang', 'PetugasController@previewBarang')->middleware('petugas');
+
+// Menampilkan halaman input barang
+Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang')->middleware('petugas');
+
+// Modal preview gambar type
+Route::post('/priveiew-type', 'PetugasController@previewType')->middleware('petugas');
+
+// Form input barang yang di hide
+Route::post('/add-form-input', 'PetugasController@addFormInput')->middleware('petugas');
+
+// Fungsi save barang
+Route::post('/petugas-barang-input', 'PetugasController@saveBarang')->middleware('petugas');
+
+// Menampilkan halaman edit barang
 Route::get('/petugas-barang-edit{noRegister}/{kodeLokasi}', 'PetugasController@barangEdit')->middleware('petugas');
+
+// Fungsi update barang
 Route::post('/petugas-barang-edit', 'PetugasController@barangUpdate')->middleware('petugas');
+
+// ----------------------------------------------------------------------------------------------------
+// Petugas End-----------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------

@@ -4,6 +4,12 @@
 
 <div class="">
     <div class="p-5">
+        @if (session()->has('updateError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('updateError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Ubah Data Role!</h1>
         </div>

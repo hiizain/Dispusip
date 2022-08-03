@@ -4,12 +4,12 @@
 
 <div class="">
     <div class="p-5">
-        {{-- @if (session()->has('tambahError'))
+        @if (session()->has('tambahError'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('tambahError') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif --}}
+        @endif
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Tambahkan Satuan!</h1>
         </div>
