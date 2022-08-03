@@ -9,7 +9,7 @@
         </div>
         <form action="/update-type-form{{ $data->ID_TYPE }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            {{-- <input type="hidden" name="idType" value="{{ $data->ID_TYPE}}"> --}}
+            <input type="hidden" name="{{ $data->ID_TYPE}}" value="{{ $data->TYPE}}">
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
                     <h1 class="h6">Tipe</h1>
@@ -18,8 +18,8 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        name="type" value="{{ $data->TYPE}}">
+                    <input type="text" class="form-control form-control-user text-center" id="TYPE"
+                        name="TYPE" value="{{ $data->TYPE}}">
                 </div>                
             </div>
             <div class="form-group row">
@@ -30,9 +30,9 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <input type="file" class="form-control form-control-user text-center" id="exampleFirstName"
-                        name="gambarType">
-                </div>                
+                   <center><input type="file" class="" id="PATH_GAMBAR"
+                        placeholder="Gambar Barang" name="PATH_GAMBAR"></center>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">

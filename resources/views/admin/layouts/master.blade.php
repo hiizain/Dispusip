@@ -10,8 +10,8 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="assets/img/logo.png">
-    <title>ASIPS Admin Page</title>
+    <link rel="icon" href="assets/img/surabaya.png">
+    <title>SIMBADA DISOUSIP Kota Surabaya</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,10 +37,11 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-hand-holding-medical"></i>
+                <div class="sidebar-brand-icon">
+                    <img style="width: 40px" src="../assets/img/surabaya.png" alt="">
+                    {{-- <i class="fas fa-hand-holding-medical"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3">SIMBADA</div>
+                <div class="sidebar-brand-text mx-3">ADMIN SIMBADA</div>
             </a>
 
             <!-- Divider -->

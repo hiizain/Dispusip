@@ -179,6 +179,9 @@ class AdminController extends Controller
 
     public function updatetype(Request $request,$id)
     {
+        // DB::table('type')->where('ID_TYPE',$id)->update([
+        //     'TYPE'        => $request['TYPE'],
+        // ]);
 
         $filenameWithExt = $request->file('gambarType')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -197,6 +200,7 @@ class AdminController extends Controller
                 } else return back()->with('updateError', 'Data gagal diupdate');
             } else return back()->with('updateError', 'Data gagal diupdate');
         } else return back()->with('updateError', 'Data gagal diupdate');
+        return redirect("/admin-type")->with('edit', 'Data berhasil diubah');
     }
 
     public function destroytype($id)

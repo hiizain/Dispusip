@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-sm-7">
                     <select name="ID_JABATAN" id="jabatan" class="form-control text-center">
-                        <option class="form-control" value="0" disabled selected hidden>Pilih Jabatan</option>
+                        <option class="form-control" hidden selected value="{{ $data->ID_JABATAN}}" >{{ $data->jabatan->JABATAN }}</option>
                         @foreach ($jabatan as $item)
                             <option value="{{ $item->ID_JABATAN }}">{{ $item->JABATAN }}</option>
                         @endforeach
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-sm-7">
                     <select name="ID_ROLE" id="role" class="form-control text-center">
-                        <option class="form-control" value="0" disabled selected hidden>Pilih Role</option>
+                        <option class="form-control" hidden selected value="{{ $data->ID_ROLE}}" >{{ $data->role->ROLE }}</option>
                         @foreach ($role as $item)
                             <option value="{{ $item->ID_ROLE }}">{{ $item->ROLE }}</option>
                         @endforeach
