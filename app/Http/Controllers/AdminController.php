@@ -163,7 +163,7 @@ class AdminController extends Controller
             $type->PATH_GAMBAR = $filenameSimpan;
             $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
             if($type->save()){
-                return redirect("admin-type")->with('tambahSuccess', 'Data berhasil diupdate');
+                return redirect("admin-type")->with('tambahSuccess', 'Data berhasil ditambah');
             } else 
                 return back()->with('tambahError', 'Data gagal ditambah');
         } else 
