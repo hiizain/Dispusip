@@ -67,7 +67,7 @@ class AdminController extends Controller
             'LOKASI'        => $request['LOKASI']
         ]);
 
-        return redirect("/admin-lokasi")->with('edit', 'Data berhasil diedit');
+        return redirect("/admin-lokasi")->with('updateSuccess', 'Data berhasil diupdate');
     }
 
     public function destroylokasi($id)
@@ -120,7 +120,7 @@ class AdminController extends Controller
             'ROLE'        => $request['ROLE']
         ]);
 
-        return redirect("/admin-role")->with('edit', 'Data berhasil diedit');
+        return redirect("/admin-role")->with('updateSuccess', 'Data berhasil diupdate');
     }
 
     public function destroyrole($id)
@@ -163,7 +163,7 @@ class AdminController extends Controller
             $type->PATH_GAMBAR = $filenameSimpan;
             $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
             if($type->save()){
-                return redirect("admin-type")->with('tambahSuccess', 'Data berhasil diupdate');
+                return redirect("admin-type")->with('tambahSuccess', 'Data berhasil ditambah');
             } else 
                 return back()->with('tambahError', 'Data gagal ditambah');
         } else 
@@ -179,26 +179,33 @@ class AdminController extends Controller
 
     public function updatetype(Request $request,$id)
     {
-        // DB::table('type')->where('ID_TYPE',$id)->update([
-        //     'TYPE'        => $request['TYPE'],
-        // ]);
-
-        $filenameWithExt = $request->file('gambarType')->getClientOriginalName();
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('gambarType')->getClientOriginalExtension();
-        $filenameSimpan = $filename.'_'.time().'.'.$extension;
-
         $type = Type::where('id_type', $id);
         $gambarLama = $type->first()->PATH_GAMBAR;
-        if($request->file('gambarType')->move('storage/img-type', $filenameSimpan)){
-            if(unlink("storage/img-type/$gambarLama")){
-                if($type->update([
-                    'TYPE' => $request->type,
-                    'PATH_GAMBAR' => $filenameSimpan
-                ])){
-                    return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
+        $filenameSimpan = $gambarLama;
+
+        if($request->file('gambarType')){
+            $filenameWithExt = $request->file('gambarType')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('gambarType')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+
+            
+            if($request->file('gambarType')->move('storage/img-type', $filenameSimpan)){
+                if(unlink("storage/img-type/$gambarLama")){
+                    if($type->update([
+                        'TYPE' => $request->type,
+                        'PATH_GAMBAR' => $filenameSimpan
+                    ])){
+                        return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
+                    } else return back()->with('updateError', 'Data gagal diupdate');
                 } else return back()->with('updateError', 'Data gagal diupdate');
             } else return back()->with('updateError', 'Data gagal diupdate');
+        }
+        if($type->update([
+            'TYPE' => $request->type,
+            'PATH_GAMBAR' => $filenameSimpan
+        ])){
+            return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
         } else return back()->with('updateError', 'Data gagal diupdate');
         return redirect("/admin-type")->with('edit', 'Data berhasil diubah');
     }
@@ -276,7 +283,7 @@ class AdminController extends Controller
             'PASSWORD'              => $request['PASSWORD']
         ]);
 
-        return redirect("/admin-user")->with('edit', 'Data berhasil diedit');
+        return redirect("/admin-user")->with('updateSuccess', 'Data berhasil diupdate');
     }
 
     public function destroyuser($id)
@@ -328,7 +335,7 @@ class AdminController extends Controller
             'SATUAN'        => $request['SATUAN']
         ]);
 
-        return redirect("/admin-satuan")->with('edit', 'Data berhasil diedit');
+        return redirect("/admin-satuan")->with('updateSuccess', 'Data berhasil diupdate');
     }
 
     public function destroysatuan($id)
@@ -380,7 +387,7 @@ class AdminController extends Controller
             'JABATAN'        => $request['JABATAN']
         ]);
 
-        return redirect("/admin-jabatan")->with('edit', 'Data berhasil diedit');
+        return redirect("/admin-jabatan")->with('updateSuccess', 'Data berhasil diupdate');
     }
 
     public function destroyjabatan($id)

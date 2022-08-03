@@ -16,35 +16,48 @@ use Auth;
 
 class PetugasController extends Controller
 {
+    // ---------------------------------------
+    // Menampilkan halaman lokasi User Petugas
+    // ---------------------------------------
     function lokasi(){
         $lokasi = Lokasi::all();
         return view('petugas/lokasi', ['lokasi' => $lokasi]);
-        // return view('admin.lokasi');
     }
+    // ---------------------------------------
+    // End -----------------------------------
+    // ---------------------------------------
 
-    // function lokasisend(Request $request){
-    //     $lokasi = Lokasi::where('id_lokasi', $request->lokasi)->first();
-    //     // die(var_dump($lokasi->ID));
-    //     $barang = Barang::where('id', $lokasi->ID)->get();
-    //     // die(var_dump($barang));
-    //     return view('petugas/barang', ['lokasi' => $lokasi, 'barang' => $barang]);
-    //     // return view('petugas/lokasi', ['lokasi' => $lokasi]);
-    //     // return view('admin.lokasi');
-    // }
 
-    function lokasisend($idlokasi){
+    // ---------------------------------------
+    // Menampilkan halaman barang User Petugas
+    // ---------------------------------------
+    function barang($idlokasi){
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
         $barang = Barang::where('id_lokasi', $lokasi->ID_LOKASI)->get();
         return view('petugas/barang', ['lokasi' => $lokasi, 'barang' => $barang]);
     }
+    // ---------------------------------------
+    // End -----------------------------------
+    // ---------------------------------------
 
+
+    // ---------------------------------------------
+    // Menampilkan halaman input Barang User Petugas
+    // ---------------------------------------------
     function inputBarang($idlokasi){
         $type = Type::all();
         $satuan = Satuan::all();
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
         return view('petugas/inputBarang', ['lokasi' => $lokasi, 'type' => $type, 'satuan' => $satuan]);
     }
+    // ---------------------------------------------
+    // End -----------------------------------------
+    // ---------------------------------------------
 
+
+    // --------------------------------------------------
+    // Menampilkan modal preview gambar type User Petugas
+    // --------------------------------------------------
     function previewType(Request $request){
         $idType = $request->id_type;
         if ($request->id_type != 0){
@@ -75,7 +88,14 @@ class PetugasController extends Controller
             <?php
         }
     }
+    // --------------------------------------------------
+    // End ----------------------------------------------
+    // --------------------------------------------------
 
+
+    // --------------------------------------------------
+    // Menampilkan form setelah type dipilih User Petugas
+    // --------------------------------------------------
     function addFormInput(Request $request){
         $satuan = $request->satuan;
         $satuan = json_decode($satuan);
@@ -249,7 +269,14 @@ class PetugasController extends Controller
         </div>
         <?php
     }
+    // --------------------------------------------------
+    // End ----------------------------------------------
+    // --------------------------------------------------
 
+
+    // ----------------------------------------------------
+    // Menampilkan modal preview gambar barang User Petugas
+    // ----------------------------------------------------
     function previewBarang(Request $request){
         $noRegister = $request->no_register;
         if ($request->no_register != null){
@@ -267,7 +294,14 @@ class PetugasController extends Controller
         <?php
         } 
     }
+    // ----------------------------------------------------
+    // End ------------------------------------------------
+    // ----------------------------------------------------
 
+
+    // ---------------------------------------------------
+    // Menampilkan modal alert halaman lokasi User Petugas
+    // ---------------------------------------------------
     function alertLokasi(){
         ?>
             <div class="modal-header">
@@ -281,7 +315,14 @@ class PetugasController extends Controller
             </div>
         <?php
     }
+    // ---------------------------------------------------
+    // End -----------------------------------------------
+    // ---------------------------------------------------
 
+
+    // -------------------------------------
+    // Fungsi save input barang User Petugas
+    // -------------------------------------
     function saveBarang(Request $request){
         $this->validate($request, [
             'no_register' => 'required|unique:barang|max:25',
@@ -307,7 +348,6 @@ class PetugasController extends Controller
         $barang->ID_USER = 3;
         $barang->ID_TYPE = $request->type;
         $barang->ID_SATUAN = $request->satuan;
-        // die(var_dump($request->satuan));
         $barang->NAMA_BARANG = $request->namaBarang;
         $barang->MERK = $request->merkBarang;
         $barang->HARGA = (float)$request->nilaiBarang;
@@ -321,41 +361,40 @@ class PetugasController extends Controller
         $extension = $request->file('gambarBarang')->getClientOriginalExtension();
         $filenameSimpan = $filename.'_'.time().'.'.$extension;
 
-        // die(var_dump($request->file('gambarBarang')));
-        // die(var_dump($request->file('gambarBarang')->getClientOriginalExtension()));
-        // die(var_dump($filenameSimpan));
-        
-
-
         if($request->file('gambarBarang')){
             $barang->PATH_FOTO = $filenameSimpan;
             $request->file('gambarBarang')->move('storage/img-barang', $filenameSimpan);
-            // $path = $request->file('gambarBarang');
-            // $path->move('../assets/img', $filenameSimpan);
             if($barang->save()){
-                // die(var_dump($barang));
                 return redirect("/petugas-barang-input/$lokasi->KODE_LOKASI")->with('tambahSuccess', 'Data berhasil ditambahkan');
             } else 
                 return redirect("/petugas-barang-input/$lokasi->KODE_LOKASI")->with('tambahError', 'Data gagal ditambahkan');
         } else 
             return redirect("/petugas-barang-input/$lokasi->KODE_LOKASI")->with('tambahError', 'Upload Gambar!');
-
-        // $type = Type::all();
-        // $satuan = Satuan::all();
-        // return view('petugas/inputBarang', ['type' => $type, 'satuan' => $satuan]);
     }
+    // -------------------------------------
+    // End ---------------------------------
+    // -------------------------------------
 
+
+    // --------------------------------------------
+    // Menampilkan halaman edit barang User Petugas
+    // --------------------------------------------
     function barangEdit($noRegister, $kodeLokasi){
         $barang = Barang::where('no_register', $noRegister)->first();
         $lokasi = Lokasi::where('kode_lokasi', $kodeLokasi)->first();
         $type = Type::all();
         $satuan = Satuan::all();
 
-        // dd($type);
-
         return view('petugas/editBarang', ['barang' => $barang, 'lokasi' => $lokasi, 'type' => $type, 'satuan' => $satuan]);
     }
+    // --------------------------------------------
+    // End ----------------------------------------
+    // --------------------------------------------
 
+
+    // ---------------------------------
+    // Fungsi update barang User Petugas
+    // ---------------------------------
     function barangUpdate(Request $request){
         $lokasi = Lokasi::where('id_lokasi', $request->idLokasi)->first();
 
@@ -407,4 +446,7 @@ class PetugasController extends Controller
             return redirect("/petugas-barang/$lokasi->KODE_LOKASI")->with('updateSuccess', 'Data berhasil diupdate');
         } else return back()->with('updateError', 'Data gagal diupdate');
     }
+    // ---------------------------------
+    // End -----------------------------
+    // ---------------------------------
 }

@@ -1,18 +1,18 @@
 @extends('../admin/layouts/master')
 
 @section('container')
-@if (session()->has('tambah'))
+@if (session()->has('tambahSuccess'))
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
-    {{ session('tambah') }}
+    {{ session('tambahSuccess') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 @endif
 
-@if (session()->has('edit'))
+@if (session()->has('updateSuccess'))
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
-    {{ session('edit') }}
+    {{ session('updateSuccess') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>

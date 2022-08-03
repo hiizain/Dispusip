@@ -234,7 +234,7 @@
                                             @endforeach
                                         </select>
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
-                                        <button type="button" value="0" id="btn-preview-type" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreview">Preview Gambar Type</button>
+                                        <button type="button" value="{{ $barang->ID_TYPE }}" id="btn-preview-type" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreview">Preview Gambar Type</button>
                     
                                         <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -429,7 +429,7 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control form-control-user" name="keterangan" placeholder="{{ $barang->KETERANGAN }}" value="{{ $barang->KETERANGAN }}"></textarea>
+                                        <textarea class="form-control form-control-user" name="keterangan" value="{{ $barang->KETERANGAN }}">{{ $barang->KETERANGAN }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row justify-content-center mt-5">
