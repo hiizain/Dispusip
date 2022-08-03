@@ -48,18 +48,18 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li> --}}
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Petugas
+                Super Admin
             </div>
 
             <li class="nav-item">
@@ -125,7 +125,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                {{-- <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -137,7 +137,7 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
-                                <div class="dropdown-divider"></div> --}}
+                                <div class="dropdown-divider"></div>
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item" href="/logout">
@@ -160,7 +160,7 @@
                         <div class="p-5">
 
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Tambahkan Barang!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Update Barang!</h1>
                             </div>
                             @if(session()->has('tambahSuccess'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -173,6 +173,14 @@
                             @if(session()->has('tambahError'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{ session('tambahError') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @if(session()->has('updateError'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('updateError') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -194,7 +202,7 @@
                                 </div>
                             </div>
                             @endif
-                            <form action="/petugas-barang-input" method="POST" enctype="multipart/form-data">
+                            <form action="/petugas-barang-edit" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
                                 <div class="form-group row">
@@ -206,7 +214,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="No Register" name="no_register">
+                                            placeholder="No Register" name="no_register" value="{{ $barang->NO_REGISTER }}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -218,7 +226,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Kode Barang" name="kodeBarang">
+                                            placeholder="Kode Barang" name="kodeBarang" value="{{ $barang->KODE_BARANG }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -230,12 +238,12 @@
                                     </div>
                                     <div class="col-sm-7">
                                         @php
-                                            $satuan = json_encode($satuan);
+                                            $satuans = json_encode($satuan);
                                         @endphp
                                         <select name="type" id="type" class="form-control text-center">
-                                            <option class="form-control" value="0/{{ $satuan }}" disabled selected hidden>Pilih Type</option>
+                                            <option class="form-control" value="{{ $barang->ID_TYPE }}/{{ $satuans }}"selected hidden>{{ $barang->type->TYPE }}</option>
                                             @foreach ($type as $item)
-                                                <option value="{{ $item->ID_TYPE }}/{{ $satuan }}">{{ $item->TYPE }}</option>
+                                                <option value="{{ $item->ID_TYPE }}/{{ $satuans }}">{{ $item->TYPE }}</option>
                                             @endforeach
                                         </select>
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
@@ -252,11 +260,7 @@
                                     </div>
                                 </div>
 
-                                <div id="form">
-
-                                </div>
-
-                                {{-- <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Satuan Barang</h1>
                                     </div>
@@ -265,14 +269,14 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <select name="satuan" class="form-control text-center">
-                                            <option class="form-control" value="0" disabled selected hidden>Pilih Satuan</option>
+                                            <option class="form-control" value="{{ $barang->ID_SATUAN }}"selected hidden>{{ $barang->satuan->SATUAN }}</option>
                                             @foreach ($satuan as $item)
                                                 <option value="{{ $item->ID_SATUAN }}">{{ $item->SATUAN }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nama Barang</h1>
                                     </div>
@@ -281,10 +285,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Nama Barang" name="namaBarang">
+                                            placeholder="Nama Barang" name="namaBarang" value="{{ $barang->NAMA_BARANG }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Merk Barang</h1>
                                     </div>
@@ -293,10 +297,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Merk Barang" name="merkBarang">
+                                            placeholder="Merk Barang" name="merkBarang" value="{{ $barang->MERK }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nilai Barang</h1>
                                     </div>
@@ -305,10 +309,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Nilai Barang" name="nilaiBarang">
+                                            placeholder="Nilai Barang" name="nilaiBarang" value="{{ $barang->HARGA }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Tahun Pengadaan</h1>
                                     </div>
@@ -317,21 +321,22 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <select name="tahunPengadaan" class="form-control text-center">
-                                            <option class="form-control" value="" disabled selected hidden>Pilih Tahun</option>
-                                            @php  
+                                            <option class="form-control" value="{{ $barang->TAHUN_PENGADAAN }}"selected hidden>{{ $barang->TAHUN_PENGADAAN }}</option>
+                                            <?php  
                                                 $year = date('Y');
                                                 $year = (int) $year;
-                                            @endphp
-                                            @for ($i=0; $i<10; $i++)
-                                                <option value="{{ $year }}">{{ $year }}</option>
-                                            @php  
+                                            
+                                            for ($i=0; $i<10; $i++){
+                                            ?>
+                                                <option value="<?= $year ?>"><?= $year ?></option>
+                                            <?php 
                                                 $year--;
-                                            @endphp
-                                            @endfor
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Kondisi Barang</h1>
                                     </div>
@@ -340,8 +345,9 @@
                                     </div>
                                     <div class="col-sm-7 mt-2">
                                         <div class="row justify-content-center">
+                                            @if ($barang->KONDISI_BARANG === "1")
                                             <div class="col-sm-4 text-center">
-                                                <input type="radio" id="html" name="kondisiBarang" value="1">
+                                                <input type="radio" id="html" name="kondisiBarang" value="1" checked>
                                                 <label for="html">Baik</label><br>
                                             </div>
                                             <div class="col-sm-4 text-center">
@@ -352,10 +358,39 @@
                                                 <input type="radio" id="html" name="kondisiBarang" value="3">
                                                 <label for="html">Rusak Berat</label><br>
                                             </div>
+                                            @endif 
+                                            @if($barang->KONDISI_BARANG === "2")
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="1">
+                                                <label for="html">Baik</label><br>
+                                            </div>
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="2" checked>
+                                                <label for="html">Kurang Baik</label><br>
+                                            </div>
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="3">
+                                                <label for="html">Rusak Berat</label><br>
+                                            </div>
+                                            @endif
+                                            @if($barang->KONDISI_BARANG === "3")
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="1">
+                                                <label for="html">Baik</label><br>
+                                            </div>
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="2">
+                                                <label for="html">Kurang Baik</label><br>
+                                            </div>
+                                            <div class="col-sm-4 text-center">
+                                                <input type="radio" id="html" name="kondisiBarang" value="3" checked>
+                                                <label for="html">Rusak Berat</label><br>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Koberadaan Barang</h1>
                                     </div>
@@ -364,18 +399,29 @@
                                     </div>
                                     <div class="col-sm-7 mt-2">
                                         <div class="row justify-content-center">
+                                            @if($barang->KEBERADAAN_BARANG === "1")
+                                            <div class="col-sm-6 text-center">
+                                                <input type="radio" id="html" name="keberadaanBarang" value="1" checked>
+                                                <label for="html">Ada</label><br>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <input type="radio" id="html" name="keberadaanBarang" value="2">
+                                                <label for="html">Tidak Ada</label><br>
+                                            </div>
+                                            @else
                                             <div class="col-sm-6 text-center">
                                                 <input type="radio" id="html" name="keberadaanBarang" value="1">
                                                 <label for="html">Ada</label><br>
                                             </div>
                                             <div class="col-sm-6 text-center">
-                                                <input type="radio" id="html" name="keberadaanBarang" value="3">
+                                                <input type="radio" id="html" name="keberadaanBarang" value="2" checked>
                                                 <label for="html">Tidak Ada</label><br>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Gambar</h1>
                                     </div>
@@ -383,11 +429,12 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <input type="file" class="form-control form-control-user text-center" id=""
-                                            placeholder="Gambar Barang" name="gambarBarang">
+                                        <img style="width: 500px" src="../storage/img-barang/{{ $barang->PATH_FOTO }}" alt="Foto Barang">
+                                        <input type="file" class="form-control form-control-user text-center mt-2" id=""
+                                            placeholder="Gambar Barang" name="gambarBarang" value="{{ $barang->PATH_FOTO }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Keterangan</h1>
                                     </div>
@@ -395,16 +442,31 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control form-control-user" name="keterangan" placeholder="Tambah Keterangan" ></textarea>
+                                        <textarea class="form-control form-control-user" name="keterangan" placeholder="{{ $barang->KETERANGAN }}" value="{{ $barang->KETERANGAN }}"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form justify-content-center mt-5">
+                                <div class="form-group row justify-content-center mt-5">
                                     <div class="col-sm-6">
-                                        <button type="submit" id="saveBarang" name="submit" class="btn btn-success btn-user btn-block">
-                                            Tambah
+                                        <button type="button" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Update
                                         </button>
+                        
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Apakah Anda yakin akan melakukan perubahan data?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Ya</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                </div> --}}
+                                </div>
                             </form>
                         </div>
                     </div>

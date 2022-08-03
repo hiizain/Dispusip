@@ -37,15 +37,20 @@ class AdminController extends Controller
 
     public function storelokasi(Request $request)
     {
-            $lokasi = new Lokasi;
-            $lokasi->KODE_LOKASI = $request->KODE_LOKASI;
-            $lokasi->LOKASI = $request->LOKASI;
-        
-                if($lokasi->save()){
-                    // die(var_dump($barang));
-                    return redirect("/admin-lokasi")->with('tambah', 'Data berhasil ditambah');
-                } else 
-                    return back();
+        $this->validate($request, [
+            'KODE_LOKASI' => 'required',
+            'LOKASI' => 'required'
+        ]);
+
+        $lokasi = new Lokasi;
+        $lokasi->KODE_LOKASI = $request->KODE_LOKASI;
+        $lokasi->LOKASI = $request->LOKASI;
+    
+            if($lokasi->save()){
+                // die(var_dump($barang));
+                return redirect("/admin-lokasi")->with('tambahSuccess', 'Data berhasil diupdate');
+            } else 
+                return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function editlokasi($id)
@@ -88,14 +93,18 @@ class AdminController extends Controller
 
     public function storerole(Request $request)
     {
-            $role = new Role;
-            $role->ROLE = $request->ROLE;
+        $this->validate($request, [
+            'ROLE' => 'required',
+        ]);
         
-                if($role->save()){
-                    // die(var_dump($barang));
-                    return redirect("/admin-role")->with('tambah', 'Data berhasil Ditambah');
-                } else 
-                    return back();
+        $role = new Role;
+        $role->ROLE = $request->ROLE;
+    
+            if($role->save()){
+                // die(var_dump($barang));
+                return redirect("/admin-role")->with('tambahSuccess', 'Data berhasil diupdate');
+            } else 
+                return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function editrole($id)
@@ -137,23 +146,28 @@ class AdminController extends Controller
 
     public function storetype(Request $request)
     {
-            $type = new Type;
-            $type->TYPE = $request->TYPE;
-            $filenameWithExt = $request->file('PATH_GAMBAR')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('PATH_GAMBAR')->getClientOriginalExtension();
-            $filenameSimpan = $filename.'_'.time().'.'.$extension;
-            
+        $this->validate($request, [
+            'TYPE' => 'required',
+            'PATH_GAMBAR' => 'required'
+        ]);
 
-            if($request->file('PATH_GAMBAR')){
-                $type->PATH_GAMBAR = $filenameSimpan;
-                $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
-                if($type->save()){
-                    return redirect("admin-type")->with('tambah', 'Data berhasil ditambah');
-                } else 
-                    return back();
+        $type = new Type;
+        $type->TYPE = $request->TYPE;
+        $filenameWithExt = $request->file('PATH_GAMBAR')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('PATH_GAMBAR')->getClientOriginalExtension();
+        $filenameSimpan = $filename.'_'.time().'.'.$extension;
+        
+
+        if($request->file('PATH_GAMBAR')){
+            $type->PATH_GAMBAR = $filenameSimpan;
+            $request->file('PATH_GAMBAR')->move('storage/img-type', $filenameSimpan);
+            if($type->save()){
+                return redirect("admin-type")->with('tambahSuccess', 'Data berhasil diupdate');
             } else 
-                return back();
+                return back()->with('tambahError', 'Data gagal ditambah');
+        } else 
+            return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function edittype($id)
@@ -165,11 +179,24 @@ class AdminController extends Controller
 
     public function updatetype(Request $request,$id)
     {
-        DB::table('type')->where('ID_TYPE',$id)->update([
-            'TYPE'        => $request['TYPE']
-        ]);
 
-        return redirect("/admin-type")->with('edit', 'Data berhasil diedit');
+        $filenameWithExt = $request->file('gambarType')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('gambarType')->getClientOriginalExtension();
+        $filenameSimpan = $filename.'_'.time().'.'.$extension;
+
+        $type = Type::where('id_type', $id);
+        $gambarLama = $type->first()->PATH_GAMBAR;
+        if($request->file('gambarType')->move('storage/img-type', $filenameSimpan)){
+            if(unlink("storage/img-type/$gambarLama")){
+                if($type->update([
+                    'TYPE' => $request->type,
+                    'PATH_GAMBAR' => $filenameSimpan
+                ])){
+                    return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
+                } else return back()->with('updateError', 'Data gagal diupdate');
+            } else return back()->with('updateError', 'Data gagal diupdate');
+        } else return back()->with('updateError', 'Data gagal diupdate');
     }
 
     public function destroytype($id)
@@ -196,24 +223,33 @@ class AdminController extends Controller
 
     public function storeuser(Request $request)
     {
-            $user = new User;
-            $user->ID_ROLE = $request->role;
-            $user->ID_JABATAN = $request->jabatan;
-            $user->NAMA = $request->NAMA;
-            $user->NIP = $request->NIP;
-            $user->USERNAME = $request->USERNAME;
-            $user->PASSWORD = Hash::make($request->PASSWORD);
+        $this->validate($request, [
+            'role' => 'required',
+            'jabatan' => 'required',
+            'NAMA' => 'required',
+            'NIP' => 'required',
+            'USERNAME' => 'required',
+            'PASSWORD' => 'required',
+        ]);
 
-            $users = new Users;
-            $users->NIP = $request->NIP;
-            $users->PASSWORD = Hash::make($request->PASSWORD);
-            
+        $user = new User;
+        $user->ID_ROLE = $request->role;
+        $user->ID_JABATAN = $request->jabatan;
+        $user->NAMA = $request->NAMA;
+        $user->NIP = $request->NIP;
+        $user->USERNAME = $request->USERNAME;
+        $user->PASSWORD = Hash::make($request->PASSWORD);
+
+        $users = new Users;
+        $users->NIP = $request->NIP;
+        $users->PASSWORD = Hash::make($request->PASSWORD);
         
-                if($user->save() && $users->save()){
-                    // die(var_dump($barang));
-                    return redirect("/admin-user")->with('tambah', 'Data berhasil ditambah');
-                } else 
-                    return back();
+
+        if($user->save() && $users->save()){
+            // die(var_dump($barang));
+            return redirect("/admin-user")->with('tambahSuccess', 'Data berhasil diupdate');
+        } else 
+            return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function edituser($id)
@@ -261,14 +297,18 @@ class AdminController extends Controller
 
     public function storesatuan(Request $request)
     {
-            $satuan = new Satuan;
-            $satuan->SATUAN = $request->SATUAN;
-        
-                if($satuan->save()){
-                    // die(var_dump($barang));
-                    return redirect("/admin-satuan")->with('tambah', 'Data berhasil ditambah');
-                } else 
-                    return back();
+        $this->validate($request, [
+            'SATUAN' => 'required',
+        ]);
+
+        $satuan = new Satuan;
+        $satuan->SATUAN = $request->SATUAN;
+    
+        if($satuan->save()){
+            // die(var_dump($barang));
+            return redirect("/admin-satuan")->with('tambahSuccess', 'Data berhasil diupdate');
+        } else 
+            return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function editsatuan($id)
@@ -309,14 +349,18 @@ class AdminController extends Controller
 
     public function storejabatan(Request $request)
     {
-            $jabatan = new Jabatan;
-            $jabatan->JABATAN = $request->JABATAN;
-        
-                if($jabatan->save()){
-                    // die(var_dump($barang));
-                    return redirect("/admin-jabatan")->with('tambah', 'Data berhasil ditambah');
-                } else 
-                    return back();
+        $this->validate($request, [
+            'JABATAN' => 'required',
+        ]);
+
+        $jabatan = new Jabatan;
+        $jabatan->JABATAN = $request->JABATAN;
+    
+        if($jabatan->save()){
+            // die(var_dump($barang));
+            return redirect("/admin-jabatan")->with('tambahSuccess', 'Data berhasil diupdate');
+        } else 
+            return back()->with('tambahError', 'Data gagal ditambah');
     }
 
     public function editjabatan($id)

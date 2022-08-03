@@ -15,69 +15,64 @@ use App\Providers\RouteServiceProvider;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+
+Route::get('/', function (){ return view('login');})->middleware('guest');
 Route::post('/login-proses', 'LoginController@authenticate');
 Route::post('/logout', 'LoginController@logout');
-// Route::get('/regis', function () {
-//     return view('regis');
-// });
-// Route::post('/regis-proses', 'PetugasController@reg');
 
 //View Admin
 
 //Admin-Barang
-Route::get('/admin-barang', 'AdminController@barang');
+Route::get('/admin-barang', 'AdminController@barang')->middleware('admin');
 
 //Admin-Jabatan
-Route::get('/admin-jabatan', 'AdminController@jabatan');
-Route::get('/tambah-jabatan', 'AdminController@tambahjabatan');
-Route::post('/jabatan-form', 'AdminController@storejabatan');
-Route::get('/edit-jabatan{id}', 'AdminController@editjabatan');
-Route::post('/update-jabatan-form{id}', 'AdminController@updatejabatan');
-Route::get('/hapus-jabatan{id}', 'AdminController@destroyjabatan');
+Route::get('/admin-jabatan', 'AdminController@jabatan')->middleware('admin');
+Route::get('/tambah-jabatan', 'AdminController@tambahjabatan')->middleware('admin');
+Route::post('/jabatan-form', 'AdminController@storejabatan')->middleware('admin');
+Route::get('/edit-jabatan{id}', 'AdminController@editjabatan')->middleware('admin');
+Route::post('/update-jabatan-form{id}', 'AdminController@updatejabatan')->middleware('admin');
+Route::get('/hapus-jabatan{id}', 'AdminController@destroyjabatan')->middleware('admin');
 
 //Admin-Lokasi
-Route::get('/admin-lokasi', 'AdminController@lokasi');
-Route::get('/tambah-lokasi', 'AdminController@tambahlokasi');
-Route::post('/lokasi-form', 'AdminController@storelokasi');
-Route::get('/lokasi-form', 'AdminController@storelokasi');
-Route::get('/edit-lokasi{id}', 'AdminController@editlokasi');
-Route::post('/update-lokasi-form{id}', 'AdminController@updatelokasi');
-Route::get('/hapus-lokasi{id}', 'AdminController@destroylokasi');
+Route::get('/admin-lokasi', 'AdminController@lokasi')->middleware('admin');
+Route::get('/tambah-lokasi', 'AdminController@tambahlokasi')->middleware('admin');
+Route::post('/lokasi-form', 'AdminController@storelokasi')->middleware('admin');
+Route::get('/lokasi-form', 'AdminController@storelokasi')->middleware('admin');
+Route::get('/edit-lokasi{id}', 'AdminController@editlokasi')->middleware('admin');
+Route::post('/update-lokasi-form{id}', 'AdminController@updatelokasi')->middleware('admin');
+Route::get('/hapus-lokasi{id}', 'AdminController@destroylokasi')->middleware('admin');
 
 //Admin-Role
-Route::get('/admin-role', 'AdminController@role');
-Route::get('/tambah-role', 'AdminController@tambahrole');
-Route::post('/role-form', 'AdminController@storerole');
-Route::get('/edit-role{id}', 'AdminController@editrole');
-Route::post('/update-role-form{id}', 'AdminController@updaterole');
-Route::get('/hapus-role{id}', 'AdminController@destroyrole');
+Route::get('/admin-role', 'AdminController@role')->middleware('admin');
+Route::get('/tambah-role', 'AdminController@tambahrole')->middleware('admin');
+Route::post('/role-form', 'AdminController@storerole')->middleware('admin');
+Route::get('/edit-role{id}', 'AdminController@editrole')->middleware('admin');
+Route::post('/update-role-form{id}', 'AdminController@updaterole')->middleware('admin');
+Route::get('/hapus-role{id}', 'AdminController@destroyrole')->middleware('admin');
 
 //Admin-Satuan
-Route::get('/admin-satuan', 'AdminController@satuan');
-Route::get('/tambah-satuan', 'AdminController@tambahsatuan');
-Route::post('/satuan-form', 'AdminController@storesatuan');
-Route::get('/edit-satuan{id}', 'AdminController@editsatuan');
-Route::post('/update-satuan-form{id}', 'AdminController@updatesatuan');
-Route::get('/hapus-satuan{id}', 'AdminController@destroysatuan');
+Route::get('/admin-satuan', 'AdminController@satuan')->middleware('admin');
+Route::get('/tambah-satuan', 'AdminController@tambahsatuan')->middleware('admin');
+Route::post('/satuan-form', 'AdminController@storesatuan')->middleware('admin');
+Route::get('/edit-satuan{id}', 'AdminController@editsatuan')->middleware('admin');
+Route::post('/update-satuan-form{id}', 'AdminController@updatesatuan')->middleware('admin');
+Route::get('/hapus-satuan{id}', 'AdminController@destroysatuan')->middleware('admin');
 
 //Admin-Type
-Route::get('/admin-type', 'AdminController@type');
-Route::get('/tambah-type', 'AdminController@tambahtype');
-Route::post('/type-form', 'AdminController@storetype');
-Route::get('/edit-type{id}', 'AdminController@edittype');
-Route::post('/update-type-form{id}', 'AdminController@updatetype');
-Route::get('/hapus-type{id}', 'AdminController@destroytype');
+Route::get('/admin-type', 'AdminController@type')->middleware('admin');
+Route::get('/tambah-type', 'AdminController@tambahtype')->middleware('admin');
+Route::post('/type-form', 'AdminController@storetype')->middleware('admin');
+Route::get('/edit-type{id}', 'AdminController@edittype')->middleware('admin');
+Route::post('/update-type-form{id}', 'AdminController@updatetype')->middleware('admin');
+Route::get('/hapus-type{id}', 'AdminController@destroytype')->middleware('admin');
 
 //Admin-User
-Route::get('/admin-user', 'AdminController@user');
-Route::get('/tambah-user', 'AdminController@tambahuser');
-Route::post('/user-form', 'AdminController@storeuser');
-Route::get('/edit-user{id}', 'AdminController@edituser');
-Route::post('/update-user-form{id}', 'AdminController@updateuser');
-Route::get('/hapus-user{id}', 'AdminController@destroyuser');
+Route::get('/admin-user', 'AdminController@user')->middleware('admin');
+Route::get('/tambah-user', 'AdminController@tambahuser')->middleware('admin');
+Route::post('/user-form', 'AdminController@storeuser')->middleware('admin');
+Route::get('/edit-user{id}', 'AdminController@edituser')->middleware('admin');
+Route::post('/update-user-form{id}', 'AdminController@updateuser')->middleware('admin');
+Route::get('/hapus-user{id}', 'AdminController@destroyuser')->middleware('admin');
 
 
 
@@ -87,33 +82,14 @@ Route::get('/lokasi', function () {
 });
 
 
-// Route::post('/welcome', [Login::class,'authenticate']);
-
-Route::get('/login',                     [Login::class, 'index']);
-Route::post('/login',                    [Login::class, 'authentication']);
-
-// Route::post('/postlogin', 'LoginController@postlogin');
-Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
-
-// Route::group(['middleware' => ['auth', 'CekLevel:admin']], function(){
-//     Route::get('/halaman-admin','LoginController@halamanadmin')->name('halaman-admin');
-// });
-
-// Route::group(['middleware' => ['auth', 'CekLevel:petugas']], function(){
-//     Route::get('/halaman-petugas','LoginController@halamanpetugas')->name('halaman-petugas');
-// });
-
 //Petugas
-Route::post('/login', 'PetugasController@lokasisend');
-
-// Route::get('/admin-lokasi', 'LokasiController@tabellokasi');
-
-Route::get('/petugas-lokasi', 'PetugasController@lokasi')->middleware('auth', 'petugas');
-Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend');
-// Route::post('/petugas-barang', 'PetugasController@lokasisend');
-Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang');
-Route::post('/petugas-barang-input', 'PetugasController@saveBarang');
-Route::post('/priveiew-type', 'PetugasController@previewType');
-Route::post('/priveiew-barang', 'PetugasController@previewBarang');
-Route::post('/add-form-input', 'PetugasController@addFormInput');
-Route::get('/alert-lokasi', 'PetugasController@alertLokasi');
+Route::get('/petugas-lokasi', 'PetugasController@lokasi')->middleware('petugas');
+Route::get('/petugas-barang/{idlokasi}', 'PetugasController@lokasisend')->middleware('petugas');
+Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang')->middleware('petugas');
+Route::post('/petugas-barang-input', 'PetugasController@saveBarang')->middleware('petugas');
+Route::post('/priveiew-type', 'PetugasController@previewType')->middleware('petugas');
+Route::post('/priveiew-barang', 'PetugasController@previewBarang')->middleware('petugas');
+Route::post('/add-form-input', 'PetugasController@addFormInput')->middleware('petugas');
+Route::get('/alert-lokasi', 'PetugasController@alertLokasi')->middleware('petugas');
+Route::get('/petugas-barang-edit{noRegister}/{kodeLokasi}', 'PetugasController@barangEdit')->middleware('petugas');
+Route::post('/petugas-barang-edit', 'PetugasController@barangUpdate')->middleware('petugas');

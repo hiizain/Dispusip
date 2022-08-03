@@ -52,11 +52,24 @@
                             <th class="text-center">{{ $item->ID }}</th>
                             <th class="text-center">{{ $item->NAMA_BARANG }}</th>
                             <th class="text-center">{{ $item->MERK }}</th>
-                            <th class="text-center">{{ $item->ID_TYPE }}</th>
+                            <th class="text-center">{{ $item->type->TYPE }}</th>
                             <th class="text-center">{{ $item->HARGA }}</th>
                             <th class="text-center">{{ $item->TAHUN_PENGADAAN }}</th>
-                            <th class="text-center">{{ $item->KONDISI_BARANG }}</th>
-                            <th class="text-center">{{ $item->KEBERADAAN_BARANG }}</th>
+                            @if ($item->KONDISI_BARANG === "1")
+                                <th class="text-center">Baik</th>
+                            @endif 
+                            @if ($item->KONDISI_BARANG === "2")
+                                <th class="text-center">Kurang Baik</th>
+                            @endif 
+                            @if ($item->KONDISI_BARANG === "3")
+                                <th class="text-center">Rusak Berat</th>
+                            @endif
+                            @if ($item->KEBERADAAN_BARANG === "1")
+                                <th class="text-center">Ada</th>
+                            @endif 
+                            @if ($item->KONDISI_BARANG === "2")
+                                <th class="text-center">Tidak Ada</th>
+                            @endif
                             <th class="text-center">{{ $item->KETERANGAN }}</th>
                         </tr>
                     @endforeach

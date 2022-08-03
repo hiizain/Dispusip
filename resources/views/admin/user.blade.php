@@ -71,8 +71,8 @@
                     @foreach ($user as $item)
                         <tr>
                             <th class="text-center">{{ $item->ID_USER }}</th>
-                            <th class="text-center">{{ $item->ID_JABATAN }}</th>
-                            <th class="text-center">{{ $item->ID_ROLE }}</th>
+                            <th class="text-center">{{ $item->jabatan->JABATAN }}</th>
+                            <th class="text-center">{{ $item->role->ROLE }}</th>
                             <th class="text-center">{{ $item->NAMA }}</th>
                             <th class="text-center">{{ $item->NIP }}</th>
                             <th class="text-center">{{ $item->USERNAME }}</th>

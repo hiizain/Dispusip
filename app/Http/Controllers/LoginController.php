@@ -33,40 +33,46 @@ class LoginController extends Controller
 
         // dd($credentials);
         $nip = $request->nip;
-
         $userFound = User::where('nip', $nip)->first();
-        if ($userFound->role->ROLE === "Admin"){
-            // echo "Admin";
-            if (Auth::attempt($credentials)) {
-            // if (Auth::attempt(['nip' => $nip, 'password' => $password])) {
-                // Authentication passed...
+        if(count($userFound) > 0){
+            if ($userFound->role->ROLE === "Admin"){
                 // echo "Admin";
-                $request->session()->regenerate();
-                return redirect()->intended('/admin-barang');
-            // } else echo "Admin Gagal";
-            } else return back()->with('tambahError', 'Login gagal');
-        } else if ($userFound->role->ROLE === "Petugas"){
-            // echo "Petugas";
-            if (Auth::attempt($credentials)) {
-            // if (Auth::attempt(['nip' => $request->nip, 'password' => $password])) {
-                // Authentication passed...
-                $request->session()->regenerate();
-                return redirect()->intended('/petugas-lokasi');
-                // return redirect()->intended('/petugas-lokasi');
-            // } else echo "Petugas Gagal";
-            } else return back()->with('tambahError', 'Login gagal');
-        } 
+                if (Auth::attempt($credentials)) {
+                // if (Auth::attempt(['nip' => $nip, 'password' => $password])) {
+                    // Authentication passed...
+                    // echo "Admin";
+                    $request->session()->regenerate();
+                    return redirect()->intended('/admin-barang');
+                // } else echo "Admin Gagal";
+                } else {
+                    return back()->with('loginError', 'Login gagal');
+                }
+            } else if ($userFound->role->ROLE === "Petugas"){
+                // echo "Petugas";
+                if (Auth::attempt($credentials)) {
+                // if (Auth::attempt(['nip' => $request->nip, 'password' => $password])) {
+                    // Authentication passed...
+                    $request->session()->regenerate();
+                    return redirect()->intended('/petugas-lokasi');
+                    // return redirect()->intended('/petugas-lokasi');
+                // } else echo "Petugas Gagal";
+                } else {
+                    return back()->with('loginError', 'Login gagal');
+                }
+            } 
+        } else {
+            return back()->with('loginError', 'Login gagal');
+        }
     }
 
-    public function logout(Request $request)
-    {
-         (Auth::logout()) ;
+    public function logout(Request $request){
+        Auth::logout();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        $request->session()->invalidate();
 
-            return redirect('/');
-        
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     // public function authentication(Request $request)

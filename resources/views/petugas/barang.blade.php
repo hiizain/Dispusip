@@ -37,10 +37,11 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-hand-holding-medical"></i>
+                <div class="sidebar-brand-icon">
+                    <img style="width: 40px" src="../assets/img/surabaya.png" alt="">
+                    {{-- <i class="fas fa-hand-holding-medical"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3">SIMBADA</div>
+                <div class="sidebar-brand-text mx-3">PETUGAS SIMBADA</div>
             </a>
 
             <!-- Divider -->
@@ -63,7 +64,7 @@
 
             <li class="nav-item">
                 <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
-                    <i class="fas fa-light fa-pen"></i>
+                    <i class="fas fa-light fa-folder-plus"></i>
                     <span>Input Barang</span>
                 </a>
             </li>
@@ -115,8 +116,8 @@
                                     $user = User::where('nip', $nip)->first();
                                 ?>
                                 <div>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-800 normal"><?= $user->NAMA; ?></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->jabatan->JABATAN ?></span>
                                 </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
@@ -163,6 +164,23 @@
                         </div>
                     </div>
 
+                    @if(session()->has('updateSuccess'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('updateSuccess') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session()->has('updateError'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('updateError') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -191,6 +209,7 @@
                                             <th class="text-center">Kondisi Barang</th>
                                             <th class="text-center">Keberadaan Barang</th>
                                             <th class="text-center">Keterangan</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -209,6 +228,7 @@
                                             <th class="text-center">Kondisi Barang</th>
                                             <th class="text-center">Keberadaan Barang</th>
                                             <th class="text-center">Keterangan</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -227,7 +247,7 @@
                                                     <button type="button" value="{{ $item->NO_REGISTER }}" id="btn-preview-barang{{ $no }}" onclick="previewBarang(this.value);" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreviewBarang">Preview Gambar</button>
                     
                                                     <div class="modal fade" id="modalPreviewBarang" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                                                        <div class="modal-dialog">
+                                                        <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content" id="modalBarang">
                                 
                                                             </div>
@@ -249,11 +269,13 @@
                                                 @endif
                                                 @if ($item->KEBERADAAN_BARANG === "1")
                                                     <th class="text-center">Ada</th>
-                                                @endif 
-                                                @if ($item->KONDISI_BARANG === "2")
+                                                @else
                                                     <th class="text-center">Tidak Ada</th>
                                                 @endif
                                                 <th class="text-center">{{ $item->KETERANGAN }}</th>
+                                                <th>
+                                                    <a href="/petugas-barang-edit{{$item->NO_REGISTER}}/{{ $lokasi->KODE_LOKASI }}"><button type="button" class="btn btn-warning tombol"><i class="fas fa-light fa-pen"></i></button></a>
+                                                </th>
                                             </tr>
                                         @php
                                             $no++;

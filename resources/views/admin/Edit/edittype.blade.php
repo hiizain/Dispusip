@@ -7,8 +7,9 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Ubah Data Tipe!</h1>
         </div>
-        <form action="/update-type-form{{ $data->ID_TYPE }}" method="POST">
+        <form action="/update-type-form{{ $data->ID_TYPE }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {{-- <input type="hidden" name="idType" value="{{ $data->ID_TYPE}}"> --}}
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
                     <h1 class="h6">Tipe</h1>
@@ -18,7 +19,19 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        name="TYPE" value="{{ $data->TYPE}}">
+                        name="type" value="{{ $data->TYPE}}">
+                </div>                
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4 mt-2">
+                    <h1 class="h6">Gambar</h1>
+                </div>
+                <div class="col-sm-1 mt-2">
+                    <h1 class="h6">:</h1>
+                </div>
+                <div class="col-sm-7">
+                    <input type="file" class="form-control form-control-user text-center" id="exampleFirstName"
+                        name="gambarType">
                 </div>                
             </div>
             <div class="form-group row">

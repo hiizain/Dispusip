@@ -57,7 +57,7 @@ class PetugasController extends Controller
                 </button>
             </div>
             <div class="modal-body text-center">
-                <img style="width: 400px;" src="../assets/img/<?= $type->PATH_GAMBAR ?>" alt="">
+                <img style="width: 400px;" src="../storage/img-type/<?= $type->PATH_GAMBAR ?>" alt="">
             </div>
         <?php
         } else {
@@ -70,7 +70,7 @@ class PetugasController extends Controller
                 </div>
                 <div class="modal-body text-center">
                     <img src="" alt="">
-                    <h1 class="h4">Pilih type untuk melihat preview gambar</h1>
+                    <h1 class="h6">Pilih type untuk melihat preview gambar</h1>
                 </div>
             <?php
         }
@@ -227,9 +227,24 @@ class PetugasController extends Controller
         </div>
         <div class="form-group row justify-content-center mt-5">
             <div class="col-sm-6">
-                <button type="submit" id="saveBarang" name="submit" class="btn btn-success btn-user btn-block">
+                <button type="button" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">
                     Tambah
                 </button>
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-body">
+                            Apakah data inputan sudah benar?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Ya</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <?php
@@ -330,27 +345,66 @@ class PetugasController extends Controller
         // return view('petugas/inputBarang', ['type' => $type, 'satuan' => $satuan]);
     }
 
-    function reg(Request $request){
-        $this->validate($request, [
-            'nama' => 'required',
-            'nip' => 'required|unique:user',
-        ]);
+    function barangEdit($noRegister, $kodeLokasi){
+        $barang = Barang::where('no_register', $noRegister)->first();
+        $lokasi = Lokasi::where('kode_lokasi', $kodeLokasi)->first();
+        $type = Type::all();
+        $satuan = Satuan::all();
 
-        $user = new User;
-        $user->ID_JABATAN = 1;
-        $user->ID_ROLE = 1;
-        $user->NAMA = $request->nama;
-        $user->NIP = $request->nip;
-        $user->PASSWORD = Hash::make($request->nip);
+        // dd($type);
 
-        $users = new Users;
-        $users->NIP = $request->nip;
-        $users->PASSWORD = Hash::make($request->nip);
+        return view('petugas/editBarang', ['barang' => $barang, 'lokasi' => $lokasi, 'type' => $type, 'satuan' => $satuan]);
+    }
 
-        if($user->save() && $users->save()){
-            // die(var_dump($barang));
-            return redirect("/");
-        } else 
-            return back();
+    function barangUpdate(Request $request){
+        $lokasi = Lokasi::where('id_lokasi', $request->idLokasi)->first();
+
+        $barang = Barang::where('no_register', $request->no_register);
+        $gambarLama = $barang->first()->PATH_FOTO;
+        $filenameSimpan = $gambarLama;
+
+        if($request->file('gambarBarang')){
+            $filenameWithExt = $request->file('gambarBarang')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('gambarBarang')->getClientOriginalExtension();
+            $filenameSimpan = $filename.'_'.time().'.'.$extension;
+            if($request->file('gambarBarang')->move('storage/img-barang', $filenameSimpan)){
+                if(unlink("storage/img-barang/$gambarLama")){
+                    if($barang->update([
+                        'KODE_BARANG' => $request->kodeBarang,
+                        'ID_LOKASI' => $request->idLokasi,
+                        'ID_TYPE' => $request->type,
+                        'ID_SATUAN' => $request->satuan,
+                        'NAMA_BARANG' => $request->namaBarang,
+                        'MERK' => $request->merkBarang,
+                        'HARGA' => $request->nilaiBarang,
+                        'TAHUN_PENGADAAN' => $request->tahunPengadaan,
+                        'KONDISI_BARANG' => $request->kondisiBarang,
+                        'KEBERADAAN_BARANG' => $request->keadaanBarang,
+                        'KETERANGAN' => $request->keterangan,
+                        'PATH_FOTO' => $filenameSimpan
+                    ])){
+                        return redirect("/petugas-barang/$lokasi->KODE_LOKASI")->with('updateSuccess', 'Data berhasil diupdate');
+                    } else return back()->with('updateError', 'Data gagal diupdate');
+                } else return back()->with('updateError', 'Data gagal diupdate');
+            } else return back()->with('updateError', 'Data gagal diupdate');
+        }
+
+        if($barang->update([
+            'KODE_BARANG' => $request->kodeBarang,
+            'ID_LOKASI' => $request->idLokasi,
+            'ID_TYPE' => $request->type,
+            'ID_SATUAN' => $request->satuan,
+            'NAMA_BARANG' => $request->namaBarang,
+            'MERK' => $request->merkBarang,
+            'HARGA' => $request->nilaiBarang,
+            'TAHUN_PENGADAAN' => $request->tahunPengadaan,
+            'KONDISI_BARANG' => $request->kondisiBarang,
+            'KEBERADAAN_BARANG' => $request->keberadaanBarang,
+            'KETERANGAN' => $request->keterangan,
+            'PATH_FOTO' => $filenameSimpan
+        ])){
+            return redirect("/petugas-barang/$lokasi->KODE_LOKASI")->with('updateSuccess', 'Data berhasil diupdate');
+        } else return back()->with('updateError', 'Data gagal diupdate');
     }
 }

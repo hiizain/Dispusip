@@ -67,7 +67,7 @@
                                     {{-- <a class="btn btn-primary btn-user btn-block" id="lokasiDipilih">Pilih</a> --}}
                                     <a class="btn btn-primary btn-user btn-block" id="lokasiDipilih" data-toggle="modal" data-target="#modalPreview">Pilih</a>
                                     <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content" id="modalAlertLokasi">
                 
                                             </div>
