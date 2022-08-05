@@ -244,7 +244,8 @@
                                                 <th class="text-center">{{ $item->NAMA_BARANG }}</th>
                                                 <th class="text-center">{{ $item->satuan->SATUAN }}</th>
                                                 <th class="text-center">
-                                                    <button type="button" value="{{ $item->NO_REGISTER }}" id="btn-preview-barang{{ $no }}" onclick="previewBarang(this.value);" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreviewBarang">Preview Gambar</button>
+                                                    <img onclick="modalBarang(this.src)" width="120" height="80" src="../storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
+                                                    {{-- <button type="button" value="{{ $item->NO_REGISTER }}" id="btn-preview-barang{{ $no }}" onclick="previewBarang(this.value);" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreviewBarang">Preview Gambar</button>
                     
                                                     <div class="modal fade" id="modalPreviewBarang" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
@@ -252,7 +253,7 @@
                                 
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </th>
                                                 <th class="text-center">{{ $item->MERK }}</th>
                                                 <th class="text-center">{{ $item->type->TYPE }}</th>
@@ -283,6 +284,21 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content" id="modalBarang">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Gambar Type</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <img id="imgModalBarang" style="width: 400px;" src="" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -313,26 +329,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>

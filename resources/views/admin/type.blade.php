@@ -64,7 +64,11 @@
                         <tr>
                             <th class="text-center">{{ $item->ID_TYPE }}</th>
                             <th class="text-center">{{ $item->TYPE }}</th>
-                            <th class="text-center">{{ $item->PATH_GAMBAR }}</th>
+                            <th class="text-center">
+                                {{-- <a onclick="modalType({{ $item->PATH_GAMBAR }})" data-toggle="modal" data-target="#modalPreview"> --}}
+                                    <img onclick="modalType(this.src)" width="120" height="80" src="storage/img-type/{{ $item->PATH_GAMBAR }}" alt="">
+                                {{-- </a> --}}
+                            </th>
                             <th class="text-center">
                                 <a href="/edit-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
@@ -73,6 +77,21 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" id="modalType">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Gambar Type</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img id="imgModalType" style="width: 400px;" src="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

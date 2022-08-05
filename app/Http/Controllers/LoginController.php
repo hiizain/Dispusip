@@ -42,7 +42,7 @@ class LoginController extends Controller
                     // Authentication passed...
                     // echo "Admin";
                     $request->session()->regenerate();
-                    return redirect()->intended('/admin-barang');
+                    return redirect()->intended('/dashboard');
                 // } else echo "Admin Gagal";
                 } else {
                     return back()->with('loginError', 'Login gagal');

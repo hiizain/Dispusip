@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    function dashboard(){
+        $barang = Barang::all();
+        $lokasi = Lokasi::all();
+        return view('admin/dashboard', ['barang' => $barang, 'lokasi' => $lokasi]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -238,9 +243,8 @@ class AdminController extends Controller
             'role' => 'required',
             'jabatan' => 'required',
             'NAMA' => 'required',
-            'NIP' => 'required',
-            'USERNAME' => 'required',
-            'PASSWORD' => 'required',
+            'NIP' => 'required|min:18|max:18|',
+            // 'PASSWORD' => 'required',
         ]);
 
         $user = new User;
@@ -248,12 +252,13 @@ class AdminController extends Controller
         $user->ID_JABATAN = $request->jabatan;
         $user->NAMA = $request->NAMA;
         $user->NIP = $request->NIP;
-        $user->USERNAME = $request->USERNAME;
-        $user->PASSWORD = Hash::make($request->PASSWORD);
+        // $user->PASSWORD = Hash::make($request->PASSWORD);
+        $user->PASSWORD = Hash::make($request->NIP);
 
         $users = new Users;
         $users->NIP = $request->NIP;
-        $users->PASSWORD = Hash::make($request->PASSWORD);
+        // $users->PASSWORD = Hash::make($request->PASSWORD);
+        $users->PASSWORD = Hash::make($request->NIP);
         
 
         if($user->save() && $users->save()){
