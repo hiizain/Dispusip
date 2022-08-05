@@ -9,7 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+<<<<<<< Updated upstream
     <link rel="icon" href="../assets/img/surabaya.png">
+=======
+    <link rel="icon" href="assets/img/surabaya.png">
+>>>>>>> Stashed changes
     <title>Login SIMBADA</title>
 
     <!-- Custom fonts for this template-->
