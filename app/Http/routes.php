@@ -85,6 +85,7 @@ Route::get('/lokasi', function () {
 // Petugas --------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------
 
+
 // Menampilkan halaman lokasi
 Route::get('/petugas-lokasi', 'PetugasController@lokasi')->middleware('petugas');
 

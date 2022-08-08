@@ -47,11 +47,6 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/home-master">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -61,6 +56,12 @@
                 Petugas
             </div>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            
             <li class="nav-item">
                 <a href="/petugas-barang-input" class="nav-link" id="urlBarangInput">
                     <i class="fas fa-light fa-pen"></i>

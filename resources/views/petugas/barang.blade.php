@@ -61,7 +61,6 @@
             <div class="sidebar-heading">
                 Petugas
             </div>
-
             <li class="nav-item">
                 <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
                     <i class="fas fa-light fa-folder-plus"></i>
