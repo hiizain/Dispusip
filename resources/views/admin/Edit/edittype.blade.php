@@ -36,8 +36,9 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                   <center><input type="file" class="" id="PATH_GAMBAR"
-                        placeholder="Gambar Barang" name="PATH_GAMBAR"></center>
+                    <img width="200px" src="../storage/img-type/{{ $data->PATH_GAMBAR}}" alt="">
+                    <input type="file" class="ml-3" id="PATH_GAMBAR"
+                        placeholder="Gambar Barang" name="PATH_GAMBAR">
                 </div>
             </div>
             <div class="form-group row">

@@ -19,6 +19,9 @@ use App\Providers\RouteServiceProvider;
 Route::get('/', function (){ return view('login');})->middleware('guest');
 Route::post('/login-proses', 'LoginController@authenticate');
 Route::post('/logout', 'LoginController@logout');
+Route::get('/dashboard', 'AdminController@dashboard')->middleware('admin');
+
+// Route::get('/dashboard', function (){ return view('/admin/dashboard');})->middleware('admin');
 
 //View Admin
 

@@ -50,7 +50,6 @@
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
-                        <th class="text-center">Username</th>
                         {{-- <th class="text-center">Password</th> --}}
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -62,7 +61,6 @@
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
-                        <th class="text-center">Username</th>
                         {{-- <th class="text-center">Password</th> --}}
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -75,7 +73,6 @@
                             <th class="text-center">{{ $item->role->ROLE }}</th>
                             <th class="text-center">{{ $item->NAMA }}</th>
                             <th class="text-center">{{ $item->NIP }}</th>
-                            <th class="text-center">{{ $item->USERNAME }}</th>
                             {{-- <th class="text-center">{{ $item->PASSWORD }}</th> --}}
                             <th class="text-center">
                                 <a href="/edit-user{{$item->ID_USER}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>

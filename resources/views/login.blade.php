@@ -9,6 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+<<<<<<< Updated upstream
+    <link rel="icon" href="../assets/img/surabaya.png">
+=======
+    <link rel="icon" href="assets/img/surabaya.png">
+>>>>>>> Stashed changes
     <title>Login SIMBADA</title>
 
     <!-- Custom fonts for this template-->
@@ -35,7 +40,8 @@
                     <div class="card-body p-0">
                         <div class="row justify-content-center align-items-center mt-4">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Aplikasi SIMBADA DISPUSIP <br>Kota Surabaya</h1>
+                                <h1 class="h4 text-gray-900">Aplikasi SIMBADA</h1>
+                                <h1 class="h5 text-gray-700 mb-4">DISPUSIP Kota Surabaya</h1>
                             </div>
                         </div>
                         <!-- Nested Row within Card Body -->

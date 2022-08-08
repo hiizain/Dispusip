@@ -106,6 +106,13 @@ $("#lokasiDipilih").click(function(){
     }
 });
 
+function toast(){
+    // if(lokasiLoad==0){
+    // $('.toast').toast('show');
+    // lokasiLoad++;
+    // }
+    $('.toast').toast('show');
+}
 
 // ========================================================================
 // Halaman Barang
@@ -121,15 +128,20 @@ $("#lokasiDipilih").click(function(){
 //     // console.log(idBarang);
 // });
 
-function previewBarang(noRegister){
-    $.ajax({
-        type:'POST',
-        // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url:'/priveiew-barang',
-        data:'no_register='+noRegister,
-        success:function(html){
-            $("#modalBarang").html(html);
-            // $('#cek').html(html);
-        }
-    });
+function modalBarang(img){
+    $('#imgModalBarang').attr("src", img);
+    $('.modal').modal('show');
 }
+
+// function previewBarang(noRegister){
+//     $.ajax({
+//         type:'POST',
+//         // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//         url:'/priveiew-barang',
+//         data:'no_register='+noRegister,
+//         success:function(html){
+//             $("#modalBarang").html(html);
+//             // $('#cek').html(html);
+//         }
+//     });
+// }

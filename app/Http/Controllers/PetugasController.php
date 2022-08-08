@@ -205,7 +205,7 @@ class PetugasController extends Controller
         </div>
         <div class="form-group row">
             <div class="col-sm-4 mt-2">
-                <h1 class="h6">Koberadaan Barang</h1>
+                <h1 class="h6">Keberadaan Barang</h1>
             </div>
             <div class="col-sm-1 mt-2">
                 <h1 class="h6">:</h1>

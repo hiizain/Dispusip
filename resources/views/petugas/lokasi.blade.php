@@ -22,10 +22,29 @@
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+@php
+    use Illuminate\Support\Facades\Auth;
+    use App\User;
+    $nip = Auth::user()->nip;
+    $user = User::where('nip', $nip)->first();
+    $user = $user->NAMA;
+@endphp
+<body onload="toast()" class="bg-img">
 
-<body class="bg-img">
+    <div class="row justify-content-center align-items-center mt-5">
+        <div class="toast align-items-center mt-3 z-index-master position-absolute" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Selamat datang {{ $user }}. Silahkan pilih lokasi anda!
+                </div>
+                <button type="button" class="close mr-2" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    <div class="container mt-5 pt-4">
+    <div class="container mt-3 pt-2 z-index-1 position-relative">
 
         <!-- Outer Row -->
         <div class="row justify-content-center align-items-center mt-5 pt-5">
@@ -73,6 +92,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="cek">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +116,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../assets/js/sb-admin-2.min.js"></script>
-    <script src="assets/js/aplikasi/petugas.js"></script>
+    <script src="../assets/js/aplikasi/petugas.js"></script>
 
 </body>
 

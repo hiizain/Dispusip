@@ -34,7 +34,7 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
+                    <input type="text" maxlength="18" class="form-control form-control-user text-center" id="exampleFirstName"
                         placeholder="NIP" name="NIP">
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 <div class="col-sm-4 mt-2">
                     <h1 class="h6">Username</h1>
                 </div>
@@ -93,7 +93,7 @@
                     <input type="password" class="form-control form-control-user text-center" id="exampleFirstName"
                         placeholder="Password" name="PASSWORD">
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <a href="/admin-user" class="btn btn-danger btn-user btn-block">
