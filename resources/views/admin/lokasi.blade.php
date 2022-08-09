@@ -45,16 +45,27 @@
                         <a href="/tambah-lokasi"><button class="btn btn-info">Tambah Lokasi</button></a>
                     </div>
                     <tr>
-                        <th class="text-center">No</th>
+                        <th class="text-center">No.</th>
                         <th class="text-center">ID Lokasi</th>
                         <th class="text-center">Lokasi</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <th class="text-center">No.</th>
+                        <th class="text-center">ID Lokasi</th>
+                        <th class="text-center">Lokasi</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </tfoot>
                 <tbody>
+                    @php
+                        $no = 1;
+                    @endphp
                     @foreach ($lokasi as $item)
                         <tr>
-                            <th class="text-center">{{ $item->ID_LOKASI }}</th>
+                            <th class="text-center">{{ $no }}</th>
                             <th class="text-center">{{ $item->KODE_LOKASI }}</th>
                             <th class="text-center">{{ $item->LOKASI }}</th>
                             <th class="text-center">
@@ -62,6 +73,9 @@
                                 <a href="/hapus-lokasi{{$item->ID_LOKASI}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
                             </th>
                         </tr>
+                        @php
+                            $no++;
+                        @endphp
                     @endforeach
                 </tbody>
             </table>

@@ -107,41 +107,14 @@ $("#lokasiDipilih").click(function(){
 });
 
 function toast(){
-    // if(lokasiLoad==0){
-    // $('.toast').toast('show');
-    // lokasiLoad++;
-    // }
     $('.toast').toast('show');
 }
 
 // ========================================================================
 // Halaman Barang
 // ========================================================================
-// $("#btn-preview-barang").click(function(){
-//     // var $value = this.value;
-//     // $value = $value.split("/");
-//     // var noRegister = $value[0];
-//     // var no = $value[1];
-//     // console.log(noRegister);
-//     // console.log(no);
-//     previewBarang(this.value);
-//     // console.log(idBarang);
-// });
 
 function modalBarang(img){
     $('#imgModalBarang').attr("src", img);
     $('.modal').modal('show');
 }
-
-// function previewBarang(noRegister){
-//     $.ajax({
-//         type:'POST',
-//         // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-//         url:'/priveiew-barang',
-//         data:'no_register='+noRegister,
-//         success:function(html){
-//             $("#modalBarang").html(html);
-//             // $('#cek').html(html);
-//         }
-//     });
-// }

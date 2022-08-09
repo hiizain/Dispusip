@@ -53,7 +53,7 @@ class AdminController extends Controller
     
             if($lokasi->save()){
                 // die(var_dump($barang));
-                return redirect("/admin-lokasi")->with('tambahSuccess', 'Data berhasil diupdate');
+                return redirect("/admin-lokasi")->with('tambahSuccess', 'Data berhasil ditambah');
             } else 
                 return back()->with('tambahError', 'Data gagal ditambah');
     }
@@ -107,7 +107,7 @@ class AdminController extends Controller
     
             if($role->save()){
                 // die(var_dump($barang));
-                return redirect("/admin-role")->with('tambahSuccess', 'Data berhasil diupdate');
+                return redirect("/admin-role")->with('tambahSuccess', 'Data berhasil ditambah');
             } else 
                 return back()->with('tambahError', 'Data gagal ditambah');
     }
@@ -212,7 +212,7 @@ class AdminController extends Controller
         ])){
             return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
         } else return back()->with('updateError', 'Data gagal diupdate');
-        return redirect("/admin-type")->with('edit', 'Data berhasil diubah');
+        return redirect("/admin-type")->with('edit', 'Data berhasil diupdate');
     }
 
     public function destroytype($id)
@@ -263,7 +263,7 @@ class AdminController extends Controller
 
         if($user->save() && $users->save()){
             // die(var_dump($barang));
-            return redirect("/admin-user")->with('tambahSuccess', 'Data berhasil diupdate');
+            return redirect("/admin-user")->with('tambahSuccess', 'Data berhasil ditambah');
         } else 
             return back()->with('tambahError', 'Data gagal ditambah');
     }
@@ -279,16 +279,45 @@ class AdminController extends Controller
 
     public function updateuser(Request $request,$id)
     {
-        DB::table('user')->where('ID_USER',$id)->update([
-            'ID_JABATAN'            => $request['ID_JABATAN'],
-            'ID_ROLE'               => $request['ID_ROLE'],
-            'NAMA'                  => $request['NAMA'],
-            'NIP'                   => $request['NIP'],
-            'USERNAME'              => $request['USERNAME'],
-            'PASSWORD'              => $request['PASSWORD']
-        ]);
-
-        return redirect("/admin-user")->with('updateSuccess', 'Data berhasil diupdate');
+        $user = User::where('id_user', $id);
+        $nip = User::where('id_user', $id)->first();
+        // dd($nip);
+        $users = Users::where('nip', $nip->NIP);
+        if($request->PASSWORD){
+            $password = Hash::make($request->PASSWORD);
+            if($user->update([
+                'ID_JABATAN'            => $request['ID_JABATAN'],
+                'ID_ROLE'               => $request['ID_ROLE'],
+                'NAMA'                  => $request['NAMA'],
+                'NIP'                   => $request['NIP'],
+                'PASSWORD'              => $password
+            ])
+            &&
+            $users->update([
+                'NIP'                   => $request['NIP'],
+                'PASSWORD'              => $password
+            ])
+            ){
+                return redirect("/admin-user")->with('updateSuccess', 'Data berhasil diupdate');
+            } else return back()->with('updateError', 'Data gagal diupdate');
+        } else {
+            $password = $request->passLama;
+            if($user->update([
+                'ID_JABATAN'            => $request['ID_JABATAN'],
+                'ID_ROLE'               => $request['ID_ROLE'],
+                'NAMA'                  => $request['NAMA'],
+                'NIP'                   => $request['NIP'],
+                'PASSWORD'              => $password
+            ])
+            &&
+            $users->update([
+                'NIP'                   => $request['NIP'],
+                'PASSWORD'              => $password
+            ])
+            ){
+                return redirect("/admin-user")->with('updateSuccess', 'Data berhasil diupdate');
+            } else return back()->with('updateError', 'Data gagal diupdate');
+        } 
     }
 
     public function destroyuser($id)
@@ -322,7 +351,7 @@ class AdminController extends Controller
     
         if($satuan->save()){
             // die(var_dump($barang));
-            return redirect("/admin-satuan")->with('tambahSuccess', 'Data berhasil diupdate');
+            return redirect("/admin-satuan")->with('tambahSuccess', 'Data berhasil ditambah');
         } else 
             return back()->with('tambahError', 'Data gagal ditambah');
     }
@@ -374,7 +403,7 @@ class AdminController extends Controller
     
         if($jabatan->save()){
             // die(var_dump($barang));
-            return redirect("/admin-jabatan")->with('tambahSuccess', 'Data berhasil diupdate');
+            return redirect("/admin-jabatan")->with('tambahSuccess', 'Data berhasil ditambah');
         } else 
             return back()->with('tambahError', 'Data gagal ditambah');
     }

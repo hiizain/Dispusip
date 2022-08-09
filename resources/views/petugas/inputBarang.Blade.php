@@ -64,21 +64,21 @@
 
             <li class="nav-item">
                 <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
-                    <i class="fas fa-light fa-folder-plus"></i>
+                    <i class="fas fa-laptop-medical"></i>
                     <span>Input Barang</span>
                 </a>
             </li>
             
             <li class="nav-item">
                 <a href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarang">
-                    <i class="fas fa-regular fa-book"></i>
+                    <i class="fas fa-th-list"></i>
                     <span>Barang</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
-                    <i class="fas fa-light fa-map"></i>
+                    <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
             </li>
 
@@ -127,6 +127,7 @@
                                 aria-labelledby="userDropdown">
                                 <form action="/logout" method="post">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
                                     <button class="dropdown-item" href="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -228,8 +229,8 @@
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
                                         <button type="button" value="0" id="btn-preview-type" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreview">Preview Gambar Type</button>
                     
-                                        <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal fade bd-example-modal-lg" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
                                                 <div class="modal-content" id="modalType">
                     
                                                 </div>

@@ -65,32 +65,33 @@
             <!-- Nav Item - Master Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/admin-barang">
-                    <i class="fas fa-light fa-pen"></i>
+                    {{-- <i class="fas fa-regular fa-book"></i> --}}
+                    <i class="fas fa-th-list"></i>
                     <span>Barang</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-lokasi">
-                    <i class="fas fa-regular fa-map"></i>
+                    <i class="fas fa-map-marked-alt"></i>
                     <span>Lokasi</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-type">
-                    <i class="fas fa-light fa-folder"></i>
+                    <i class="fas fa-filter"></i>
                     <span>Tipe</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-satuan">
-                    <i class="fas fa-light fa-tags"></i>
+                    <i class="fas fa-layer-group"></i>
                     <span>Satuan</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-role">
-                    <i class="fas fa-light fa-bullhorn"></i>
+                    <i class="fas fa-sitemap"></i>
                     <span>Role</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-jabatan">
-                    <i class="fas fa-solid fa-briefcase"></i>
+                    <i class="fas fa-network-wired"></i>
                     <span>Jabatan</span></a>
             </li>
             <li class="nav-item">
