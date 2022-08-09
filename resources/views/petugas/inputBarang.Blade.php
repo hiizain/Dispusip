@@ -126,8 +126,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <form action="/logout" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">                                   
                                     <button class="dropdown-item" href="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -184,6 +183,7 @@
                             @endif
                             <form action="/petugas-barang-input" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
                                 <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
