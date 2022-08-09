@@ -63,21 +63,21 @@
             </div>
             <li class="nav-item">
                 <a href="/petugas-barang-input/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarangInput">
-                    <i class="fas fa-light fa-folder-plus"></i>
+                    <i class="fas fa-laptop-medical"></i>
                     <span>Input Barang</span>
                 </a>
             </li>
             
             <li class="nav-item">
                 <a href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}" class="nav-link" id="urlBarang">
-                    <i class="fas fa-regular fa-book"></i>
+                    <i class="fas fa-th-list"></i>
                     <span>Barang</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
-                    <i class="fas fa-light fa-map"></i>
+                    <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
             </li>
 
@@ -244,15 +244,6 @@
                                                 <th class="text-center">{{ $item->satuan->SATUAN }}</th>
                                                 <th class="text-center">
                                                     <img onclick="modalBarang(this.src)" width="120" height="80" src="../storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
-                                                    {{-- <button type="button" value="{{ $item->NO_REGISTER }}" id="btn-preview-barang{{ $no }}" onclick="previewBarang(this.value);" class="btn btn-info float-right mt-1" data-toggle="modal" data-target="#modalPreviewBarang">Preview Gambar</button>
-                    
-                                                    <div class="modal fade" id="modalPreviewBarang" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content" id="modalBarang">
-                                
-                                                            </div>
-                                                        </div>
-                                                    </div> --}}
                                                 </th>
                                                 <th class="text-center">{{ $item->MERK }}</th>
                                                 <th class="text-center">{{ $item->type->TYPE }}</th>
@@ -283,17 +274,17 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal fade bd-example-modal-lg" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content" id="modalBarang">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Gambar Type</h5>
+                                                <h5 class="modal-title">Gambar Barang</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body text-center">
-                                                <img id="imgModalBarang" style="width: 400px;" src="" alt="">
+                                                <img id="imgModalBarang" style="height: 430px;" src="" alt="">
                                             </div>
                                         </div>
                                     </div>

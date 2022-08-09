@@ -73,26 +73,15 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-4 mt-2">
-                    <h1 class="h6">Username</h1>
-                </div>
-                <div class="col-sm-1 mt-2">
-                    <h1 class="h6">:</h1>
-                </div>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                    name="USERNAME" value="{{ $data->USERNAME}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4 mt-2">
                     <h1 class="h6">Password</h1>
                 </div>
                 <div class="col-sm-1 mt-2">
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
+                    <input type="hidden" name="passLama" value="{{ $data->PASSWORD }}">
                     <input type="password" class="form-control form-control-user text-center" id="exampleFirstName"
-                    name="PASSWORD" value="{{ $data->PASSWORD}}">
+                    name="PASSWORD" placeholder="Password">
                 </div>
             </div>
             <div class="form-group row">

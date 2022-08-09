@@ -71,7 +71,7 @@ class PetugasController extends Controller
                 </button>
             </div>
             <div class="modal-body text-center">
-                <img style="width: 400px;" src="../storage/img-type/<?= $type->PATH_GAMBAR ?>" alt="">
+                <img style="height: 430px;" src="../storage/img-type/<?= $type->PATH_GAMBAR ?>" alt="">
             </div>
         <?php
         } else {
@@ -346,7 +346,7 @@ class PetugasController extends Controller
         $barang->NO_REGISTER = $request->no_register;
         $barang->KODE_BARANG = $request->kodeBarang;
         $barang->ID_LOKASI = $request->idLokasi;
-        $barang->ID_USER = 3;
+        $barang->ID_USER = $request->idUser;
         $barang->ID_TYPE = $request->type;
         $barang->ID_SATUAN = $request->satuan;
         $barang->NAMA_BARANG = $request->namaBarang;

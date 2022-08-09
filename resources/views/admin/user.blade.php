@@ -45,7 +45,7 @@
                         <a href="/tambah-user"><button class="btn btn-info">Tambah User</button></a>
                     </div>
                     <tr>
-                        <th class="text-center">ID User</th>
+                        <th class="text-center">No.</th>
                         <th class="text-center">ID Jabatan</th>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
@@ -56,7 +56,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="text-center">ID User</th>
+                        <th class="text-center">No.</th>
                         <th class="text-center">ID Jabatan</th>
                         <th class="text-center">ID Role</th>
                         <th class="text-center">Nama</th>
@@ -66,9 +66,12 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                        $no = 1;
+                    @endphp
                     @foreach ($user as $item)
                         <tr>
-                            <th class="text-center">{{ $item->ID_USER }}</th>
+                            <th class="text-center">{{ $no }}</th>
                             <th class="text-center">{{ $item->jabatan->JABATAN }}</th>
                             <th class="text-center">{{ $item->role->ROLE }}</th>
                             <th class="text-center">{{ $item->NAMA }}</th>
@@ -79,6 +82,9 @@
                                 <a href="/hapus-user{{$item->ID_USER}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
                             </th>
                         </tr>
+                        @php
+                            $no++;
+                        @endphp
                     @endforeach
                 </tbody>
             </table>

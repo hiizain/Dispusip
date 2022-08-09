@@ -45,28 +45,34 @@
                         <a href="/tambah-role"><button class="btn btn-info">Tambah Role</button></a>
                     </div>
                     <tr>
-                        <th class="text-center">ID Role</th>
+                        <th class="text-center">No.</th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="text-center">ID Role</th>
+                        <th class="text-center">No.</th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                    @php
+                        $no = 1;
+                    @endphp
                     @foreach ($role as $item)
                         <tr>
-                            <th class="text-center">{{ $item->ID_ROLE }}</th>
+                            <th class="text-center">{{ $no }}</th>
                             <th class="text-center">{{ $item->ROLE }}</th>
                             <th class="text-center">
                                 <a href="/edit-role{{$item->ID_ROLE}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-role{{$item->ID_ROLE}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
                             </th>
                         </tr>
+                        @php
+                            $no++;
+                        @endphp
                     @endforeach
                 </tbody>
             </table>

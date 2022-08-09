@@ -89,17 +89,17 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+            <div class="modal fade bd-example-modal-lg" id="modalPreview" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content" id="modalBarang">
                         <div class="modal-header">
-                            <h5 class="modal-title">Gambar Type</h5>
+                            <h5 class="modal-title">Gambar Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body text-center">
-                            <img id="imgModalBarang" style="width: 400px;" src="" alt="">
+                            <img id="imgModalBarang" style="height: 430px;" src="" alt="">
                         </div>
                     </div>
                 </div>
