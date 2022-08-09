@@ -9,9 +9,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
-    <link rel="icon" href="../assets/img/surabaya.png">
-
     <link rel="icon" href="assets/img/surabaya.png">
 
     <title>Login SIMBADA</title>
