@@ -107,7 +107,19 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+            {{-- <center>
+            <a class="nav-link">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-info">
+                        <i class="fas fa-power-off"></i>
+                        <span>Keluar Aplikasi</span>
+                    </button>
+                </form>
+                </a>
+        </center>   --}}
         </ul>
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
