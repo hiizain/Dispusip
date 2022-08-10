@@ -18,8 +18,8 @@ class Barang extends Model
         return $this->belongsTo('App\Lokasi', 'ID_LOKASI', 'ID_LOKASI');
     }
 
-    public function satuan()
+    public function merek()
     {
-        return $this->belongsTo('App\Satuan', 'ID_SATUAN', 'ID_SATUAN');
+        return $this->belongsTo('App\Merek', 'ID_MEREK', 'ID_MEREK');
     }
 }
