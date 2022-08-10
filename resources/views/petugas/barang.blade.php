@@ -76,6 +76,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Tambah Merek</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
                     <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>

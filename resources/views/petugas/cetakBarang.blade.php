@@ -45,9 +45,6 @@
                 <th class="text-center">{{ $item->lokasi->LOKASI }}</th>
                 <th class="text-center">{{ $item->NAMA_BARANG }}</th>
                 <th class="text-center">{{ $item->type->satuan->SATUAN }}</th>
-                {{-- <th class="text-center">
-                    <img onclick="modalBarang(this.src)" width="120" height="80" src="../storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
-                </th> --}}
                 <th class="text-center">{{ $item->merek->MEREK }}</th>
                 <th class="text-center">{{ $item->type->TYPE }}</th>
                 <th class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</th>
@@ -67,7 +64,6 @@
                     <th class="text-center">Tidak Ada</th>
                 @endif
                 <th class="text-center">{{ $item->KETERANGAN }}</th>
-                
             </tr>
             @php
                 $no++;

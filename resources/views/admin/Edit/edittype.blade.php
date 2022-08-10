@@ -52,9 +52,9 @@
                     <h1 class="h6">:</h1>
                 </div>
                 <div class="col-sm-7">
-                    <img width="200px" src="../storage/img-type/{{ $data->PATH_GAMBAR}}" alt="">
-                    <input type="file" class="ml-3" id="PATH_GAMBAR"
-                        placeholder="Gambar Barang" name="PATH_GAMBAR">
+                    <img width="200px" src="../storage/img-type/{{ $data->PATH_GAMBAR}}" alt=""><br>
+                    <input type="file" class="ml-3" id="gambarType"
+                        placeholder="Gambar Type" name="gambarType">
                 </div>
             </div>
             <div class="form-group row">

@@ -44,7 +44,7 @@ class PetugasController extends Controller
 
 
     // ---------------------------------------
-    // Menampilkan halaman barang User Petugas
+    // Mencetak data barang User Petugas
     // ---------------------------------------
     function cetakBarang($idlokasi){
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
@@ -342,9 +342,8 @@ class PetugasController extends Controller
             'no_register' => 'required|unique:barang|max:25',
             'kodeBarang' => 'required|max:20',
             'type' => 'required',
-            'satuan' => 'required',
+            'merek' => 'required',
             'namaBarang' => 'required|max:100',
-            'merkBarang' => 'required|max:50',
             'nilaiBarang' => 'required|max:12',
             'tahunPengadaan' => 'required|min:4|max:4',
             'kondisiBarang' => 'required',
@@ -361,9 +360,8 @@ class PetugasController extends Controller
         $barang->ID_LOKASI = $request->idLokasi;
         $barang->ID_USER = $request->idUser;
         $barang->ID_TYPE = $request->type;
-        $barang->ID_SATUAN = $request->satuan;
+        $barang->ID_MEREK = $request->merek;
         $barang->NAMA_BARANG = $request->namaBarang;
-        $barang->MERK = $request->merkBarang;
         $barang->HARGA = (float)$request->nilaiBarang;
         $barang->TAHUN_PENGADAAN = $request->tahunPengadaan;
         $barang->KONDISI_BARANG = $request->kondisiBarang;
@@ -397,9 +395,9 @@ class PetugasController extends Controller
         $barang = Barang::where('no_register', $noRegister)->first();
         $lokasi = Lokasi::where('kode_lokasi', $kodeLokasi)->first();
         $type = Type::all();
-        $satuan = Satuan::all();
+        $merek = Merek::all();
 
-        return view('petugas/editBarang', ['barang' => $barang, 'lokasi' => $lokasi, 'type' => $type, 'satuan' => $satuan]);
+        return view('petugas/editBarang', ['barang' => $barang, 'lokasi' => $lokasi, 'type' => $type, 'merek' => $merek]);
     }
     // --------------------------------------------
     // End ----------------------------------------
@@ -410,6 +408,7 @@ class PetugasController extends Controller
     // Fungsi update barang User Petugas
     // ---------------------------------
     function barangUpdate(Request $request){
+        // dd($request->merek);
         $lokasi = Lokasi::where('id_lokasi', $request->idLokasi)->first();
 
         $barang = Barang::where('no_register', $request->no_register);
@@ -427,9 +426,8 @@ class PetugasController extends Controller
                         'KODE_BARANG' => $request->kodeBarang,
                         'ID_LOKASI' => $request->idLokasi,
                         'ID_TYPE' => $request->type,
-                        'ID_SATUAN' => $request->satuan,
+                        'ID_MEREK' => $request->merek,
                         'NAMA_BARANG' => $request->namaBarang,
-                        'MERK' => $request->merkBarang,
                         'HARGA' => $request->nilaiBarang,
                         'TAHUN_PENGADAAN' => $request->tahunPengadaan,
                         'KONDISI_BARANG' => $request->kondisiBarang,
@@ -447,9 +445,8 @@ class PetugasController extends Controller
             'KODE_BARANG' => $request->kodeBarang,
             'ID_LOKASI' => $request->idLokasi,
             'ID_TYPE' => $request->type,
-            'ID_SATUAN' => $request->satuan,
+            'ID_MEREK' => $request->merek,
             'NAMA_BARANG' => $request->namaBarang,
-            'MERK' => $request->merkBarang,
             'HARGA' => $request->nilaiBarang,
             'TAHUN_PENGADAAN' => $request->tahunPengadaan,
             'KONDISI_BARANG' => $request->kondisiBarang,
@@ -463,4 +460,21 @@ class PetugasController extends Controller
     // ---------------------------------
     // End -----------------------------
     // ---------------------------------
+
+    function merek($idlokasi){
+        $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
+        return view('petugas/merek', ['lokasi' => $lokasi]);
+    }
+
+    function tambahMerek(Request $request){
+        $this->validate($request, [
+            'merek' => 'required|unique:merek'
+        ]);
+        $merek = new Merek;
+        $merek->MEREK = $request->merek;
+        if($merek->save()){
+            return redirect("/petugas-merek/$request->lokasi")->with('tambahSuccess', 'Data berhasil ditambahkan');
+        } else 
+            return redirect("/petugas-merek/$request->lokasi")->with('tambahError', 'Data gagal ditambahkan');
+    }
 }

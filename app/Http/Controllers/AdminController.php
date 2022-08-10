@@ -192,13 +192,12 @@ class AdminController extends Controller
         $type = Type::where('id_type', $id);
         $gambarLama = $type->first()->PATH_GAMBAR;
         $filenameSimpan = $gambarLama;
-
+        
         if($request->file('gambarType')){
             $filenameWithExt = $request->file('gambarType')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('gambarType')->getClientOriginalExtension();
             $filenameSimpan = $filename.'_'.time().'.'.$extension;
-
             
             if($request->file('gambarType')->move('storage/img-type', $filenameSimpan)){
                 if(unlink("storage/img-type/$gambarLama")){

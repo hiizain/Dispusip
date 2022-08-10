@@ -77,6 +77,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Tambah Merek</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
                     <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
@@ -224,13 +230,10 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        @php
-                                            $satuans = json_encode($satuan);
-                                        @endphp
                                         <select name="type" id="type" class="form-control text-center">
-                                            <option class="form-control" value="{{ $barang->ID_TYPE }}/{{ $satuans }}"selected hidden>{{ $barang->type->TYPE }}</option>
+                                            <option class="form-control" value="{{ $barang->ID_TYPE }}"selected hidden>{{ $barang->type->TYPE }}</option>
                                             @foreach ($type as $item)
-                                                <option value="{{ $item->ID_TYPE }}/{{ $satuans }}">{{ $item->TYPE }}</option>
+                                                <option value="{{ $item->ID_TYPE }}">{{ $item->TYPE }}</option>
                                             @endforeach
                                         </select>
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
@@ -249,18 +252,49 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
-                                        <h1 class="h6">Satuan Barang</h1>
+                                        <h1 class="h6">Merek Barang</h1>
                                     </div>
                                     <div class="col-sm-1 mt-2">
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select name="satuan" class="form-control text-center">
-                                            <option class="form-control" value="{{ $barang->ID_SATUAN }}"selected hidden>{{ $barang->satuan->SATUAN }}</option>
-                                            @foreach ($satuan as $item)
-                                                <option value="{{ $item->ID_SATUAN }}">{{ $item->SATUAN }}</option>
-                                            @endforeach
+                                        <select name="merek" class="form-control text-center">
+                                            <option class="form-control" value="{{ $barang->ID_MEREK }}"selected hidden>{{ $barang->merek->MEREK }}</option>
+                                            <?php
+                                            foreach ($merek as $item){
+                                            ?>
+                                                <option value="{{ $item->ID_MEREK }}" {{ old('merek') == $item->ID_MEREK ? 'selected' : '' }}>{{ $item->MEREK }}</option>
+                                            <?php } ?>
                                         </select>
+
+                                        <a class="float-right mt-1" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a>
+                                        {{-- <a href="" value="0" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
+                    
+                                        <div class="modal fade" id="modalMerek" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Tambah Merek</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-10" id="errorModal">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <div class="form-group">
+                                                            <input type="hidden" id="lokasi" name="lokasi" value="{{ $lokasi->KODE_LOKASI }}">
+                                                            <input type="text" id="merek" name="merek" class="form-control form-control-user"
+                                                                placeholder="Merek" required value="{{ old('merek') }}">
+                                                        </div>
+                                                        <a class="btn btn-primary btn-user btn-block" onclick="tambahMerek()">Tambah</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -275,18 +309,7 @@
                                             placeholder="Nama Barang" name="namaBarang" value="{{ $barang->NAMA_BARANG }}">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-4 mt-2">
-                                        <h1 class="h6">Merk Barang</h1>
-                                    </div>
-                                    <div class="col-sm-1 mt-2">
-                                        <h1 class="h6">:</h1>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Merk Barang" name="merkBarang" value="{{ $barang->MERK }}">
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nilai Barang</h1>
@@ -416,7 +439,7 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <img style="height: 200px" src="../storage/img-barang/{{ $barang->PATH_FOTO }}" alt="Foto Barang">
+                                        <img style="height: 200px" src="../storage/img-barang/{{ $barang->PATH_FOTO }}" alt="Foto Barang"><br>
                                         <input type="file" class="text-center mt-2" id=""
                                             placeholder="Gambar Barang" name="gambarBarang" value="{{ $barang->PATH_FOTO }}">
                                     </div>
