@@ -19,35 +19,13 @@ $("#type").change(function(){
     changeGambar(this.value);
     console.log(document.getElementById("type").value);
     $('.hide').show(); 
-    // addFormInput(satuan);
-    // $('.hide').show();
-    // addFormInput();
-    // console.log($('#hide').style.getPropertyValue("display"));
 });
-// $("#type").change(function(){
-//     var split = this.value.split("/"); 
-//     var idType = split[0];
-//     var satuan = split[1];
-//     changeGambar(idType);
-//     // console.log(idType);
-//     // addFormInput(satuan);
-//     $('.hide').show();
-//     // addFormInput();
-//     // console.log($('#hide').style.getPropertyValue("display"));
-// });
 
 $("#btn-preview-type").click(function(){
     previewType(this.value);
-    // console.log(this.value);
 });
 
-// $("#saveBarang").click(function(){
-//     removeFormInput();
-//     // console.log(this.value);
-// });
-
 function changeGambar(idType){
-    // console.log(idType);
     document.getElementById("btn-preview-type").value = idType;
 }
 
@@ -60,6 +38,50 @@ function previewType(idType){
         success:function(html){
             $('#modalType').html(html);
             // $('#cek').html(html);
+        }
+    });
+}
+
+function tambahMerek(){
+    var merek = document.getElementById("inputMerek").value;
+    var lokasi = document.getElementById("lokasi").value;
+    // console.log(lokasi);
+    $.ajax({
+        type:'POST',
+        // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url:'/add-merek',
+        data: {'merek':merek,'lokasi':lokasi},
+        // success: function(html){
+        //     // $('#modalMerek').modal('toggle');
+        //     // $('#merek').val('');
+        //     // location.reload();
+        //     $("#modalMerek .close").click()
+        // },
+        success: function(){
+            $('#errorModal').html(`<div class="row alert alert-success mt-2">
+                <div class="col-md-11">
+                    <p>Data berhasil ditambahkan</p>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>`);
+            $('#inputMerek').val('');
+        },
+        error: function(html){
+            $('#errorModal').html(`<div class="row alert alert-danger mt-2">
+                <div class="col-md-11">
+                    <p>Data gagal ditambahkan</p>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>`);
+            $('#inputMerek').val('');
         }
     });
 }
