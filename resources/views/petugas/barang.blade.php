@@ -208,7 +208,7 @@
                                             <th class="text-center">Nama Barang</th>
                                             <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
-                                            <th class="text-center">Merk</th>
+                                            <th class="text-center">Merek</th>
                                             <th class="text-center">Type</th>
                                             <th class="text-center">Nilai Nominal</th>
                                             <th class="text-center">Tahun Pengadaan</th>
@@ -227,7 +227,7 @@
                                             <th class="text-center">Nama Barang</th>
                                             <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
-                                            <th class="text-center">Merk</th>
+                                            <th class="text-center">Merek</th>
                                             <th class="text-center">Type</th>
                                             <th class="text-center">Nilai Nominal</th>
                                             <th class="text-center">Tahun Pengadaan</th>

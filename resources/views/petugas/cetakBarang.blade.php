@@ -25,7 +25,7 @@
                 <th class="text-center">Lokasi</th>
                 <th class="text-center">Nama Barang</th>
                 <th class="text-center">Satuan</th>
-                <th class="text-center">Merk</th>
+                <th class="text-center">Merek</th>
                 <th class="text-center">Type</th>
                 <th class="text-center">Nilai Nominal</th>
                 <th class="text-center">Tahun Pengadaan</th>
@@ -43,8 +43,11 @@
                 <th class="text-center">{{ $item->KODE_BARANG }}</th>
                 <th class="text-center">{{ $item->lokasi->LOKASI }}</th>
                 <th class="text-center">{{ $item->NAMA_BARANG }}</th>
-                <th class="text-center">{{ $item->satuan->SATUAN }}</th>
-                <th class="text-center">{{ $item->MERK }}</th>
+                <th class="text-center">{{ $item->type->satuan->SATUAN }}</th>
+                <th class="text-center">
+                    <img onclick="modalBarang(this.src)" width="120" height="80" src="../storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
+                </th>
+                <th class="text-center">{{ $item->merek->MEREK }}</th>
                 <th class="text-center">{{ $item->type->TYPE }}</th>
                 <th class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</th>
                 <th class="text-center">{{ $item->TAHUN_PENGADAAN }}</th>
@@ -63,6 +66,9 @@
                     <th class="text-center">Tidak Ada</th>
                 @endif
                 <th class="text-center">{{ $item->KETERANGAN }}</th>
+                <th>
+                    <a href="/petugas-barang-edit{{$item->NO_REGISTER}}/{{ $lokasi->KODE_LOKASI }}"><button type="button" class="btn btn-warning tombol"><i class="fas fa-light fa-pen"></i></button></a>
+                </th>
             </tr>
             @php
                 $no++;
