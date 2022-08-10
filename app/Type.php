@@ -12,4 +12,9 @@ class Type extends Model
     {
         return $this->hasMany('App\Barang', 'ID_TYPE', 'ID_TYPE');
     }
+
+    public function satuan()
+    {
+        return $this->belongsTo('App\Satuan', 'ID_SATUAN', 'ID_SATUAN');
+    }
 }
