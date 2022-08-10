@@ -44,7 +44,7 @@ class PetugasController extends Controller
 
 
     // ---------------------------------------
-    // Menampilkan halaman barang User Petugas
+    // Mencetak data barang User Petugas
     // ---------------------------------------
     function cetakBarang($idlokasi){
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
