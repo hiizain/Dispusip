@@ -80,6 +80,11 @@
                     <span>Tipe</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/admin-merek">
+                    <i class="fas fa-filter"></i>
+                    <span>Merk</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/admin-satuan">
                     <i class="fas fa-layer-group"></i>
                     <span>Satuan</span></a>

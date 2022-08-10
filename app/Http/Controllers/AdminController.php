@@ -13,6 +13,7 @@ use App\Users;
 use App\Satuan;
 use App\Role;
 use App\Jabatan;
+use App\Merek;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -437,8 +438,59 @@ class AdminController extends Controller
         $barang = Barang::all();
         return view('admin/barang', ['barang' => $barang]);
     }
-// ==================================================END SATUAN==================================================
+// ==================================================END BARANG==================================================
     
+//MERK
+public function tambahmerek()
+{
+
+    return view('admin/tambah/tambahmerek');
+}
+
+function merek(){
+    $merek = Merek::all();
+    return view('admin/merek', ['merek' => $merek]);
+}
+
+public function storemerek(Request $request)
+{
+    $this->validate($request, [
+        'MEREK' => 'required',
+    ]);
+
+    $merek = new Merek;
+    $merek->MEREK = $request->MEREK;
+
+    if($merek->save()){
+        // die(var_dump($barang));
+        return redirect("/admin-merek")->with('tambahSuccess', 'Data berhasil ditambah');
+    } else 
+        return back()->with('tambahError', 'Data gagal ditambah');
+}
+
+public function editmerek($id)
+{
+    $merek = Merek::where('ID_MEREK',$id)->first();
+
+    return view('admin/edit/editmerek', ['data' => $merek]);
+}
+
+public function updatemerek(Request $request,$id)
+{
+    DB::table('merek')->where('ID_MEREK',$id)->update([
+        'MEREK'        => $request['MEREK']
+    ]);
+
+    return redirect("/admin-merek")->with('updateSuccess', 'Data berhasil diupdate');
+}
+
+public function destroymerek($id)
+{
+    $merek = Merek::where('ID_MEREK',$id);
+    $merek->delete();
+    return redirect("/admin-merek")->with('hapus', 'Data berhasil dihapus');
+}
+// ==================================================END SATUAN==================================================
 
     /**
      * Show the form for creating a new resource.

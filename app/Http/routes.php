@@ -61,6 +61,14 @@ Route::get('/edit-satuan{id}', 'AdminController@editsatuan')->middleware('admin'
 Route::post('/update-satuan-form{id}', 'AdminController@updatesatuan')->middleware('admin');
 Route::get('/hapus-satuan{id}', 'AdminController@destroysatuan')->middleware('admin');
 
+//Admin-Merk
+Route::get('/admin-merek', 'AdminController@merek')->middleware('admin');
+Route::get('/tambah-merek', 'AdminController@tambahmerek')->middleware('admin');
+Route::post('/merek-form', 'AdminController@storemerek')->middleware('admin');
+Route::get('/edit-merek{id}', 'AdminController@editmerek')->middleware('admin');
+Route::post('/update-merek-form{id}', 'AdminController@updatemerek')->middleware('admin');
+Route::get('/hapus-merek{id}', 'AdminController@destroymerek')->middleware('admin');
+
 //Admin-Type
 Route::get('/admin-type', 'AdminController@type')->middleware('admin');
 Route::get('/tambah-type', 'AdminController@tambahtype')->middleware('admin');
