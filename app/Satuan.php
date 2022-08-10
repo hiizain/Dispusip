@@ -10,6 +10,6 @@ class Satuan extends Model
 
     public function satuan()
     {
-        return $this->hasMany('App\Barang', 'ID_SATUAN', 'ID_SATUAN');
+        return $this->hasMany('App\Type', 'ID_SATUAN', 'ID_SATUAN');
     }
 }

@@ -9,6 +9,7 @@ use App\Lokasi;
 use App\Barang;
 use App\Type;
 use App\Satuan;
+use App\Merek;
 use App\User;
 use App\Users;
 use Hash;
@@ -60,9 +61,9 @@ class PetugasController extends Controller
     // ---------------------------------------------
     function inputBarang($idlokasi){
         $type = Type::all();
-        $satuan = Satuan::all();
+        $merek = Merek::all();
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
-        return view('petugas/inputBarang', ['lokasi' => $lokasi, 'type' => $type, 'satuan' => $satuan]);
+        return view('petugas/inputBarang', ['lokasi' => $lokasi, 'type' => $type, 'merek' => $merek]);
     }
     // ---------------------------------------------
     // End -----------------------------------------
