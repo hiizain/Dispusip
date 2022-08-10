@@ -141,24 +141,27 @@ class AdminController extends Controller
 //Type
     public function tambahtype()
     {
-
-        return view('admin/tambah/tambahtype');
+        $satuan = Satuan::all();
+        return view('admin/tambah/tambahtype', ['satuan' => $satuan,]);
     }
 
     function type(){
         $type = Type::all();
-        return view('admin/type', ['type' => $type]);
+        $satuan = Satuan::all();
+        return view('admin/type', ['type' => $type, 'satuan' => $satuan]);
     }
 
     public function storetype(Request $request)
     {
         $this->validate($request, [
-            'TYPE' => 'required',
+            'type' => 'required',
+            'satuan' => 'required',
             'PATH_GAMBAR' => 'required'
         ]);
 
         $type = new Type;
-        $type->TYPE = $request->TYPE;
+        $type->TYPE = $request->type;
+        $type->ID_SATUAN = $request->satuan;
         $filenameWithExt = $request->file('PATH_GAMBAR')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         $extension = $request->file('PATH_GAMBAR')->getClientOriginalExtension();
@@ -179,8 +182,9 @@ class AdminController extends Controller
     public function edittype($id)
     {
         $type = Type::where('ID_TYPE',$id)->first();
+        $satuan = Satuan::all();
 
-        return view('admin/edit/edittype', ['data' => $type]);
+        return view('admin/edit/edittype', ['data' => $type,'satuan' => $satuan]);
     }
 
     public function updatetype(Request $request,$id)
@@ -200,6 +204,7 @@ class AdminController extends Controller
                 if(unlink("storage/img-type/$gambarLama")){
                     if($type->update([
                         'TYPE' => $request->type,
+			            'ID_SATUAN' => $request->satuan,
                         'PATH_GAMBAR' => $filenameSimpan
                     ])){
                         return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');
@@ -209,6 +214,7 @@ class AdminController extends Controller
         }
         if($type->update([
             'TYPE' => $request->type,
+	        'ID_SATUAN' => $request->satuan,
             'PATH_GAMBAR' => $filenameSimpan
         ])){
             return redirect("/admin-type")->with('updateSuccess', 'Data berhasil diupdate');

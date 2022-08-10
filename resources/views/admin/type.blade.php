@@ -47,6 +47,7 @@
                     <tr>
                         <th class="text-center">No.</th>
                         <th class="text-center">Type</th>
+                        <th class="text-center">Satuan</th>
                         <th class="text-center">Gambar</th>
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -55,6 +56,7 @@
                     <tr>
                         <th class="text-center">No.</th>
                         <th class="text-center">Type</th>
+                        <th class="text-center">Satuan</th>
                         <th class="text-center">Gambar</th>
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -67,6 +69,7 @@
                         <tr>
                             <th class="text-center">{{ $no }}</th>
                             <th class="text-center">{{ $item->TYPE }}</th>
+                            <th class="text-center">{{ $item->satuan->SATUAN }}</th>
                             <th class="text-center">
                                 <img onclick="modalType(this.src)" width="120" height="80" src="storage/img-type/{{ $item->PATH_GAMBAR }}" alt="">
                             </th>

@@ -12,4 +12,5 @@ class Satuan extends Model
     {
         return $this->hasMany('App\Type', 'ID_SATUAN', 'ID_SATUAN');
     }
+    
 }

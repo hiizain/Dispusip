@@ -24,7 +24,23 @@
                 </div>
                 <div class="col-sm-7">
                     <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                        placeholder="Type" name="TYPE">
+                        placeholder="Type" name="type">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4 mt-2">
+                    <h1 class="h6">Satuan</h1>
+                </div>
+                <div class="col-sm-1 mt-2">
+                    <h1 class="h6">:</h1>
+                </div>
+                <div class="col-sm-7">
+                    <select name="satuan" id="satuan" class="form-control text-center">
+                        <option class="form-control" value="0" disabled selected hidden>Pilih Satuan</option>
+                        @foreach ($satuan as $item)
+                            <option value="{{ $item->ID_SATUAN }}">{{ $item->SATUAN }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
