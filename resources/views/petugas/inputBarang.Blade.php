@@ -27,7 +27,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="form()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -109,12 +109,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php
+                                @php
                                     use Illuminate\Support\Facades\Auth;
                                     use App\User;
+                                    use App\Type;
                                     $nip = Auth::user()->nip;
                                     $user = User::where('nip', $nip)->first();
-                                ?>
+                                @endphp
                                 <div>
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
@@ -126,7 +127,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <form action="/logout" method="post">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">                                   
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="dropdown-item" href="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
@@ -185,6 +186,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
                                 <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
+                                <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">No. Register</h1>
@@ -194,7 +196,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="No Register" name="no_register">
+                                            placeholder="No Register" name="no_register" value="{{ old('no_register') }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -206,7 +208,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Kode Barang" name="kodeBarang">
+                                            placeholder="Kode Barang" name="kodeBarang" value="{{ old('kodeBarang') }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -217,13 +219,19 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        @php
-                                            $satuan = json_encode($satuan);
-                                        @endphp
-                                        <select name="type" id="type" class="form-control text-center">
-                                            <option class="form-control" value="0/{{ $satuan }}" disabled selected hidden>Pilih Type</option>
+                                        {{-- @php
+                                            $satuans = json_encode($satuan);
+                                        @endphp --}}
+                                        {{-- <select name="type" id="type" class="form-control text-center">
+                                            <option class="form-control" value="0/{{ $satuans }}" disabled selected hidden>Pilih Type</option>
                                             @foreach ($type as $item)
-                                                <option value="{{ $item->ID_TYPE }}/{{ $satuan }}">{{ $item->TYPE }}</option>
+                                                <option value="{{ $item->ID_TYPE }}/{{ $satuans }}">{{ $item->TYPE }}</option>
+                                            @endforeach
+                                        </select> --}}
+                                        <select name="type" id="type" class="form-control text-center">
+                                            <option class="form-control" value="0" disabled selected hidden>Pilih Type</option>
+                                            @foreach ($type as $item)
+                                                <option value="{{ $item->ID_TYPE }}" {{ old('type') == $item->ID_TYPE ? 'selected' : '' }}>{{ $item->TYPE }}</option>
                                             @endforeach
                                         </select>
                                         {{-- <a href="" class="h6 text-end" data-toggle="modal" data-target="#modalTambahBarang">preview</a> --}}
@@ -240,27 +248,29 @@
                                     </div>
                                 </div>
 
-                                <div id="form">
+                                {{-- <div id="form">
 
-                                </div>
+                                </div> --}}
 
-                                {{-- <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
-                                        <h1 class="h6">Satuan Barang</h1>
+                                        <h1 class="h6">Merek Barang</h1>
                                     </div>
                                     <div class="col-sm-1 mt-2">
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <select name="satuan" class="form-control text-center">
-                                            <option class="form-control" value="0" disabled selected hidden>Pilih Satuan</option>
-                                            @foreach ($satuan as $item)
-                                                <option value="{{ $item->ID_SATUAN }}">{{ $item->SATUAN }}</option>
-                                            @endforeach
+                                        <select name="merek" class="form-control text-center">
+                                            <option class="form-control" value="0" disabled selected hidden>Pilih Merek</option>
+                                            <?php
+                                            foreach ($merek as $item){
+                                            ?>
+                                                <option value="<?= $item->ID_MEREK ?>" {{ old('merek') == $item->ID_MEREK ? 'selected' : '' }}><?= $item->MEREK ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nama Barang</h1>
                                     </div>
@@ -269,10 +279,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Nama Barang" name="namaBarang">
+                                            placeholder="Nama Barang" name="namaBarang" value="{{ old('namaBarang') }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Merk Barang</h1>
                                     </div>
@@ -281,10 +291,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Merk Barang" name="merkBarang">
+                                            placeholder="Merk Barang" name="merkBarang" value="{{ old('merkBarang') }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Nilai Barang</h1>
                                     </div>
@@ -293,10 +303,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Nilai Barang" name="nilaiBarang">
+                                            placeholder="Nilai Barang" name="nilaiBarang" value="{{ old('nilaiBarang') }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Tahun Pengadaan</h1>
                                     </div>
@@ -306,20 +316,21 @@
                                     <div class="col-sm-7">
                                         <select name="tahunPengadaan" class="form-control text-center">
                                             <option class="form-control" value="" disabled selected hidden>Pilih Tahun</option>
-                                            @php  
+                                            <?php  
                                                 $year = date('Y');
                                                 $year = (int) $year;
-                                            @endphp
-                                            @for ($i=0; $i<10; $i++)
-                                                <option value="{{ $year }}">{{ $year }}</option>
-                                            @php  
+                                            
+                                            for ($i=0; $i<10; $i++){
+                                            ?>
+                                                <option value="{{ $year }}" {{ old('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                                            <?php 
                                                 $year--;
-                                            @endphp
-                                            @endfor
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Kondisi Barang</h1>
                                     </div>
@@ -329,23 +340,23 @@
                                     <div class="col-sm-7 mt-2">
                                         <div class="row justify-content-center">
                                             <div class="col-sm-4 text-center">
-                                                <input type="radio" id="html" name="kondisiBarang" value="1">
+                                                <input type="radio" id="html" name="kondisiBarang" value="1" {{ old('kondisiBarang') == 1 ? 'checked' : '' }}>
                                                 <label for="html">Baik</label><br>
                                             </div>
                                             <div class="col-sm-4 text-center">
-                                                <input type="radio" id="html" name="kondisiBarang" value="2">
+                                                <input type="radio" id="html" name="kondisiBarang" value="2" {{ old('kondisiBarang') == 2 ? 'checked' : '' }}>
                                                 <label for="html">Kurang Baik</label><br>
                                             </div>
                                             <div class="col-sm-4 text-center">
-                                                <input type="radio" id="html" name="kondisiBarang" value="3">
+                                                <input type="radio" id="html" name="kondisiBarang" value="3" {{ old('kondisiBarang') == 3 ? 'checked' : '' }}>
                                                 <label for="html">Rusak Berat</label><br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
-                                        <h1 class="h6">Koberadaan Barang</h1>
+                                        <h1 class="h6">Keberadaan Barang</h1>
                                     </div>
                                     <div class="col-sm-1 mt-2">
                                         <h1 class="h6">:</h1>
@@ -353,17 +364,17 @@
                                     <div class="col-sm-7 mt-2">
                                         <div class="row justify-content-center">
                                             <div class="col-sm-6 text-center">
-                                                <input type="radio" id="html" name="keberadaanBarang" value="1">
+                                                <input type="radio" id="html" name="keberadaanBarang" value="1" {{ old('keberadaanBarang') == 1 ? 'checked' : '' }}>
                                                 <label for="html">Ada</label><br>
                                             </div>
                                             <div class="col-sm-6 text-center">
-                                                <input type="radio" id="html" name="keberadaanBarang" value="3">
+                                                <input type="radio" id="html" name="keberadaanBarang" value="2" {{ old('keberadaanBarang') == 2 ? 'checked' : '' }}>
                                                 <label for="html">Tidak Ada</label><br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Gambar</h1>
                                     </div>
@@ -372,10 +383,10 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="file" class="form-control form-control-user text-center" id=""
-                                            placeholder="Gambar Barang" name="gambarBarang">
+                                            placeholder="Gambar Barang" name="gambarBarang" value="{{ old('gambarBarang') }}">
                                     </div>
                                 </div>
-                                <div class="form-group row add-form">
+                                <div class="form-group row hide" style="display: none;">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">Keterangan</h1>
                                     </div>
@@ -383,16 +394,31 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control form-control-user" name="keterangan" placeholder="Tambah Keterangan" ></textarea>
+                                        <textarea class="form-control form-control-user" name="keterangan" placeholder="Tambah Keterangan" >{{ old('keterangan') }}</textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row add-form justify-content-center mt-5">
+                                <div class="form-group row justify-content-center mt-5 hide" style="display: none;">
                                     <div class="col-sm-6">
-                                        <button type="submit" id="saveBarang" name="submit" class="btn btn-success btn-user btn-block">
+                                        <button type="button" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">
                                             Tambah
                                         </button>
+                        
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Apakah data inputan sudah benar?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Ya</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                </div> --}}
+                                </div>
                             </form>
                         </div>
                     </div>

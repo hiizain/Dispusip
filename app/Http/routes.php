@@ -106,6 +106,9 @@ Route::get('/alert-lokasi', 'PetugasController@alertLokasi')->middleware('petuga
 // Menampilkan halaman barang
 Route::get('/petugas-barang/{idlokasi}', 'PetugasController@barang')->middleware('petugas');
 
+// Mencetak barang
+Route::get('/cetak-barang/{idlokasi}', 'PetugasController@cetakBarang')->name('cetak-barang')->middleware('petugas');
+
 // Modal preview gambar barang
 Route::post('/priveiew-barang', 'PetugasController@previewBarang')->middleware('petugas');
 

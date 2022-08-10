@@ -10,7 +10,6 @@
     <meta name="author" content="">
 
     <link rel="icon" href="assets/img/surabaya.png">
-
     <title>Login SIMBADA</title>
 
     <!-- Custom fonts for this template-->

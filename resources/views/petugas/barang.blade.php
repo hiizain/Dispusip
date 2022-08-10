@@ -187,6 +187,13 @@
                                 <div class="col-sm-6 py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Tabel Data Barang</h6>
                                 </div>
+                                <div class="col-sm-6 py-2">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/cetak-barang/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Cetak Barang <i class="fas fa-print"></i></a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -201,7 +208,7 @@
                                             <th class="text-center">Nama Barang</th>
                                             <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
-                                            <th class="text-center">Merk</th>
+                                            <th class="text-center">Merek</th>
                                             <th class="text-center">Type</th>
                                             <th class="text-center">Nilai Nominal</th>
                                             <th class="text-center">Tahun Pengadaan</th>
@@ -220,7 +227,7 @@
                                             <th class="text-center">Nama Barang</th>
                                             <th class="text-center">Satuan</th>
                                             <th class="text-center">Gambar</th>
-                                            <th class="text-center">Merk</th>
+                                            <th class="text-center">Merek</th>
                                             <th class="text-center">Type</th>
                                             <th class="text-center">Nilai Nominal</th>
                                             <th class="text-center">Tahun Pengadaan</th>
@@ -241,11 +248,11 @@
                                                 <th class="text-center">{{ $item->KODE_BARANG }}</th>
                                                 <th class="text-center">{{ $item->lokasi->LOKASI }}</th>
                                                 <th class="text-center">{{ $item->NAMA_BARANG }}</th>
-                                                <th class="text-center">{{ $item->satuan->SATUAN }}</th>
+                                                <th class="text-center">{{ $item->type->satuan->SATUAN }}</th>
                                                 <th class="text-center">
                                                     <img onclick="modalBarang(this.src)" width="120" height="80" src="../storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
                                                 </th>
-                                                <th class="text-center">{{ $item->MERK }}</th>
+                                                <th class="text-center">{{ $item->merek->MEREK }}</th>
                                                 <th class="text-center">{{ $item->type->TYPE }}</th>
                                                 <th class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</th>
                                                 <th class="text-center">{{ $item->TAHUN_PENGADAAN }}</th>

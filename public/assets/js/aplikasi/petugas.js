@@ -7,16 +7,34 @@ $.ajaxSetup({
 // ========================================================================
 // Halaman Input Barang
 // ========================================================================
+function form(){
+    var valueType = document.getElementById("type").value;
+    if (valueType !== "0"){
+        $('.hide').show();   
+    }
+    console.log(valueType);
+}
 
 $("#type").change(function(){
-    var split = this.value.split("/"); 
-    var idType = split[0];
-    var satuan = split[1];
-    changeGambar(idType);
-    addFormInput(satuan);
+    changeGambar(this.value);
+    console.log(document.getElementById("type").value);
+    $('.hide').show(); 
+    // addFormInput(satuan);
+    // $('.hide').show();
     // addFormInput();
-    // console.log(this.value);
+    // console.log($('#hide').style.getPropertyValue("display"));
 });
+// $("#type").change(function(){
+//     var split = this.value.split("/"); 
+//     var idType = split[0];
+//     var satuan = split[1];
+//     changeGambar(idType);
+//     // console.log(idType);
+//     // addFormInput(satuan);
+//     $('.hide').show();
+//     // addFormInput();
+//     // console.log($('#hide').style.getPropertyValue("display"));
+// });
 
 $("#btn-preview-type").click(function(){
     previewType(this.value);
