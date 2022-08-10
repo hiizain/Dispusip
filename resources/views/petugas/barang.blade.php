@@ -121,8 +121,9 @@
                                     $user = User::where('nip', $nip)->first();
                                 ?>
                                 <div>
+                                    
                                     <span class="mr-2 d-none d-lg-inline text-gray-800 normal"><?= $user->NAMA; ?></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->jabatan->JABATAN ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->role->ROLE;?></span>
                                 </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">

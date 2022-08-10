@@ -35,15 +35,15 @@
             <div class="col-sm-6 py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Tabel Data Satuan Barang</h6>
             </div>
+            <div class="col-sm-6 py-2">
+                <span style="float: right">  
+                    <a href="/tambah-merek"><button class="btn btn-info">Tambah Merek</button></a>            </div>
         </div>
     </div>
     <div class="card-body">
         <div class="table">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <div class="form-group form-button">
-                        <a href="/tambah-merek"><button class="btn btn-info">Tambah Merek</button></a>
-                    </div>
                     <tr>
                         <th class="text-center">No.</th>
                         <th class="text-center">Merek</th>

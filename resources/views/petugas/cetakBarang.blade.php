@@ -18,6 +18,19 @@
 <body>
     <div class="form-group">
         <p align="center"><b>Laporan Data Barang</b></p>
+        <?php
+                                    use Illuminate\Support\Facades\Auth;
+                                    use App\User;
+                                    $nip = Auth::user()->nip;
+                                    $user = User::where('nip', $nip)->first();
+                                ?>
+                                <div>
+                                    <center>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-800 normal"><?= $user->NAMA; ?></span><br>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->role->ROLE;?></span>
+                                    </center>
+                                </div>
+                                <br>
         <table class="static" align="center" rules="all" border="1px" style="width:95%;">
             <tr>
                 <th class="text-center">No.</th>
