@@ -42,6 +42,19 @@ class PetugasController extends Controller
     // ---------------------------------------
 
 
+    // ---------------------------------------
+    // Menampilkan halaman barang User Petugas
+    // ---------------------------------------
+    function cetakBarang($idlokasi){
+        $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
+        $barang = Barang::where('id_lokasi', $lokasi->ID_LOKASI)->get();
+        return view('petugas.cetakBarang', ['lokasi' => $lokasi, 'barang' => $barang]);
+    }
+    // ---------------------------------------
+    // End -----------------------------------
+    // ---------------------------------------
+
+
     // ---------------------------------------------
     // Menampilkan halaman input Barang User Petugas
     // ---------------------------------------------
