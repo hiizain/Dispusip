@@ -77,12 +77,6 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
-                    <i class="fas fa-tag"></i>
-                    <span>Tambah Merek</span></a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
                     <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
@@ -191,7 +185,7 @@
                             <form action="/petugas-barang-input" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
-                                <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
+                                <input type="hidden" id="lokasi" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
                                 <input type="hidden" name="idUser" value="{{ $user->ID_USER }}">
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
@@ -275,9 +269,9 @@
                                             <?php } ?>
                                         </select>
 
-                                        <a class="float-right mt-1" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a>
+                                        {{-- <a class="float-right mt-1" href="/petugas-merek-input/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a> --}}
 
-                                        {{-- <a value="0" id="btnAddMerek" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
+                                        <a value="0" id="btnAddMerek" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
                     
                                         <div class="modal fade" id="modalMerek" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -293,18 +287,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <form action="/add-merek" method="post">
-                                                            <div class="form-group">
-                                                                <input type="hidden" id="lokasi" name="lokasi" value="{{ $lokasi->KODE_LOKASI }}">
-                                                                <input type="text" id="inputMerek" name="inputMerek" class="form-control form-control-user"
-                                                                    placeholder="Merek" required value="{{ old('merek') }}">
-                                                            </div>
-                                                            <a class="btn btn-primary btn-user btn-block">Tambah</a>
-                                                        </form>
+                                                        <div class="form-group">
+                                                            <input type="text" id="inputMerek" name="inputMerek" class="form-control form-control-user"
+                                                                placeholder="Merek" value="{{ old('merek') }}">
+                                                        </div>
+                                                        <a class="btn btn-primary btn-user btn-block" onclick="tambahMerek()">Tambah</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row hide" style="display: none;">
@@ -427,6 +418,8 @@
                                         <button type="button" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">
                                             Tambah
                                         </button>
+
+                                        {{-- <a value="0" id="btnAddMerek" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Tambah</a> --}}
                         
                                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">

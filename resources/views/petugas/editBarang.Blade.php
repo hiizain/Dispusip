@@ -45,16 +45,6 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/petugas-barang/{{ $lokasi->KODE_LOKASI }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -74,12 +64,6 @@
                     <i class="fas fa-th-list"></i>
                     <span>Barang</span>
                 </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
-                    <i class="fas fa-tag"></i>
-                    <span>Tambah Merek</span></a>
             </li>
 
             <li class="nav-item">
@@ -197,7 +181,7 @@
                             @endif
                             <form action="/petugas-barang-edit" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
+                                <input type="hidden" id="lokasi" name="idLokasi" value="{{ $lokasi->ID_LOKASI }}">
                                 <div class="form-group row">
                                     <div class="col-sm-4 mt-2">
                                         <h1 class="h6">No. Register</h1>
@@ -206,8 +190,8 @@
                                         <h1 class="h6">:</h1>
                                     </div>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="No Register" name="no_register" value="{{ $barang->NO_REGISTER }}" readonly>
+                                        <input type="text" class="form-control form-control-user text-center"
+                                            placeholder="No Register" id="noRegister" name="no_register" value="{{ $barang->NO_REGISTER }}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -267,8 +251,8 @@
                                             <?php } ?>
                                         </select>
 
-                                        <a class="float-right mt-1" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a>
-                                        {{-- <a href="" value="0" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
+                                        {{-- <a class="float-right mt-1" href="/petugas-merek-edit/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a> --}}
+                                        <a href="" value="0" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
                     
                                         <div class="modal fade" id="modalMerek" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -286,15 +270,14 @@
                                                     <div class="modal-body text-center">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         <div class="form-group">
-                                                            <input type="hidden" id="lokasi" name="lokasi" value="{{ $lokasi->KODE_LOKASI }}">
-                                                            <input type="text" id="merek" name="merek" class="form-control form-control-user"
-                                                                placeholder="Merek" required value="{{ old('merek') }}">
+                                                            <input type="text" id="inputMerek" name="Inputmerek" class="form-control form-control-user"
+                                                                placeholder="Merek" value="{{ old('merek') }}">
                                                         </div>
-                                                        <a class="btn btn-primary btn-user btn-block" onclick="tambahMerek()">Tambah</a>
+                                                        <a class="btn btn-primary btn-user btn-block" onclick="tambahMerekEdit()">Tambah</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
