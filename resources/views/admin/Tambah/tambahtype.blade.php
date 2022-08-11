@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">TambahkanType!</h1>
+            <h1 class="h4 text-gray-900 mb-4">Tambahkan Tipe!</h1>
         </div>
         <form action="/type-form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
