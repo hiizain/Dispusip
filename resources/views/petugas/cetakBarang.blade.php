@@ -10,7 +10,7 @@
         table.static{
             position: relative;
             /* left: 3%; */
-            border: 1px solid #0b2ab3;
+            border: 1px solid #000000;
         }
     </style>
     <!-- Custom styles for this template -->
