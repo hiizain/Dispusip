@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-6 py-2">
                 <span style="float: right">  
-                    <a href="/tambah-satuan"><button class="btn btn-info">Tambah Satuan</button></a>
+                    <a href="/tambah-satuan"><button class="btn btn-info"><i class="fas fa-plus-circle">&nbsp;</i>Tambah Satuan</button></a>
                 </div>
         </div>
     </div>

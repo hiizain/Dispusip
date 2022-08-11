@@ -13,6 +13,11 @@
             border: 1px solid #0b2ab3;
         }
     </style>
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <title>Cetak Data Barang</title>
 </head>
 <body>
@@ -24,11 +29,20 @@
                                     $nip = Auth::user()->nip;
                                     $user = User::where('nip', $nip)->first();
                                 ?>
-                                <div>
-                                    <center>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-800 normal"><?= $user->NAMA; ?></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->role->ROLE;?></span>
-                                    </center>
+                                <div class="form-group row">
+                                    <div class="col-md-1"align="right">Nama</div>
+                                    <div class="col-md-1"align="right">:</div>
+                                    <div class="col-md-1"align="left"><?= $user->NAMA; ?></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"align="right">Sebagai</div>
+                                    <div class="col-md-1"align="right">:</div>
+                                    <div class="col-md-1"align="left"><?= $user->role->ROLE;?></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"align="right">Jabatan</div>
+                                    <div class="col-md-1"align="right">:</div>
+                                    <div class="col-md-1"align="left"><?= $user->jabatan->JABATAN; ?></div>
                                 </div>
                                 <br>
         <table class="static" align="center" rules="all" border="1px" style="width:95%;">

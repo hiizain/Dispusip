@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-6 py-2">
                 <span style="float: right">  
-                    <a href="/tambah-merek"><button class="btn btn-info">Tambah Merek</button></a>            </div>
+                    <a href="/tambah-merek"><button class="btn btn-info"><i class="fas fa-plus-circle">&nbsp;</i>Tambah Merek</button></a>            </div>
         </div>
     </div>
     <div class="card-body">

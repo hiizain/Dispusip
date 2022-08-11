@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-6 py-2">
                 <span style="float: right">  
-                    <a href="/tambah-user"><button class="btn btn-info">Tambah User</button></a>
+                    <a href="/tambah-user"><button class="btn btn-info"><i class="fas fa-plus-circle">&nbsp;</i>Tambah User</button></a>
                 </div>
         </div>
     </div>
