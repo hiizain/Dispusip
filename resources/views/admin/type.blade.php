@@ -68,16 +68,16 @@
                     @endphp
                     @foreach ($type as $item)
                         <tr>
-                            <th class="text-center">{{ $no }}</th>
-                            <th class="text-center">{{ $item->TYPE }}</th>
-                            <th class="text-center">{{ $item->satuan->SATUAN }}</th>
-                            <th class="text-center">
+                            <td class="text-center">{{ $no }}</td>
+                            <td class="text-center">{{ $item->TYPE }}</td>
+                            <td class="text-center">{{ $item->satuan->SATUAN }}</td>
+                            <td class="text-center">
                                 <img onclick="modalType(this.src)" width="120" height="80" src="storage/img-type/{{ $item->PATH_GAMBAR }}" alt="">
-                            </th>
-                            <th class="text-center">
+                            </td>
+                            <td class="text-center">
                                 <a href="/edit-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-type{{$item->ID_TYPE}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
-                            </th>
+                            </td>
                         </tr>
                         @php
                             $no++;

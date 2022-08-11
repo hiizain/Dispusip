@@ -64,12 +64,12 @@
                     @endphp
                     @foreach ($jabatan as $item)
                         <tr>
-                            <th class="text-center">{{ $no }}</th>
-                            <th class="text-center">{{ $item->JABATAN}}</th>
-                            <th class="text-center">
+                            <td class="text-center">{{ $no }}</td>
+                            <td class="text-center">{{ $item->JABATAN}}</td>
+                            <td class="text-center">
                                 <a href="/edit-jabatan{{$item->ID_JABATAN}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-jabatan{{$item->ID_JABATAN}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
-                            </th>
+                            </td>
                         </tr>
                         @php
                             $no++;

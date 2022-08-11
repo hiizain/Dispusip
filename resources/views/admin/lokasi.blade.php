@@ -66,13 +66,13 @@
                     @endphp
                     @foreach ($lokasi as $item)
                         <tr>
-                            <th class="text-center">{{ $no }}</th>
-                            <th class="text-center">{{ $item->KODE_LOKASI }}</th>
-                            <th class="text-center">{{ $item->LOKASI }}</th>
-                            <th class="text-center">
+                            <td class="text-center">{{ $no }}</td>
+                            <td class="text-center">{{ $item->KODE_LOKASI }}</td>
+                            <td class="text-center">{{ $item->LOKASI }}</td>
+                            <td class="text-center">
                                 <a href="/edit-lokasi{{$item->ID_LOKASI}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-lokasi{{$item->ID_LOKASI}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
-                            </th>
+                            </td>
                         </tr>
                         @php
                             $no++;

@@ -54,34 +54,34 @@
                     @endphp
                     @foreach ($barang as $item)
                         <tr>
-                            <th class="text-center">{{ $no }}</th>
-                            <th class="text-center">{{ $item->NO_REGISTER }}</th>
-                            <th class="text-center">{{ $item->KODE_BARANG }}</th>
-                            <th class="text-center">{{ $item->lokasi->LOKASI }}</th>
-                            <th class="text-center">{{ $item->NAMA_BARANG }}</th>
-                            <th class="text-center">
+                            <td class="text-center">{{ $no }}</td>
+                            <td class="text-center">{{ $item->NO_REGISTER }}</td>
+                            <td class="text-center">{{ $item->KODE_BARANG }}</td>
+                            <td class="text-center">{{ $item->lokasi->LOKASI }}</td>
+                            <td class="text-center">{{ $item->NAMA_BARANG }}</td>
+                            <td class="text-center">
                                 <img onclick="modalBarang(this.src)" width="120" height="80" src="storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
-                            </th>
-                            <th class="text-center">{{ $item->MERK }}</th>
-                            <th class="text-center">{{ $item->type->TYPE }}</th>
-                            <th class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</th>
-                            <th class="text-center">{{ $item->TAHUN_PENGADAAN }}</th>
+                            </td>
+                            <td class="text-center">{{ $item->MERK }}</td>
+                            <td class="text-center">{{ $item->type->TYPE }}</td>
+                            <td class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</td>
+                            <td class="text-center">{{ $item->TAHUN_PENGADAAN }}</td>
                             @if ($item->KONDISI_BARANG === "1")
-                                <th class="text-center">Baik</th>
+                                <td class="text-center">Baik</td>
                             @endif 
                             @if ($item->KONDISI_BARANG === "2")
-                                <th class="text-center">Kurang Baik</th>
+                                <td class="text-center">Kurang Baik</td>
                             @endif 
                             @if ($item->KONDISI_BARANG === "3")
-                                <th class="text-center">Rusak Berat</th>
+                                <td class="text-center">Rusak Berat</td>
                             @endif
                             @if ($item->KEBERADAAN_BARANG === "1")
-                                <th class="text-center">Ada</th>
+                                <td class="text-center">Ada</td>
                             @endif 
                             @if ($item->KEBERADAAN_BARANG === "2")
-                                <th class="text-center">Tidak Ada</th>
+                                <td class="text-center">Tidak Ada</td>
                             @endif
-                            <th class="text-center">{{ $item->KETERANGAN }}</th>
+                            <td class="text-center">{{ $item->KETERANGAN }}</td>
                         </tr>
                         @php
                             $no++;

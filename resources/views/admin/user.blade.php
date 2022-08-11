@@ -72,16 +72,16 @@
                     @endphp
                     @foreach ($user as $item)
                         <tr>
-                            <th class="text-center">{{ $no }}</th>
-                            <th class="text-center">{{ $item->jabatan->JABATAN }}</th>
-                            <th class="text-center">{{ $item->role->ROLE }}</th>
-                            <th class="text-center">{{ $item->NAMA }}</th>
-                            <th class="text-center">{{ $item->NIP }}</th>
-                            {{-- <th class="text-center">{{ $item->PASSWORD }}</th> --}}
-                            <th class="text-center">
+                            <td class="text-center">{{ $no }}</td>
+                            <td class="text-center">{{ $item->jabatan->JABATAN }}</td>
+                            <td class="text-center">{{ $item->role->ROLE }}</td>
+                            <td class="text-center">{{ $item->NAMA }}</td>
+                            <td class="text-center">{{ $item->NIP }}</td>
+                            {{-- <td class="text-center">{{ $item->PASSWORD }}</td> --}}
+                            <td class="text-center">
                                 <a href="/edit-user{{$item->ID_USER}}"><button type="button" class="btn btn-primary tombol">Edit</button></a>
                                 <a href="/hapus-user{{$item->ID_USER}}"><button type="button" class="btn btn-danger tombol">Hapus</button></a>
-                            </th>
+                            </td>
                         </tr>
                         @php
                             $no++;
