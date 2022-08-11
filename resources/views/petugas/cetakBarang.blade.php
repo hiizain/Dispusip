@@ -9,7 +9,7 @@
         table.static{
             position: relative;
             /* left: 3%; */
-            border: 1px solid #b30b0b;
+            border: 1px solid #000000;
         }
     </style>
     <title>Cetak Data Barang</title>
