@@ -81,8 +81,8 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-merek">
-                    <i class="fas fa-filter"></i>
-                    <span>Merk</span></a>
+                    <i class="fas fa-tag"></i>
+                    <span>Merek</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin-satuan">

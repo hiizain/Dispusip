@@ -76,6 +76,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
+                    <i class="fas fa-tag"></i>
+                    <span>Tambah Merek</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
                     <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
@@ -115,8 +121,9 @@
                                     $user = User::where('nip', $nip)->first();
                                 ?>
                                 <div>
+                                    
                                     <span class="mr-2 d-none d-lg-inline text-gray-800 normal"><?= $user->NAMA; ?></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->jabatan->JABATAN ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->role->ROLE;?></span>
                                 </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
@@ -187,12 +194,10 @@
                                 <div class="col-sm-6 py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Tabel Data Barang</h6>
                                 </div>
-                                <div class="col-sm-6 py-2">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="/cetak-barang/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Cetak Barang <i class="fas fa-print"></i></a>
+                                
+                                <div class="col-sm-6 py-2">    
+                                    <span style="float: right">                    
+                                    <a href="/cetak-barang/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Cetak Data <i class="fas fa-print" ></i></a>
                                 </div>
                             </div>
                         </div>

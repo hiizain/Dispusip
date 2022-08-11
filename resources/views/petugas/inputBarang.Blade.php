@@ -77,6 +77,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">
+                    <i class="fas fa-tag"></i>
+                    <span>Tambah Merek</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/petugas-lokasi">
                     <i class="fas fa-map-marked-alt"></i>
                     <span>Ganti Lokasi</span></a>
@@ -118,7 +124,7 @@
                                 @endphp
                                 <div>
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 normal"><?= $user->NAMA; ?></span><br>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user->jabatan->JABATAN ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-500 small"><?= $user->role->ROLE;?></span>
                                 </div>
                                 <img class="img-profile rounded-circle"
                                     src="../assets/img/undraw_profile.svg">
@@ -268,6 +274,37 @@
                                                 <option value="<?= $item->ID_MEREK ?>" {{ old('merek') == $item->ID_MEREK ? 'selected' : '' }}><?= $item->MEREK ?></option>
                                             <?php } ?>
                                         </select>
+
+                                        <a class="float-right mt-1" href="/petugas-merek/{{ $lokasi->KODE_LOKASI }}">Tambah Merek</a>
+
+                                        {{-- <a value="0" id="btnAddMerek" class="float-right mt-1" data-toggle="modal" data-target="#modalMerek">Tambah Merek</a>
+                    
+                                        <div class="modal fade" id="modalMerek" tabindex="-1" aria-labelledby="modalPreview" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" id="modalAddMerek">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Tambah Merek</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-10" id="errorModal">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <form action="/add-merek" method="post">
+                                                            <div class="form-group">
+                                                                <input type="hidden" id="lokasi" name="lokasi" value="{{ $lokasi->KODE_LOKASI }}">
+                                                                <input type="text" id="inputMerek" name="inputMerek" class="form-control form-control-user"
+                                                                    placeholder="Merek" required value="{{ old('merek') }}">
+                                                            </div>
+                                                            <a class="btn btn-primary btn-user btn-block">Tambah</a>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row hide" style="display: none;">
@@ -280,18 +317,6 @@
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
                                             placeholder="Nama Barang" name="namaBarang" value="{{ old('namaBarang') }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row hide" style="display: none;">
-                                    <div class="col-sm-4 mt-2">
-                                        <h1 class="h6">Merk Barang</h1>
-                                    </div>
-                                    <div class="col-sm-1 mt-2">
-                                        <h1 class="h6">:</h1>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control form-control-user text-center" id="exampleFirstName"
-                                            placeholder="Merk Barang" name="merkBarang" value="{{ old('merkBarang') }}">
                                     </div>
                                 </div>
                                 <div class="form-group row hide" style="display: none;">
@@ -322,7 +347,7 @@
                                             
                                             for ($i=0; $i<10; $i++){
                                             ?>
-                                                <option value="{{ $year }}" {{ old('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                                                <option value="{{ $year }}" {{ old('tahunPengadaan') == $year ? 'selected' : '' }}>{{ $year }}</option>
                                             <?php 
                                                 $year--;
                                             }
