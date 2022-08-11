@@ -461,20 +461,29 @@ class PetugasController extends Controller
     // End -----------------------------
     // ---------------------------------
 
-    function merek($idlokasi){
-        $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
-        return view('petugas/merek', ['lokasi' => $lokasi]);
+    function tambahMerekEdit(Request $request){
+        $this->validate($request, [
+            'merek' => 'required|unique:merek'
+        ]);
+        $lokasi = Lokasi::where('id_lokasi', $request->lokasi)->first();
+        $merek = new Merek;
+        $merek->MEREK = $request->merek;
+        if($merek->save()){
+            return redirect("/petugas-barang-edit$request->noRegister/$lokasi->KODE_LOKASI")->with('tambahSuccess', 'Data berhasil ditambahkan');
+        } else 
+            return redirect("/petugas-barang-edit$request->noRegister/$lokasi->KODE_LOKASI")->with('tambahError', 'Data gagal ditambahkan');
     }
 
     function tambahMerek(Request $request){
         $this->validate($request, [
             'merek' => 'required|unique:merek'
         ]);
+        $lokasi = Lokasi::where('id_lokasi', $request->lokasi)->first();
         $merek = new Merek;
         $merek->MEREK = $request->merek;
         if($merek->save()){
-            return redirect("/petugas-merek/$request->lokasi")->with('tambahSuccess', 'Data berhasil ditambahkan');
+            return redirect("/petugas-barang-input/$lokasi->KODE_LOKASI")->with('tambahSuccess', 'Merek berhasil ditambahkan');
         } else 
-            return redirect("/petugas-merek/$request->lokasi")->with('tambahError', 'Data gagal ditambahkan');
+            return redirect("/petugas-barang-input/$lokasi->KODE_LOKASI")->with('tambahError', 'Merek gagal ditambahkan');
     }
 }

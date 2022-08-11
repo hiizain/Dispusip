@@ -45,7 +45,7 @@ function previewType(idType){
 function tambahMerek(){
     var merek = document.getElementById("inputMerek").value;
     var lokasi = document.getElementById("lokasi").value;
-    // console.log(lokasi);
+    console.log(lokasi);
     $.ajax({
         type:'POST',
         // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -58,9 +58,14 @@ function tambahMerek(){
         //     $("#modalMerek .close").click()
         // },
         success: function(){
-            $('#errorModal').html(`<div class="row alert alert-success mt-2">
+            $("#modalMerek .close").click();
+            // $("#modalMerek .close").trigger("click");
+            location.reload()
+        },
+        error: function(html){
+            $('#errorModal').html(`<div class="row alert alert-danger mt-2">
                 <div class="col-md-11">
-                    <p>Data berhasil ditambahkan</p>
+                    <p>Data gagal ditambahkan</p>
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -69,6 +74,30 @@ function tambahMerek(){
                 </div>
             </div>`);
             $('#inputMerek').val('');
+        }
+    });
+}
+
+function tambahMerekEdit(){
+    var merek = document.getElementById("inputMerek").value;
+    var lokasi = document.getElementById("lokasi").value;
+    var noRegister = document.getElementById("noRegister").value;
+    console.log(noRegister);
+    $.ajax({
+        type:'POST',
+        // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url:'/add-merek-edit',
+        data: {'merek':merek,'lokasi':lokasi, 'noRegister':noRegister},
+        // success: function(html){
+        //     // $('#modalMerek').modal('toggle');
+        //     // $('#merek').val('');
+        //     // location.reload();
+        //     $("#modalMerek .close").click()
+        // },
+        success: function(){
+            $("#modalMerek .close").click();
+            // $("#modalMerek .close").trigger("click");
+            location.reload();
         },
         error: function(html){
             $('#errorModal').html(`<div class="row alert alert-danger mt-2">

@@ -118,8 +118,8 @@ Route::get('/petugas-barang-input/{idlokasi}', 'PetugasController@inputBarang')-
 // Modal preview gambar type
 Route::post('/priveiew-type', 'PetugasController@previewType')->middleware('petugas');
 
-// Menampilkan halaman tambah merek
-Route::get('/petugas-merek/{idlokasi}', 'PetugasController@merek')->middleware('petugas');
+// Fungsi add merek Edit
+Route::post('/add-merek-edit', 'PetugasController@tambahMerekEdit')->middleware('petugas');
 
 // Fungsi add merek
 Route::post('/add-merek', 'PetugasController@tambahMerek')->middleware('petugas');
