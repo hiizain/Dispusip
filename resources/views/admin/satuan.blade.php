@@ -19,9 +19,18 @@
 </div>
 @endif
 
-@if (session()->has('hapus'))
+@if (session()->has('deleteSuccess'))
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
-    {{ session('hapus') }}
+    {{ session('deleteSuccess') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session()->has('deleteError'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('deleteError') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>

@@ -190,9 +190,8 @@
                                 </div>
                                 
                                 <div class="col-sm-6 py-2">    
-                                    <span style="float: right">    
-                                    <a href="/cetak-barang-today/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Print Today <i class="fas fa-print" ></i></a>                
-                                    <a href="/cetak-barang-all/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Print All <i class="fas fa-print" ></i></a>
+                                    <span style="float: right">                    
+                                    <a href="/cetak-barang/{{ $lokasi->KODE_LOKASI }}" target="blank" class="btn btn-primary">Cetak Data <i class="fas fa-print" ></i></a>
                                 </div>
                             </div>
                         </div>

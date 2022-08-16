@@ -19,9 +19,18 @@
 </div>
 @endif
 
-@if (session()->has('hapus'))
+@if (session()->has('deleteSuccess'))
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
-    {{ session('hapus') }}
+    {{ session('deleteSuccess') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session()->has('deleteError'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('deleteError') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -33,7 +42,7 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col-sm-6 py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Satuan Barang</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Merek Barang</h6>
             </div>
             <div class="col-sm-6 py-2">
                 <span style="float: right">  

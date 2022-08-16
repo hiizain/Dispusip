@@ -19,9 +19,18 @@
 </div>
 @endif
 
-@if (session()->has('hapus'))
+@if (session()->has('deleteSuccess'))
 <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
-    {{ session('hapus') }}
+    {{ session('deleteSuccess') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session()->has('deleteError'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="text-align: center">
+    {{ session('deleteError') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -47,8 +56,8 @@
                 <thead>
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">ID Jabatan</th>
-                        <th class="text-center">ID Role</th>
+                        <th class="text-center">Jabatan</th>
+                        <th class="text-center">Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
                         {{-- <th class="text-center">Password</th> --}}
@@ -58,8 +67,8 @@
                 <tfoot>
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">ID Jabatan</th>
-                        <th class="text-center">ID Role</th>
+                        <th class="text-center">Jabatan</th>
+                        <th class="text-center">Role</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">NIP</th>
                         {{-- <th class="text-center">Password</th> --}}

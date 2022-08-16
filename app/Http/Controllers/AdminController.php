@@ -31,7 +31,7 @@ class AdminController extends Controller
      */
     //Lokasi
     function lokasi(){
-        $lokasi = Lokasi::all();
+        $lokasi = Lokasi::orderBy('lokasi', 'ASC')->get();
         return view('admin/lokasi', ['lokasi' => $lokasi]);
     }
 
@@ -79,8 +79,10 @@ class AdminController extends Controller
     public function destroylokasi($id)
     {
         $lokasi = Lokasi::where('ID_LOKASI',$id);
-        $lokasi->delete();
-        return redirect("/admin-lokasi")->with('hapus', 'Data berhasil dihapus');
+        if ($lokasi->delete()){
+            return redirect("/admin-lokasi")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else return redirect("/admin-lokasi")->with('deleteError', 'Data gagal dihapus');
+        
     }
 // ==================================================END LOKASI==================================================
 
@@ -93,7 +95,7 @@ class AdminController extends Controller
     }
 
     function role(){
-        $role = Role::all();
+        $role = Role::orderBy('role', 'ASC')->get();
         return view('admin/role', ['role' => $role]);
     }
 
@@ -132,8 +134,10 @@ class AdminController extends Controller
     public function destroyrole($id)
     {
         $role = Role::where('ID_ROLE',$id);
-        $role->delete();
-        return redirect("/admin-role")->with('hapus', 'Data berhasil dihapus');
+        if ($role->delete()){
+            return redirect("/admin-role")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else
+        return redirect("/admin-role")->with('deleteError', 'Data gagal dihapus');
     }
 // ==================================================END ROLE==================================================
 
@@ -141,14 +145,13 @@ class AdminController extends Controller
 //Type
     public function tambahtype()
     {
-        $satuan = Satuan::all();
+        $satuan = Satuan::orderBy('satuan', 'ASC')->get();
         return view('admin/tambah/tambahtype', ['satuan' => $satuan,]);
     }
 
     function type(){
-        $type = Type::all();
-        $satuan = Satuan::all();
-        return view('admin/type', ['type' => $type, 'satuan' => $satuan]);
+        $type = Type::orderBy('type', 'ASC')->get();
+        return view('admin/type', ['type' => $type]);
     }
 
     public function storetype(Request $request)
@@ -182,7 +185,7 @@ class AdminController extends Controller
     public function edittype($id)
     {
         $type = Type::where('ID_TYPE',$id)->first();
-        $satuan = Satuan::all();
+        $satuan = Satuan::orderBy('satuan', 'ASC')->get();
 
         return view('admin/edit/edittype', ['data' => $type,'satuan' => $satuan]);
     }
@@ -224,22 +227,24 @@ class AdminController extends Controller
     public function destroytype($id)
     {
         $type = Type::where('ID_TYPE',$id);
-        $type->delete();
-        return redirect("/admin-type")->with('hapus', 'Data berhasil dihapus');
+        if($type->delete()){
+            return redirect("/admin-type")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else
+        return redirect("/admin-type")->with('deleteError', 'Data gagal dihapus');
     }
 // ==================================================END TYPE==================================================
 
 //User    
     public function tambahuser()
     {
-        $jabatan = Jabatan::all();
-        $role = Role::all();
+        $jabatan = Jabatan::orderBy('jabatan', 'ASC')->get();
+        $role = Role::orderBy('role', 'ASC')->get();
         return view('admin/tambah/tambahuser', ['jabatan' => $jabatan,'role' => $role]);
         
     }
 
     function user(){
-        $user = User::all();
+        $user = User::orderBy('created_at', 'DESC')->get();
         return view('admin/user', ['user' => $user]);
     }
 
@@ -277,8 +282,8 @@ class AdminController extends Controller
     public function edituser($id)
     {
         $user = USER::where('ID_USER',$id)->first();
-        $jabatan = Jabatan::all();
-        $role = Role::all();
+        $jabatan = Jabatan::orderBy('jabatan', 'ASC')->get();
+        $role = Role::orderBy('role', 'ASC')->get();
 
         return view('admin/edit/edituser', ['data' => $user, 'jabatan' => $jabatan, 'role' => $role]);
     }
@@ -329,8 +334,10 @@ class AdminController extends Controller
     public function destroyuser($id)
     {
         $user = User::where('ID_USER',$id);
-        $user->delete();
-        return redirect("/admin-user")->with('hapus', 'Data berhasil dihapus');
+        if($user->delete()){
+            return redirect("/admin-user")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else
+        return redirect("/admin-user")->with('deleteError', 'Data gagal dihapus');
     }
 // ==================================================END USER==================================================
 
@@ -342,7 +349,7 @@ class AdminController extends Controller
     }
 
     function satuan(){
-        $satuan = Satuan::all();
+        $satuan = Satuan::orderBy('satuan', 'ASC')->get();
         return view('admin/satuan', ['satuan' => $satuan]);
     }
 
@@ -381,8 +388,10 @@ class AdminController extends Controller
     public function destroysatuan($id)
     {
         $satuan = Satuan::where('ID_SATUAN',$id);
-        $satuan->delete();
-        return redirect("/admin-satuan")->with('hapus', 'Data berhasil dihapus');
+        if($satuan->delete()){
+            return redirect("/admin-satuan")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else
+        return redirect("/admin-satuan")->with('deleteError', 'Data gagal dihapus');
     }
 // ==================================================END SATUAN==================================================
 
@@ -394,7 +403,7 @@ class AdminController extends Controller
     }
 
     function jabatan(){
-        $jabatan = Jabatan::all();
+        $jabatan = Jabatan::orderBy('jabatan', 'ASC')->get();
         return view('admin/jabatan', ['jabatan' => $jabatan]);
     }
 
@@ -433,14 +442,16 @@ class AdminController extends Controller
     public function destroyjabatan($id)
     {
         $jabatan = Jabatan::where('ID_JABATAN',$id);
-        $jabatan->delete();
-        return redirect("/admin-jabatan")->with('hapus', 'Data berhasil dihapus');
+        if($jabatan->delete()){
+            return redirect("/admin-jabatan")->with('deleteSuccess', 'Data berhasil dihapus');
+        } else
+        return redirect("/admin-jabatan")->with('deleteError', 'Data gagal dihapus');
     }
 // ==================================================END SATUAN==================================================
 
 //Barang
     function barang(){
-        $barang = Barang::all();
+        $barang = Barang::orderBy('created_at', 'DESC')->get();
         return view('admin/barang', ['barang' => $barang]);
     }
 // ==================================================END BARANG==================================================
@@ -453,7 +464,7 @@ public function tambahmerek()
 }
 
 function merek(){
-    $merek = Merek::all();
+    $merek = Merek::orderBy('merek', 'ASC')->get();
     return view('admin/merek', ['merek' => $merek]);
 }
 
@@ -492,8 +503,10 @@ public function updatemerek(Request $request,$id)
 public function destroymerek($id)
 {
     $merek = Merek::where('ID_MEREK',$id);
-    $merek->delete();
-    return redirect("/admin-merek")->with('hapus', 'Data berhasil dihapus');
+    if($merek->delete()){
+        return redirect("/admin-merek")->with('deleteSuccess', 'Data berhasil dihapus');
+    } else
+    return redirect("/admin-merek")->with('deleteError', 'Data gagal dihapus');
 }
 // ==================================================END SATUAN==================================================
 

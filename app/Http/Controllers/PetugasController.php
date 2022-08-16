@@ -21,7 +21,7 @@ class PetugasController extends Controller
     // Menampilkan halaman lokasi User Petugas
     // ---------------------------------------
     function lokasi(){
-        $lokasi = Lokasi::all();
+        $lokasi = Lokasi::orderBy('lokasi', 'ASC')->get();
         return view('petugas/lokasi', ['lokasi' => $lokasi]);
     }
     // ---------------------------------------
@@ -35,7 +35,7 @@ class PetugasController extends Controller
     // ---------------------------------------
     function barang($idlokasi){
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
-        $barang = Barang::where('id_lokasi', $lokasi->ID_LOKASI)->get();
+        $barang = Barang::where('id_lokasi', $lokasi->ID_LOKASI)->orderBy('created_at', 'DESC')->get();
         return view('petugas/barang', ['lokasi' => $lokasi, 'barang' => $barang]);
     }
     // ---------------------------------------
@@ -55,13 +55,27 @@ class PetugasController extends Controller
     // End -----------------------------------
     // ---------------------------------------
 
+    // ---------------------------------------
+    // Mencetak data barang hari ini User Petugas
+    // ---------------------------------------
+    function cetakBarangToday($idlokasi){
+        date_default_timezone_set('Asia/Jakarta');
+        $today = date('Y-m-d').' 00:00:00';
+        $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
+        $barang = Barang::where('id_lokasi', $lokasi->ID_LOKASI)->where('created_at', '>' , $today)->get();
+        return view('petugas.cetakBarang', ['lokasi' => $lokasi, 'barang' => $barang]);
+    }
+    // ---------------------------------------
+    // End -----------------------------------
+    // ---------------------------------------
+
 
     // ---------------------------------------------
     // Menampilkan halaman input Barang User Petugas
     // ---------------------------------------------
     function inputBarang($idlokasi){
-        $type = Type::all();
-        $merek = Merek::all();
+        $type = Type::orderBy('type', 'ASC')->get();
+        $merek = Merek::orderBy('merek', 'ASC')->get();
         $lokasi = Lokasi::where('kode_lokasi', $idlokasi)->first();
         return view('petugas/inputBarang', ['lokasi' => $lokasi, 'type' => $type, 'merek' => $merek]);
     }
@@ -394,8 +408,8 @@ class PetugasController extends Controller
     function barangEdit($noRegister, $kodeLokasi){
         $barang = Barang::where('no_register', $noRegister)->first();
         $lokasi = Lokasi::where('kode_lokasi', $kodeLokasi)->first();
-        $type = Type::all();
-        $merek = Merek::all();
+        $type = Type::orderBy('type', 'ASC')->get();
+        $merek = Merek::orderBy('merek', 'ASC')->get();
 
         return view('petugas/editBarang', ['barang' => $barang, 'lokasi' => $lokasi, 'type' => $type, 'merek' => $merek]);
     }

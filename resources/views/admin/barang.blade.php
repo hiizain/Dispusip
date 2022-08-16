@@ -62,7 +62,7 @@
                             <td class="text-center">
                                 <img onclick="modalBarang(this.src)" width="120" height="80" src="storage/img-barang/{{ $item->PATH_FOTO }}" alt="">
                             </td>
-                            <td class="text-center">{{ $item->MERK }}</td>
+                            <td class="text-center">{{ $item->merek->MEREK }}</td>
                             <td class="text-center">{{ $item->type->TYPE }}</td>
                             <td class="text-center">{{ "Rp " . number_format($item->HARGA,2,',','.') }}</td>
                             <td class="text-center">{{ $item->TAHUN_PENGADAAN }}</td>
